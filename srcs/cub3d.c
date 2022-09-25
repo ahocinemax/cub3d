@@ -66,7 +66,7 @@ int	ft_valid_char(char c)
 	c == 'E' || c == 'W');
 }
 
-int	ft_size_line(char *line)
+int	ft_size_line(char *line, t_cub3d *cub3d)
 {
 	int	res;
 	int	i;
@@ -89,15 +89,15 @@ int	ft_size_line(char *line)
 t_error_code	ft_fill_and_check_map(t_cub3d *cub3d)
 {
 	char	*line;
-	int		longu;
 
 	line = get_next_line(cub3d->fd);
-	cub3d->map.large = ft_size_line(line);
+	cub3d->map.large = ft_size_line(line, cub3d);
 	if (cub3d->map.large < 0)
 		return (ft_print_error(cub3d, INVALID_MAP_SIZE));
 	while (line)
 	{
-		if (ft_size_line(line) != cub3d->map.large)
+		printf("line; %s\n", line);
+		if (ft_size_line(line, cub3d) != cub3d->map.large)
 			return (free(line), ft_print_error(cub3d, INVALID_MAP_SIZE));
 		free(line);
 		cub3d->map.longu++;
@@ -114,7 +114,7 @@ void	ft_free_struct(t_cub3d *cub3d)
 int	main(int argc, char *argv[], char **envp)
 {
 	t_cub3d			cub3d;
-	e_error_code	code;
+	t_error_code	code;
 
 	if (!envp)
 		return (ft_print_error(NULL, NO_ENV));
@@ -123,8 +123,8 @@ int	main(int argc, char *argv[], char **envp)
 	argv++;
 	ft_init_struct(&cub3d);
 	if (ft_check_file(*argv, &cub3d) != SUCCESS)
-		return (cub3d->exit_code);
+		return (cub3d.exit_code);
 	if (ft_fill_and_check_map(&cub3d) != SUCCESS)
-		return (cub3d->exit_code);
-	return (code = cub3d->exit_code, ft_free_struct(&cub3d), cub3d->exit_code);
+		return (cub3d.exit_code);
+	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 }
