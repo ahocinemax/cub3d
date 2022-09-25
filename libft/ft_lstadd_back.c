@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 02:28:04 by ahocine           #+#    #+#             */
-/*   Updated: 2022/09/25 02:28:16 by ahocine          ###   ########.fr       */
+/*   Created: 2021/06/28 22:13:01 by ahocine           #+#    #+#             */
+/*   Updated: 2021/06/28 22:13:02 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-#include "../libft/libft.h"
-
-typedef enum e_error_code	t_error_code;
-typedef struct s_cub3d		t_cub3d;
-
-enum	e_error_code
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	SUCCESS,
-	NO_ENV,
-	NO_FILE,
-	ARGC_ERROR,
-	WRONG_EXTENTION
-};
+	t_list	*element;
 
-struct s_cub3d
-{
-	char	*level_name;
-	char	**map;
-	int		x;
-	int		y;
-};
-
-#endif
+	if (alst)
+	{
+		if (*alst)
+		{
+			element = ft_lstlast(*alst);
+			element->next = new;
+		}
+		else
+			*alst = new;
+		new->next = NULL;
+	}
+}

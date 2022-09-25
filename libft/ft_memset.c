@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 02:28:04 by ahocine           #+#    #+#             */
-/*   Updated: 2022/09/25 02:28:16 by ahocine          ###   ########.fr       */
+/*   Created: 2021/05/30 20:57:13 by ahocine           #+#    #+#             */
+/*   Updated: 2021/05/30 20:57:28 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-#include "../libft/libft.h"
-
-typedef enum e_error_code	t_error_code;
-typedef struct s_cub3d		t_cub3d;
-
-enum	e_error_code
+void	*ft_memset(void *dest, int c, size_t len)
 {
-	SUCCESS,
-	NO_ENV,
-	NO_FILE,
-	ARGC_ERROR,
-	WRONG_EXTENTION
-};
+	size_t	i;
 
-struct s_cub3d
-{
-	char	*level_name;
-	char	**map;
-	int		x;
-	int		y;
-};
-
-#endif
+	i = -1;
+	while (++i < len)
+		((unsigned char *)dest)[i] = (unsigned char)c;
+	return (dest);
+}

@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 02:28:04 by ahocine           #+#    #+#             */
-/*   Updated: 2022/09/25 02:28:16 by ahocine          ###   ########.fr       */
+/*   Created: 2021/05/31 16:36:52 by ahocine           #+#    #+#             */
+/*   Updated: 2021/05/31 16:36:53 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-#include "../libft/libft.h"
-
-typedef enum e_error_code	t_error_code;
-typedef struct s_cub3d		t_cub3d;
-
-enum	e_error_code
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	SUCCESS,
-	NO_ENV,
-	NO_FILE,
-	ARGC_ERROR,
-	WRONG_EXTENTION
-};
+	char	*dst;
+	size_t	i;
 
-struct s_cub3d
-{
-	char	*level_name;
-	char	**map;
-	int		x;
-	int		y;
-};
-
-#endif
+	if (!s || !f)
+		return (NULL);
+	dst = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (dst)
+	{
+		i = -1;
+		while ((char)s[++i])
+			dst[i] = f(i, s[i]);
+		dst[i] = 0;
+	}
+	else
+		return (NULL);
+	return (dst);
+}

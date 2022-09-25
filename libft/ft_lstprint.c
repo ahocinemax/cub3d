@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_lstprint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 02:28:04 by ahocine           #+#    #+#             */
-/*   Updated: 2022/09/25 02:28:16 by ahocine          ###   ########.fr       */
+/*   Created: 2022/01/24 15:21:21 by ahocine           #+#    #+#             */
+/*   Updated: 2022/08/21 21:55:01 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-#include "../libft/libft.h"
-
-typedef enum e_error_code	t_error_code;
-typedef struct s_cub3d		t_cub3d;
-
-enum	e_error_code
+void	ft_lstprint(t_list *lst)
 {
-	SUCCESS,
-	NO_ENV,
-	NO_FILE,
-	ARGC_ERROR,
-	WRONG_EXTENTION
-};
-
-struct s_cub3d
-{
-	char	*level_name;
-	char	**map;
-	int		x;
-	int		y;
-};
-
-#endif
+	if (!lst)
+		return (ft_putstr_fd("liste vide\n", _STD_OUT));
+	while (lst)
+	{
+		ft_putstr_fd("\e[31m[", _STD_OUT);
+		ft_putstr_fd(lst->content, _STD_OUT);
+		ft_putstr_fd("] \e[0m", _STD_OUT);
+		if (lst->next)
+			ft_putstr_fd("-> ", _STD_OUT);
+		lst = lst->next;
+	}
+	ft_putchar_fd('\n', _STD_OUT);
+}

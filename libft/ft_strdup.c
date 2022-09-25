@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 02:28:04 by ahocine           #+#    #+#             */
-/*   Updated: 2022/09/25 02:28:16 by ahocine          ###   ########.fr       */
+/*   Created: 2021/04/11 04:52:12 by ahocine           #+#    #+#             */
+/*   Updated: 2021/04/11 05:49:27 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-#include "../libft/libft.h"
-
-typedef enum e_error_code	t_error_code;
-typedef struct s_cub3d		t_cub3d;
-
-enum	e_error_code
+char	*ft_strdup(const char *src)
 {
-	SUCCESS,
-	NO_ENV,
-	NO_FILE,
-	ARGC_ERROR,
-	WRONG_EXTENTION
-};
+	char	*dest;
+	size_t	len_src;
 
-struct s_cub3d
-{
-	char	*level_name;
-	char	**map;
-	int		x;
-	int		y;
-};
-
-#endif
+	len_src = 0;
+	while (*(src + len_src))
+		len_src++;
+	dest = malloc(sizeof(char) * (len_src + 1));
+	if (!dest)
+		return (NULL);
+	ft_memcpy(dest, src, len_src);
+	dest[len_src] = 0;
+	return (dest);
+}

@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 02:28:04 by ahocine           #+#    #+#             */
-/*   Updated: 2022/09/25 02:28:16 by ahocine          ###   ########.fr       */
+/*   Created: 2021/04/11 05:50:26 by ahocine           #+#    #+#             */
+/*   Updated: 2021/04/11 05:59:27 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-#include "../libft/libft.h"
-
-typedef enum e_error_code	t_error_code;
-typedef struct s_cub3d		t_cub3d;
-
-enum	e_error_code
+int	ft_atoi(const char *nb)
 {
-	SUCCESS,
-	NO_ENV,
-	NO_FILE,
-	ARGC_ERROR,
-	WRONG_EXTENTION
-};
+	long	i;
+	long	res;
+	long	neg;
 
-struct s_cub3d
-{
-	char	*level_name;
-	char	**map;
-	int		x;
-	int		y;
-};
-
-#endif
+	i = 0;
+	res = 0;
+	neg = 1;
+	while ((nb[i] >= 9 && nb[i] <= 13) || nb[i] == ' ')
+		i++;
+	if (nb[i] == '+' || nb[i] == '-')
+	{
+		if (nb[i] == '-')
+			neg = -1;
+		i++;
+	}
+	while (ft_isdigit(nb[i]))
+	{
+		res = res * 10 + nb[i] - '0';
+		i++;
+	}
+	return ((int)res * (int)neg);
+}
