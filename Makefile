@@ -73,7 +73,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
 clean:
 	@echo $(CURSIVE)$(GRAY) "     - Removing object files..." $(END)
 	make -C $(LIB_DIR) clean
-	make -C $(MLX_DIR) clean
+	# make -C $(MLX_DIR) clean
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean

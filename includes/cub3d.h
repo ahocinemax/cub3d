@@ -13,10 +13,11 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include "../libft/libft.h"
+# include "../libft/libft.h"
 
 typedef enum e_error_code	t_error_code;
 typedef struct s_cub3d		t_cub3d;
+typedef struct s_map		t_map;
 
 enum	e_error_code
 {
@@ -24,13 +25,26 @@ enum	e_error_code
 	NO_ENV,
 	NO_FILE,
 	ARGC_ERROR,
-	WRONG_EXTENTION
+	WRONG_EXTENTION,
+	INVALID_MAP_SIZE,
+	INVALID_CHAR
+};
+
+struct s_map
+{
+	int					x;
+	int					y;
+	int					large;
+	int					longu;
+	char				**map;
 };
 
 struct s_cub3d
 {
 	char	*level_name;
-	char	**map;
+	int		exit_code;
+	t_map	map;
+	int		fd;
 	int		x;
 	int		y;
 };
