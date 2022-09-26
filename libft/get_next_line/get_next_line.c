@@ -93,7 +93,7 @@ char	*get_next_line(int f)
 	char		buf[BUFFER_SIZE + 1];
 	ssize_t		lu;
 	char		*line;
-	static char	*reste;
+	static char	*reste = NULL;
 
 	if (f < 0 || read(f, NULL, 0) < 0 || ft_init(&lu, &line, &reste, buf))
 		return (NULL);

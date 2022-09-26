@@ -20,7 +20,7 @@ void	ft_strcat(char *dest, char *src)
 	if (!src || !dest)
 		return ;
 	i = 0;
-	while (dest[i])
+	while (*(dest + i))
 		i++;
 	j = 0;
 	while (src[j])
@@ -59,9 +59,9 @@ int	ft_search_end(char *str)
 	if (!str)
 		return (-1);
 	i = 0;
-	while (str[i])
+	while (*(str + i))
 	{
-		if (str[i] == '\n')
+		if (*(str + i) == '\n')
 			return (i);
 		i++;
 	}
