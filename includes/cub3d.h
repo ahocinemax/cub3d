@@ -14,6 +14,13 @@
 # define CUB3D_H
 
 # include "../libft/libft.h"
+# include <mlx.h>
+# include <math.h>
+# include <fcntl.h>
+# include <limits.h>
+# include <float.h>
+# include <stdbool.h>
+
 
 typedef enum e_error_code	t_error_code;
 typedef struct s_cub3d		t_cub3d;

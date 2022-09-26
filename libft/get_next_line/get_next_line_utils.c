@@ -31,27 +31,6 @@ void	ft_strcat(char *dest, char *src)
 	dest[i + j] = 0;
 }
 
-void	*ft_memset(void *dest, int c, size_t len)
-{
-	size_t	i;
-
-	i = -1;
-	while (++i < len)
-		((unsigned char *)dest)[i] = (unsigned char)c;
-	return (dest);
-}
-
-void	*ft_calloc(size_t number, size_t len)
-{
-	void	*res;
-
-	res = malloc(number * len);
-	if (!(res))
-		return (NULL);
-	res = ft_memset(res, 0, number * len);
-	return (res);
-}
-
 int	ft_search_end(char *str)
 {
 	ssize_t	i;
