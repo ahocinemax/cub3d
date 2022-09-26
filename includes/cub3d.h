@@ -30,6 +30,7 @@
 typedef enum e_error_code	t_error_code;
 typedef struct s_cub3d		t_cub3d;
 typedef struct s_map		t_map;
+typedef struct s_color		t_color;
 
 enum	e_error_code
 {
@@ -42,6 +43,13 @@ enum	e_error_code
 	INVALID_CHAR,
 	MALLOC_FAILURE,
 	OPEN_FAILED
+};
+
+struct s_color
+{
+	int	red;
+	int	green;
+	int	blue;
 };
 
 struct s_map

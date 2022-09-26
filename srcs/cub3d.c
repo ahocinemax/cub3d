@@ -99,7 +99,7 @@ void	ft_remove_newline(t_cub3d *cub3d, char *line)
 		free(line);
 		line = get_next_line(cub3d->fd);
 	}
-	if (line[ft_strlen(line) - 1] == '\n')
+	if (*line && ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = 0;
 }
 
@@ -112,7 +112,7 @@ char	*ft_fill_line(t_cub3d *cub3d)
 
 	i = 0;
 	j = 0;
-	line = (char *)ft_calloc(sizeof(char), cub3d->map.large);
+	line = (char *)ft_calloc(sizeof(char), cub3d->map.large + 1);
 	if (!line)
 		return (cub3d->exit_code = MALLOC_FAILURE, NULL);
 	gnl = get_next_line(cub3d->fd);
@@ -189,6 +189,11 @@ void	ft_free_struct(t_cub3d *cub3d)
 	ft_free_array((void **)cub3d->map.map, free);
 }
 
+void	ft_fill_info(t_cub3d *cub3d)
+{
+	;
+}
+
 int	main(int argc, char *argv[], char **envp)
 {
 	t_cub3d			cub3d;
@@ -202,6 +207,7 @@ int	main(int argc, char *argv[], char **envp)
 	ft_init_struct(&cub3d);
 	if (ft_check_file(*argv, &cub3d) != SUCCESS)
 		return (ft_free_struct(&cub3d), cub3d.exit_code);
+	ft_fill_info(&cub3d);
 	if (ft_fill_and_check_map(&cub3d) != SUCCESS)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 	int	i = 0;
