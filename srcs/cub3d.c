@@ -204,5 +204,8 @@ int	main(int argc, char *argv[], char **envp)
 		return (ft_free_struct(&cub3d), cub3d.exit_code);
 	if (ft_fill_and_check_map(&cub3d) != SUCCESS)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
+	int	i = 0;
+	while (cub3d.map.map[i])
+		printf("%s\n", cub3d.map.map[i++]);
 	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 }

@@ -21,6 +21,11 @@
 # include <float.h>
 # include <stdbool.h>
 
+# define KEY_ESC		65307
+# define KEY_W			119
+# define KEY_A			97
+# define KEY_S			115
+# define KEY_D			100
 
 typedef enum e_error_code	t_error_code;
 typedef struct s_cub3d		t_cub3d;
