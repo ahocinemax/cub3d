@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
+# include "./rayscasting.h"
 # include <math.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -26,6 +27,7 @@
 # define KEY_A			97
 # define KEY_S			115
 # define KEY_D			100
+# define KEY_RETURN		65293
 
 typedef enum e_error_code	t_error_code;
 typedef struct s_cub3d		t_cub3d;
