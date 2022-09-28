@@ -29,6 +29,11 @@
 # define KEY_D			100
 # define KEY_RETURN		65293
 
+# define NORTH			0
+# define SOUTH			1
+# define EAST			2
+# define WEST			3
+
 typedef enum e_error_code	t_error_code;
 typedef struct s_cub3d		t_cub3d;
 typedef struct s_map		t_map;
@@ -43,6 +48,7 @@ enum	e_error_code
 	WRONG_EXTENTION,
 	INVALID_MAP_SIZE,
 	INVALID_CHAR,
+	INVALID_DESCRIPTOR,
 	MALLOC_FAILURE,
 	OPEN_FAILED
 };
