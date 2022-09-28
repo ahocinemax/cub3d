@@ -27,6 +27,8 @@ t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code)
 		ft_putstr_fd("parsing: must be a square.\n", _STD_ERR);
 	else if (error_code == INVALID_CHAR)
 		ft_putstr_fd("parsing: invalid identifier.\n", _STD_ERR);
+	else if (error_code == MAP_ERROR)
+		ft_putstr_fd("parsing: map error.\n", _STD_ERR);
 	else
 		ft_putstr_fd("Unexpected error, well done.\nexiting...\n", _STD_ERR);
 	if (cub3d)

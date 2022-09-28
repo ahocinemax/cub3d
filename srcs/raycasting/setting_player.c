@@ -59,7 +59,7 @@ int    check_player_position(t_pos *pos, char **map, t_cub3d *cub3d)
         }
     }
     if (!pos->check_pos)
-        printf("nosign\n");
+        ft_print_error(cub3d, MAP_ERROR);
     return (0);
 } 
 
