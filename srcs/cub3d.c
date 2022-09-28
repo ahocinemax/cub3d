@@ -189,14 +189,14 @@ void	ft_free_struct(t_cub3d *cub3d)
 	ft_free_array((void **)cub3d->map.map, free);
 }
 
-void	ft_fill_info(t_cub3d *cub3d)
+t_error_code	ft_fill_info(t_cub3d *cub3d)
 {
 	char	*line;
 	int		i;
 
 	line = get_next_line(cub3d->fd);
 	if (!line)
-		return ;
+		return (ft_print_error(cub3d, INVALID_DESCRIPTOR));
 	i = 0;
 	while (line)
 	{
@@ -205,10 +205,13 @@ void	ft_fill_info(t_cub3d *cub3d)
 			continue ;
 		ft_skip_spaces(line, &i);
 		if (line[i] == 'N')
-			ft_north_texture();
-		else if (line[i] == 'S');
-		else if (line[i] == 'E');
-		else if (line[i] == 'W');
+			ft_add_texture_path(cub3d, line, NORTH);
+		else if (line[i] == 'S')
+			ft_add_texture_path(cub3d, line, SOUTH);
+		else if (line[i] == 'E')
+			ft_add_texture_path(cub3d, line, EAST);
+		else if (line[i] == 'W')
+			ft_add_texture_path(cub3d, line, WEST);
 		else if (ft_isdigit(line[i]))
 			break ;
 		else
@@ -216,7 +219,7 @@ void	ft_fill_info(t_cub3d *cub3d)
 		free(line);
 		line = get_next_line(cub3d->fd);
 	}
-	free(line);
+	return (free(line), SUCCESS);
 }
 
 int	main(int argc, char *argv[], char **envp)
@@ -232,7 +235,8 @@ int	main(int argc, char *argv[], char **envp)
 	ft_init_struct(&cub3d);
 	if (ft_check_file(*argv, &cub3d) != SUCCESS)
 		return (ft_free_struct(&cub3d), cub3d.exit_code);
-	ft_fill_info(&cub3d);
+	if (ft_fill_info(&cub3d) != SUCCESS)
+		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 	if (ft_fill_and_check_map(&cub3d) != SUCCESS)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 	int	i = 0;

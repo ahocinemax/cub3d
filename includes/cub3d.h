@@ -27,6 +27,11 @@
 # define KEY_S			115
 # define KEY_D			100
 
+# define NORTH			0
+# define SOUTH			1
+# define EAST			2
+# define WEST			3
+
 typedef enum e_error_code	t_error_code;
 typedef struct s_cub3d		t_cub3d;
 typedef struct s_map		t_map;
