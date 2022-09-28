@@ -191,7 +191,32 @@ void	ft_free_struct(t_cub3d *cub3d)
 
 void	ft_fill_info(t_cub3d *cub3d)
 {
-	;
+	char	*line;
+	int		i;
+
+	line = get_next_line(cub3d->fd);
+	if (!line)
+		return ;
+	i = 0;
+	while (line)
+	{
+		ft_remove_newline(cub3d, line);
+		if (!*line)
+			continue ;
+		ft_skip_spaces(line, &i);
+		if (line[i] == 'N')
+			ft_north_texture();
+		else if (line[i] == 'S');
+		else if (line[i] == 'E');
+		else if (line[i] == 'W');
+		else if (ft_isdigit(line[i]))
+			break ;
+		else
+			return (ft_print_error(cub3d, INVALID_DESCRIPTOR));
+		free(line);
+		line = get_next_line(cub3d->fd);
+	}
+	free(line);
 }
 
 int	main(int argc, char *argv[], char **envp)
