@@ -28,6 +28,8 @@
 # define KEY_S			115
 # define KEY_D			100
 # define KEY_RETURN		65293
+# define KEY_RIGHT		65363
+# define KEY_LEFT		65361
 
 # define NORTH			0
 # define SOUTH			1
