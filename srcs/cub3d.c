@@ -63,8 +63,16 @@ void	ft_init_struct(t_cub3d *cub3d, t_game *game)
 	cub3d->map.y = 0;
 	cub3d->fd = -1;
 	cub3d->x = 0;
-	cub3d->y = 0;
-	init_struct_game(cub3d, game);
+	cub3d->y = 0;    
+	game = malloc(sizeof(t_game));
+    if (!game)
+    {
+        //print + free (je vais changer apres)
+        printf("ERROR\n");
+        free(game);
+        exit (1);
+    }
+	init_struct_game(game);
 }
 
 int	ft_valid_char(char c)
@@ -207,7 +215,7 @@ t_error_code	ft_fill_info(t_cub3d *cub3d)
 		if (!*line)
 			continue ;
 		ft_skip_spaces(line, &i);
-		if (line[i] == 'N')
+		/*if (line[i] == 'N')
 			ft_add_texture_path(cub3d, line, NORTH);
 		else if (line[i] == 'S')
 			ft_add_texture_path(cub3d, line, SOUTH);
@@ -215,7 +223,7 @@ t_error_code	ft_fill_info(t_cub3d *cub3d)
 			ft_add_texture_path(cub3d, line, EAST);
 		else if (line[i] == 'W')
 			ft_add_texture_path(cub3d, line, WEST);
-		else if (ft_isdigit(line[i]))
+		else */if (ft_isdigit(line[i]))
 			break ;
 		else
 			return (ft_print_error(cub3d, INVALID_DESCRIPTOR));
@@ -243,8 +251,9 @@ int	main(int argc, char *argv[], char **envp)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 	if (ft_fill_and_check_map(&cub3d) != SUCCESS)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
+	//check_player_position(pos, map, cub3d);
 	int	i = 0;
 	while (cub3d.map.map[i])
 		printf("%s\n", cub3d.map.map[i++]);
-	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
+	return (code = cub3d.exit_code, ft_free_struct(&cub3d), ft_free_game(&game), code);
 }

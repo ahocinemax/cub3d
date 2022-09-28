@@ -53,6 +53,8 @@ typedef struct s_game
 }   t_game;
 
 
-void    init_struct_game(t_game *game, t_cub3d cub3d);
+void    init_struct_game(t_game *game);
+void    ft_free_game(t_game *game);
+
 
 #endif

@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 # include "../libft/libft.h"
+# include "rayscasting.h"
 # include "../mlx/mlx.h"
-# include "./rayscasting.h"
 # include <math.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -27,16 +27,13 @@
 # define KEY_A			97
 # define KEY_S			115
 # define KEY_D			100
-# define KEY_RETURN		65293
-# define KEY_RIGHT		65363
-# define KEY_LEFT		65361
 
 # define NORTH			0
 # define SOUTH			1
 # define EAST			2
 # define WEST			3
 
-
+typedef enum e_error_code	t_error_code;
 typedef struct s_cub3d		t_cub3d;
 typedef struct s_map		t_map;
 typedef struct s_color		t_color;
@@ -55,7 +52,6 @@ enum	e_error_code
 	OPEN_FAILED,
 	MAP_ERROR
 };
-typedef enum e_error_code	t_error_code;
 
 struct s_color
 {
@@ -83,8 +79,6 @@ struct s_cub3d
 	int		y;
 };
 
-
 t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code);
 int    check_player_position(t_pos *pos, char **map, t_cub3d *cub3d);
-
 #endif

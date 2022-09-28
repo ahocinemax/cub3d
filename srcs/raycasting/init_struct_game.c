@@ -19,8 +19,16 @@ void    init_struct_pos(t_pos *pos)
     pos->pos_y = 0;
 }
 
-void    init_struct_game(t_game *game, t_cub3d cub3d)
+void    init_struct_game(t_game *game)
 {
+    game->pos = malloc(sizeof(t_pos));
+    if (!game->pos)
+    {
+        //print + free (je vais changer apres)
+        printf("ERROR\n");
+        free(game->pos);
+        exit (1);
+    }
     init_struct_pos(game->pos);
 /** 
     memo from Mariko:
@@ -29,4 +37,11 @@ void    init_struct_game(t_game *game, t_cub3d cub3d)
     t_game. mtn je initialise justement
     t_pos pour coder raycasting (09/28)
 **/
+}
+
+void    ft_free_game(t_game *game)
+{
+    if (game->pos)
+        free(game->pos);
+    game->pos = NULL;
 }
