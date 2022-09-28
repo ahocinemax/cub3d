@@ -50,7 +50,7 @@ t_error_code	ft_check_file(char *argv, t_cub3d *cub3d)
 	return (SUCCESS);
 }
 
-void	ft_init_struct(t_cub3d *cub3d)
+void	ft_init_struct(t_cub3d *cub3d, t_game *game)
 {
 	cub3d->exit_code = SUCCESS;
 	cub3d->level_name = NULL;
@@ -62,6 +62,7 @@ void	ft_init_struct(t_cub3d *cub3d)
 	cub3d->fd = -1;
 	cub3d->x = 0;
 	cub3d->y = 0;
+	init_struct_game(cub3d, game);
 }
 
 int	ft_valid_char(char c)
@@ -226,13 +227,14 @@ int	main(int argc, char *argv[], char **envp)
 {
 	t_cub3d			cub3d;
 	t_error_code	code;
+	t_game			game;
 
 	if (!envp)
 		return (ft_print_error(NULL, NO_ENV));
 	if (argc != 2)
 		return (ft_print_error(NULL, ARGC_ERROR));
 	argv++;
-	ft_init_struct(&cub3d);
+	ft_init_struct(&cub3d, &game);
 	if (ft_check_file(*argv, &cub3d) != SUCCESS)
 		return (ft_free_struct(&cub3d), cub3d.exit_code);
 	if (ft_fill_info(&cub3d) != SUCCESS)

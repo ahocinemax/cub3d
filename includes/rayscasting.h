@@ -24,6 +24,7 @@ typedef struct s_pos
     char    pos;
     int     pos_x;
     int     pos_y;
+	int		check_pos;
 }   t_pos;
 
 typedef struct s_player
@@ -41,6 +42,17 @@ typedef struct s_player
 	int		map_y;
 	int		step_x;
 	int		step_y;
+	int		check_pos;
 }	t_player;
+
+typedef struct s_game
+{
+    t_pos	   *pos;
+	t_win		*win;
+	t_player	*player;
+}   t_game;
+
+
+void    init_struct_game(t_game *game, t_cub3d cub3d);
 
 #endif

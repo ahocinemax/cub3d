@@ -36,7 +36,7 @@
 # define EAST			2
 # define WEST			3
 
-typedef enum e_error_code	t_error_code;
+
 typedef struct s_cub3d		t_cub3d;
 typedef struct s_map		t_map;
 typedef struct s_color		t_color;
@@ -52,8 +52,10 @@ enum	e_error_code
 	INVALID_CHAR,
 	INVALID_DESCRIPTOR,
 	MALLOC_FAILURE,
-	OPEN_FAILED
+	OPEN_FAILED,
+	MAP_ERROR
 };
+typedef enum e_error_code	t_error_code;
 
 struct s_color
 {
@@ -80,5 +82,9 @@ struct s_cub3d
 	int		x;
 	int		y;
 };
+
+
+t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code);
+int    check_player_position(t_pos *pos, char **map, t_cub3d *cub3d);
 
 #endif
