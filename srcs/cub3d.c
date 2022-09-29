@@ -52,7 +52,7 @@ t_error_code	ft_check_file(char *argv, t_cub3d *cub3d)
 	return (SUCCESS);
 }
 
-void	ft_init_struct(t_cub3d *cub3d, t_game *game)
+void	ft_init_struct(t_cub3d *cub3d)
 {
 	cub3d->exit_code = SUCCESS;
 	cub3d->level_name = NULL;
@@ -63,16 +63,10 @@ void	ft_init_struct(t_cub3d *cub3d, t_game *game)
 	cub3d->map.y = 0;
 	cub3d->fd = -1;
 	cub3d->x = 0;
-	cub3d->y = 0;    
-	game = malloc(sizeof(t_game));
-    if (!game)
-    {
-        //print + free (je vais changer apres)
-        printf("ERROR\n");
-        free(game);
-        exit (1);
-    }
-	init_struct_game(game);
+	cub3d->y = 0;
+	cub3d->pos_x = 0;
+	cub3d->pos_y = 0;
+	cub3d->check_pos = 0;
 }
 
 int	ft_valid_char(char c)
@@ -188,6 +182,7 @@ t_error_code	ft_fill_and_check_map(t_cub3d *cub3d)
 	close(cub3d->fd);
 	cub3d->fd = -1;
 	ft_fill_map(cub3d);
+	check_player_position(cub3d->map.map, cub3d);
 	return (SUCCESS);
 }
 
@@ -237,23 +232,22 @@ int	main(int argc, char *argv[], char **envp)
 {
 	t_cub3d			cub3d;
 	t_error_code	code;
-	t_game			game;
 
 	if (!envp)
 		return (ft_print_error(NULL, NO_ENV));
 	if (argc != 2)
 		return (ft_print_error(NULL, ARGC_ERROR));
 	argv++;
-	ft_init_struct(&cub3d, &game);
+	ft_init_struct(&cub3d);
 	if (ft_check_file(*argv, &cub3d) != SUCCESS)
 		return (ft_free_struct(&cub3d), cub3d.exit_code);
 	if (ft_fill_info(&cub3d) != SUCCESS)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 	if (ft_fill_and_check_map(&cub3d) != SUCCESS)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
-	//check_player_position(pos, map, cub3d);
 	int	i = 0;
 	while (cub3d.map.map[i])
 		printf("%s\n", cub3d.map.map[i++]);
-	return (code = cub3d.exit_code, ft_free_struct(&cub3d), ft_free_game(&game), code);
+	printf("%c\n", cub3d.pos);
+	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 }

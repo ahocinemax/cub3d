@@ -47,7 +47,7 @@ typedef struct s_player
 
 typedef struct s_game
 {
-    t_pos	   *pos;
+    t_pos	   pos;
 	t_win		*win;
 	t_player	*player;
 }   t_game;
@@ -55,6 +55,6 @@ typedef struct s_game
 
 void    init_struct_game(t_game *game);
 void    ft_free_game(t_game *game);
-
+void    init_struct_pos(t_pos *pos);
 
 #endif

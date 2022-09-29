@@ -77,8 +77,12 @@ struct s_cub3d
 	int		fd;
 	int		x;
 	int		y;
+	int		pos_x;
+	int		pos_y;
+	int		check_pos;
+	char	pos;
 };
 
 t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code);
-int    check_player_position(t_pos *pos, char **map, t_cub3d *cub3d);
+int    check_player_position(char **map, t_cub3d *cub3d);
 #endif
