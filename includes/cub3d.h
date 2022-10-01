@@ -28,15 +28,20 @@
 # define KEY_S			115
 # define KEY_D			100
 
-# define NORTH			0
-# define SOUTH			1
-# define EAST			2
-# define WEST			3
-
 typedef enum e_error_code	t_error_code;
+typedef enum e_direction	t_direction;
+typedef struct s_texture	t_texture;
 typedef struct s_cub3d		t_cub3d;
-typedef struct s_map		t_map;
 typedef struct s_color		t_color;
+typedef struct s_map		t_map;
+
+enum	e_direction
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+};
 
 enum	e_error_code
 {
@@ -69,9 +74,20 @@ struct s_map
 	char				**map;
 };
 
+struct s_texture
+{
+	t_direction		direction;
+	char			*path;
+};
+
+
 struct s_cub3d
 {
 	char	*level_name;
+	t_texture	no;
+	t_texture	so;
+	t_texture	ea;
+	t_texture	we;
 	int		exit_code;
 	t_map	map;
 	int		fd;

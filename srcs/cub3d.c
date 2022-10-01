@@ -52,8 +52,17 @@ t_error_code	ft_check_file(char *argv, t_cub3d *cub3d)
 	return (SUCCESS);
 }
 
+void	ft_init_texture(t_cub3d *cub3d)
+{
+	cub3d->no.path = NULL;
+	cub3d->so.path = NULL;
+	cub3d->ea.path = NULL;
+	cub3d->we.path = NULL;
+}
+
 void	ft_init_struct(t_cub3d *cub3d)
 {
+	ft_init_texture(cub3d);
 	cub3d->exit_code = SUCCESS;
 	cub3d->level_name = NULL;
 	cub3d->map.map = NULL;
@@ -195,6 +204,15 @@ void	ft_free_struct(t_cub3d *cub3d)
 	ft_free_array((void **)cub3d->map.map, free);
 }
 
+void	ft_add_texture_path(t_cub3d *cub3d, char *line, t_direction dir)
+{
+	// Check if struct was already filled to avoid duplicate
+	// Store the given path to struct for the mlx part
+	(void)cub3d;
+	(void)line;
+	printf("%d\n", dir);
+}
+
 t_error_code	ft_fill_info(t_cub3d *cub3d)
 {
 	char	*line;
@@ -228,6 +246,16 @@ t_error_code	ft_fill_info(t_cub3d *cub3d)
 	return (free(line), SUCCESS);
 }
 
+void	ft_parsing(char *argv, t_cub3d *cub3d)
+{
+	if (ft_check_file(argv, cub3d) != SUCCESS)
+		return ;
+	if (ft_fill_info(cub3d) != SUCCESS)
+		return ;
+	if (ft_fill_and_check_map(cub3d) != SUCCESS)
+		return ;
+}
+
 int	main(int argc, char *argv[], char **envp)
 {
 	t_cub3d			cub3d;
@@ -239,12 +267,7 @@ int	main(int argc, char *argv[], char **envp)
 		return (ft_print_error(NULL, ARGC_ERROR));
 	argv++;
 	ft_init_struct(&cub3d);
-	if (ft_check_file(*argv, &cub3d) != SUCCESS)
-		return (ft_free_struct(&cub3d), cub3d.exit_code);
-	if (ft_fill_info(&cub3d) != SUCCESS)
-		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
-	if (ft_fill_and_check_map(&cub3d) != SUCCESS)
-		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
+	ft_parsing(*argv, &cub3d);
 	int	i = 0;
 	while (cub3d.map.map[i])
 		printf("%s\n", cub3d.map.map[i++]);
