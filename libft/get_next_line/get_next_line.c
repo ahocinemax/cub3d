@@ -16,10 +16,11 @@ int	ft_init(ssize_t *lu, char **line, char **reste, char *buf)
 {
 	if (BUFFER_SIZE < 1)
 		return (-1);
-	*line = (char *)ft_calloc((10096 + 1), sizeof(char));
+	*line = (char *)ft_calloc((1096 + 1), sizeof(char));
 	if (!(*line))
 		return (-1);
 	*lu = 1;
+	buf[0] = 0;
 	if (*reste)
 	{
 		ft_strcat(*line, *reste);
