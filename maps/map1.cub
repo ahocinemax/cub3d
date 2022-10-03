@@ -1,12 +1,26 @@
-NO   ./textures/so_bad.xpm
+     NO   ./textures/so_bad.xpm
 EA          ./textures/so_cool.xpm
+       SO  ./textures/so_normal.xpm
+WE   ./textures/so_it.xpm
+C 220, 100, 30
 
-SO  ./textures/so_normal.xpm
-    WE          ./textures/so_it.xpm
+
+
+F        30, 100, 220
+
+
+
+           
+
+
 
 11111        111111
+10001        100001
+10001        100001
+10001        100001
 1000111111111100011
 1000100010000000001
 1100010000000001011
 10010001110000010N1
+1000000000000000001
 1111111111111111111

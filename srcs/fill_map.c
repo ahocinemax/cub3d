@@ -16,18 +16,11 @@ char	*ft_fill_line(t_cub3d *cub3d)
 {
 	char	*line;
 	char	*gnl;
-	int		i;
 
-	i = 0;
-	line = (char *)ft_calloc(sizeof(char), cub3d->map.large + 1);
-	if (!line)
-		return (cub3d->exit_code = MALLOC_FAILURE, NULL);
 	gnl = ft_skip_info(cub3d);
-	while (gnl[i] != '\n' && gnl[i] != 0)
-	{
-		line[i] = gnl[i];
-		i++;
-	}
+	if (!gnl)
+		return (NULL);
+	line = ft_strdup(gnl);
 	return (free(gnl), line);
 }
 

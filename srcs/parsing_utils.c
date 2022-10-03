@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-int	ft_valid_char(char c)
+int	ft_valid_char_map(char c)
 {
 	return (c == '1' || c == '0' || c == ' ' || c == 'N' || c == 'S' || \
 	c == 'E' || c == 'W');
@@ -29,7 +29,7 @@ int	ft_size_line(char *line, t_cub3d *cub3d)
 		return (0);
 	while (line[i])
 	{
-		if (!ft_valid_char(line[i]))
+		if (!ft_valid_char_map(line[i]))
 			return (ft_print_error(cub3d, INVALID_CHAR), -1);
 		if (line[i] != ' ')
 			res++;
