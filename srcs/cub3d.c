@@ -263,6 +263,7 @@ void	running(t_game *game)
 	{
 		renew_player_value(game->state->p1, x);
 		step_player(game->state->p1);
+
 		x++;
 	}
 }

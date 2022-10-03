@@ -17,6 +17,13 @@
 # define WIN_H 1000
 # define WIN_W 1200 
 
+typedef enum e_direction
+{
+	NO,
+	SO,
+	EA,
+	WE
+}	t_direction;
 
 typedef struct s_win
 {
@@ -133,4 +140,6 @@ int	key_press(int key, t_game *game);
 void	init_struct_player(t_player *p1);
 void	set_player_view(t_game *game, t_player *p1);
 void	game_start(t_game *game);
+void    perpwall_dist(t_player *p1);
+void    dda_perform(t_game *game, t_player *p1);
 #endif
