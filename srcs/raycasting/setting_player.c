@@ -35,7 +35,7 @@ int ft_check_void(t_cub3d *cub3d, char **map)
 	return (0);
 }
 
-int    check_player_position(char **map, t_cub3d *cub3d)
+t_error_code    check_player_position(char **map, t_cub3d *cub3d)
 {
     int x;
     int y;
@@ -60,6 +60,6 @@ int    check_player_position(char **map, t_cub3d *cub3d)
     }
     if (!cub3d->check_pos)
         ft_print_error(cub3d, MAP_ERROR);
-    return (0);
+    return (SUCCESS);
 } 
 

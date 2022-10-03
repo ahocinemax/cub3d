@@ -27,8 +27,6 @@ t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code)
 		ft_putstr_fd("parsing: must be a square.\n", _STD_ERR);
 	else if (error_code == INVALID_CHAR)
 		ft_putstr_fd("parsing: invalid identifier.\n", _STD_ERR);
-	else if (error_code == MAP_ERROR)
-		ft_putstr_fd("parsing: map error.\n", _STD_ERR);
 	else
 		ft_putstr_fd("Unexpected error, well done.\nexiting...\n", _STD_ERR);
 	if (cub3d)
@@ -191,7 +189,6 @@ t_error_code	ft_fill_and_check_map(t_cub3d *cub3d)
 	close(cub3d->fd);
 	cub3d->fd = -1;
 	ft_fill_map(cub3d);
-	check_player_position(cub3d->map.map, cub3d);
 	return (SUCCESS);
 }
 
@@ -228,7 +225,7 @@ t_error_code	ft_fill_info(t_cub3d *cub3d)
 		if (!*line)
 			continue ;
 		ft_skip_spaces(line, &i);
-		/*if (line[i] == 'N')
+		if (line[i] == 'N')
 			ft_add_texture_path(cub3d, line, NORTH);
 		else if (line[i] == 'S')
 			ft_add_texture_path(cub3d, line, SOUTH);
@@ -236,7 +233,7 @@ t_error_code	ft_fill_info(t_cub3d *cub3d)
 			ft_add_texture_path(cub3d, line, EAST);
 		else if (line[i] == 'W')
 			ft_add_texture_path(cub3d, line, WEST);
-		else */if (ft_isdigit(line[i]))
+		else if (ft_isdigit(line[i]))
 			break ;
 		else
 			return (ft_print_error(cub3d, INVALID_DESCRIPTOR));
@@ -254,23 +251,60 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 		return ;
 	if (ft_fill_and_check_map(cub3d) != SUCCESS)
 		return ;
+	if (check_player_position(cub3d->map.map, cub3d) != SUCCESS)
+		return ;
+}
+
+void	game_start(t_game *game)
+{
+	game->state->step_of_game = 2;
+	init_struct_player(game->state->p1);
+	game->state->p1->pos_x = game->state->pos->pos_x + 0.5;
+	game->state->p1->pos_y = game->state->pos->pos_y + 0.5;
+	set_player_view(game, game->state->p1);
+	mlx_loop_hook(game->state->mlx_ptr, &running, game);
+	//running : game is still running,continue ray_casting
+	//->check step, renew the values
+	mlx_hook(game->state->win_ptr, 0, 1L << 0, &key_press, game);
+	mlx_hook(game->state->win_ptr, 17, 1L << 0, &free_all_exit, game);
+	mlx_loop(game->state->mlx_ptr);
 }
 
 int	main(int argc, char *argv[], char **envp)
 {
 	t_cub3d			cub3d;
 	t_error_code	code;
+	t_game 			*game;
 
+	game = NULL;
 	if (!envp)
 		return (ft_print_error(NULL, NO_ENV));
 	if (argc != 2)
 		return (ft_print_error(NULL, ARGC_ERROR));
 	argv++;
+	game = init_struct_game(game);
+	game->state->mlx_ptr = mlx_init();
+	if (!game->state->mlx_ptr)
+		ft_error_and_exit(ERROR_MLX, game);
 	ft_init_struct(&cub3d);
 	ft_parsing(*argv, &cub3d);
 	int	i = 0;
 	while (cub3d.map.map[i])
+	{
+		game->map[i] = ft_strdup(cub3d.map.map[i]);
 		printf("%s\n", cub3d.map.map[i++]);
-	printf("%c\n", cub3d.pos);
+	}
+	if (init_mlx_and_window(game, game->state, &game->win))
+		ft_error_and_exit(ERROR_MLX, game);
+	check_player_position(cub3d.map.map, &cub3d);
+	introduction_of_game(game,  game->state);
+	int	i = 0;
+	while (game->map[i])
+	{
+		if (game->map[i]);
+			free(game->map[i]);
+		i++;
+	}
+	free_all(game);
 	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 }
