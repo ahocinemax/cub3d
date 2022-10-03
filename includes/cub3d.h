@@ -27,6 +27,9 @@
 # define KEY_A			97
 # define KEY_S			115
 # define KEY_D			100
+# define KEY_RETURN		65293
+# define KEY_RIGHT		65363
+# define KEY_LEFT		65361
 
 typedef enum e_error_code	t_error_code;
 typedef enum e_direction	t_direction;
@@ -99,6 +102,8 @@ struct s_cub3d
 	char	pos;
 };
 
+
+
 t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code);
-int    check_player_position(char **map, t_cub3d *cub3d);
+t_error_code    check_player_position(char **map, t_cub3d *cub3d);
 #endif

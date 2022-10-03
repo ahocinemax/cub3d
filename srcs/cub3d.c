@@ -254,6 +254,18 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 	if (check_player_position(cub3d->map.map, cub3d) != SUCCESS)
 		return ;
 }
+void	running(t_game *game)
+{
+	int x;
+
+	x = 0;
+	while (x < WIN_W)
+	{
+		renew_player_value(game->state->p1, x);
+		step_player(game->state->p1);
+		x++;
+	}
+}
 
 void	game_start(t_game *game)
 {
