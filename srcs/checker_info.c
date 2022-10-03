@@ -22,7 +22,7 @@ t_error_code	ft_check_path(t_cub3d *cub3d, char *str)
 	if (ft_isalpha(str[i]))
 		i++;
 	ft_skip_spaces(str, &i);
-	while (str[i] && !ft_isspace(str[i]))
+	while (str[i] && str[i] != ' ')
 		i++;
 	if (ft_strncmp(str + i - 4, ".xpm", 4))
 		return (ft_print_error(cub3d, WRONG_EXTENTION2));
