@@ -26,6 +26,9 @@
 # define KEY_A			97
 # define KEY_S			115
 # define KEY_D			100
+# define KEY_RETURN		65293
+# define KEY_RIGHT		65363
+# define KEY_LEFT		65361
 
 typedef enum e_error_code	t_error_code;
 typedef enum e_direction	t_direction;
@@ -60,7 +63,8 @@ enum	e_error_code
 	EMPTY_FILE,
 	OPEN_FAILED,
 	NO_MAP,
-	DUPICATE_PATH
+	DUPICATE_PATH,
+	MAP_ERROR
 };
 
 struct s_color

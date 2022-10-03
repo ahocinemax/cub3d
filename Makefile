@@ -14,7 +14,9 @@ CC			= gcc
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILE))
 SRC_DIR		=	srcs/
-SRC_FILE	=	cub3d.c				\
+SRC_FILE	=	cub3d.c							\
+				raycasting/init_struct_game.c	\
+				raycasting/setting_player.c		\				\
 				struct_handler.c	\
 				parsing_utils.c		\
 				checker_info.c		\
@@ -70,11 +72,11 @@ $(NAME): $(OBJS)
 	make -C $(MLX_DIR)
 	@echo $(CURSIVE)$(GRAY) "     - Making object files..." $(END)
 	@echo $(CURSIVE)$(GRAY) "     - Compiling $(NAME)..." $(END)
-	@$(CC) $(FLAGS) $(OBJS) $(LIBFT) $(LIBMLX) $(INCLUDE) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJS) $(LIBFT) $(LIBMLX) $(INCLUDE)  -o $(NAME)
 	@echo $(GREEN)"- Project compiled -"$(END)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/raycasting/
 	@$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
