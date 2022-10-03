@@ -41,13 +41,34 @@ static void	ft_parsing(char *argv, t_cub3d *cub3d)
 int	running(t_game *game)
 {
 	int x;
+	int line_height;
+	int draw_start;
+	int draw_end;
 
 	x = 0;
 	while (x < WIN_W)
 	{
 		renew_player_value(game->state->p1, x);
 		step_player(game->state->p1);
+		dda_perform(game, game->state->p1);
+		perpwall_dist(game->state->p1);
+		if(game->state->p1->side == EAST || game->state->p1->side == WEST)
+			game->state->p1->perp_wall_dist = \
+				(game->state->p1->side_dist_x - game->state->p1->delta_dist_x);
+    	else
+			game->state->p1->perp_wall_dist = \
+				(game->state->p1->side_dist_y - game->state->p1->delta_dist_y);
 
+      //Calculate height of line to draw on screen
+    	game->state->p1->line_height = (int)(WIN_H / game->state->p1->perp_wall_dist);
+   
+      //calculate lowest and highest pixel to fill in current stripe
+    	draw_start = -line_height / 2 + WIN_H / 2;
+    	if (draw_start < 0) 
+			draw_start = 0;
+    	draw_end = line_height / 2 + WIN_H / 2;
+    	if(draw_end >= WIN_H) 
+			draw_end = WIN_H - 1;
 		x++;
 	}
 	return (0);
@@ -88,24 +109,16 @@ int	main(int argc, char *argv[], char **envp)
 	ft_parsing(*argv, &cub3d);
 	if (cub3d.exit_code != SUCCESS)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
-	int	i = 0;
 	printf("%s\n%s\n%s\n%s\n%s\n%s\n\n\n", cub3d.no.path, cub3d.so.path, cub3d.ea.path, cub3d.we.path, cub3d.f.path,  cub3d.c.path);
+	int i = 0;
 	while (cub3d.map.map && cub3d.map.map[i])
-	{
-		game->map[i] = ft_strdup(cub3d.map.map[i]);
 		printf("%s\n", cub3d.map.map[i++]);
-	}
+	img_intro(game, game->state);
 	if (init_mlx_and_window(game, game->state, &game->win))
 		ft_error_and_exit(ERROR_MLX, game);
-	/*check_player_position(&cub3d, cub3d.map.map, game->state->pos);
+	check_player_position(&cub3d, cub3d.map.map, game->state->pos);
 	introduction_of_game(game,  game->state);
-	i = 0;
-	while (game->map[i])
-	{
-		if (game->map[i])
-			free(game->map[i]);
-		i++;
-	}*/
+	game_start(game);
 	free_all(game);
 	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 }

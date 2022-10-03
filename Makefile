@@ -30,6 +30,7 @@ SRC_FILE	=	cub3d.c							\
 				game/init_struct.c				\
 				game/init_game.c				\
 				game/intro_image.c				\
+				image/image.c					\
 
 #------------------------------------#
 #               OBJECTS              #
@@ -82,7 +83,7 @@ $(NAME): $(OBJS)
 	@echo $(GREEN)"- Project compiled -"$(END)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
-	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/raycasting/ $(OBJ_DIR)/game/
+	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/raycasting/ $(OBJ_DIR)/game/ $(OBJ_DIR)/image/
 	@$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
 
 clean:

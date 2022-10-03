@@ -14,8 +14,10 @@
 # define RAYCASTING_H
 # define ERROR_MALLOC "malloc error"
 # define ERROR_MLX "mlx_ptr error"
+# define ERROR_IMAGE "image error"
 # define WIN_H 1000
 # define WIN_W 1200 
+# define INTRO "./image/intro.xpm"
 /*
 typedef struct s_win
 {

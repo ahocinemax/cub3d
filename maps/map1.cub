@@ -19,7 +19,3 @@ F        30, 100, 220
 10010001110000010N1
 1000000000000000001
 1111111111111111111
-
-# gerer les fermetures de la map
-# check s'il n'y a rien apres le path de la texture
-# l'extension doit etre .xpm

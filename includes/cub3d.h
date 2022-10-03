@@ -271,5 +271,9 @@ void			s_key(t_game *game);
 
 //main
 void			game_start(t_game *game);
-int			running(t_game *game);
+int				running(t_game *game);
+
+//image
+//image
+void			img_intro(t_game *game, t_state *state);
 #endif
