@@ -16,15 +16,7 @@
 # define ERROR_MLX "mlx_ptr error"
 # define WIN_H 1000
 # define WIN_W 1200 
-
-typedef enum e_direction
-{
-	NO,
-	SO,
-	EA,
-	WE
-}	t_direction;
-
+/*
 typedef struct s_win
 {
     int win_width;
@@ -90,15 +82,7 @@ typedef struct s_color
 	int		b;
 }	t_color;
 
-typedef struct s_texture
-{
-	t_img	*wall_no;
-	t_img	*wall_so;
-	t_img	*wall_we;
-	t_img	*wall_ea;
-	t_color	*floor;
-	t_color	*celling;
-}	t_texture;
+
 
 typedef struct s_pic
 {
@@ -107,17 +91,7 @@ typedef struct s_pic
 	int		height;
 }	t_pic;
 
-typedef struct s_state
-{
-	void		*mlx_ptr;
-	void		*win_ptr;
-	int			step_of_game;
-	t_pic		*intro;
-	t_texture	*texture;
-	t_pos		*pos;
-	t_player	*p1;
-	t_img		*screen;
-}	t_state;
+
 
 typedef struct s_game
 {
@@ -142,4 +116,5 @@ void	set_player_view(t_game *game, t_player *p1);
 void	game_start(t_game *game);
 void    perpwall_dist(t_player *p1);
 void    dda_perform(t_game *game, t_player *p1);
+*/
 #endif

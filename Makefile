@@ -14,14 +14,22 @@ CC			= gcc
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILE))
 SRC_DIR		=	srcs/
-SRC_FILE	=	cub3d.c				\
-				struct_handler.c	\
-				parsing_utils.c		\
-				checker_info.c		\
-				checker_map.c		\
-				errors.c			\
-				fill_info.c			\
-				fill_map.c			\
+SRC_FILE	=	cub3d.c							\
+				struct_handler.c				\
+				parsing_utils.c					\
+				checker_info.c					\
+				checker_map.c					\
+				errors.c						\
+				fill_info.c						\
+				fill_map.c						\
+				raycasting/init_ray.c			\
+				raycasting/init_struct_game.c	\
+				raycasting/raycasting.c			\
+				raycasting/setting_player.c		\
+				game/free_all.c					\
+				game/init_struct.c				\
+				game/init_game.c				\
+				game/intro_image.c				\
 
 #------------------------------------#
 #               OBJECTS              #
@@ -74,7 +82,7 @@ $(NAME): $(OBJS)
 	@echo $(GREEN)"- Project compiled -"$(END)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
-	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/raycasting/
+	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/raycasting/ $(OBJ_DIR)/game/
 	@$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
 
 clean:

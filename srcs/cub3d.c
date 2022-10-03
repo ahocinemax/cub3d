@@ -35,10 +35,10 @@ static void	ft_parsing(char *argv, t_cub3d *cub3d)
 		return ;
 	if (cub3d->exit_code != SUCCESS)
 		return ;
-	if (check_player_position(cub3d->map.map, cub3d) != SUCCESS)
-		return ;
+	//if (check_player_position(cub3d->map.map, cub3d) != SUCCESS)
+	//	return ;
 }
-void	running(t_game *game)
+int	running(t_game *game)
 {
 	int x;
 
@@ -50,6 +50,7 @@ void	running(t_game *game)
 
 		x++;
 	}
+	return (0);
 }
 
 void	game_start(t_game *game)
@@ -96,15 +97,15 @@ int	main(int argc, char *argv[], char **envp)
 	}
 	if (init_mlx_and_window(game, game->state, &game->win))
 		ft_error_and_exit(ERROR_MLX, game);
-	check_player_position(cub3d.map.map, &cub3d);
+	/*check_player_position(&cub3d, cub3d.map.map, game->state->pos);
 	introduction_of_game(game,  game->state);
-	int	i = 0;
+	i = 0;
 	while (game->map[i])
 	{
-		if (game->map[i]);
+		if (game->map[i])
 			free(game->map[i]);
 		i++;
-	}
+	}*/
 	free_all(game);
 	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 }

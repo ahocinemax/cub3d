@@ -14,7 +14,7 @@
 
 void    perpwall_dist(t_player *p1)
 {
-    if (p1->side == NO || p1->side == SO)
+    if (p1->side == NORTH || p1->side == SOUTH)
         p1->perp_wall_dist = (p1->side_dist_x - p1->delta_dist_x);
     else
         p1->perp_wall_dist = (p1->side_dist_y - p1->delta_dist_y);        
@@ -31,9 +31,9 @@ void    dda_perform(t_game *game, t_player *p1)
           if (p1->map_x > 0)
             p1->map_x += p1->step_x;
           if (p1->raydir_x > 0)
-            p1->side = EA;
+            p1->side = EAST;
           else
-            p1->side = WE;
+            p1->side = WEST;
         }
         else
         {
@@ -41,9 +41,9 @@ void    dda_perform(t_game *game, t_player *p1)
           if (p1->map_y > 0)
             p1->map_y += p1->step_y;
           if (p1->raydir_y > 0)
-            p1->side = NO;
+            p1->side = NORTH;
           else
-            p1->side = SO;
+            p1->side = SOUTH;
         }
         if (game->map[p1->map_x][p1->map_y] > 0) 
           p1->hit = 1;

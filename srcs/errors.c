@@ -47,6 +47,8 @@ t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code)
 		ft_putstr_fd("file: file empty.\n", _STD_ERR);
 	else if (error_code == DUPICATE_PATH)
 		ft_putstr_fd("parsing: duplicate path.\n", _STD_ERR);
+	else if (error_code == MAP_ERROR)
+		ft_putstr_fd("parsing: map error\n", _STD_ERR);
 	else
 		ft_print_error2(error_code);
 	if (cub3d)

@@ -63,6 +63,13 @@ int	init_img(t_img *img)
 	return (0);
 }
 
+void    init_struct_pos(t_pos *pos)
+{
+    pos->check_pos = 0;
+    pos->pos_x = 0;
+    pos->pos_y = 0;
+
+}
 
 void	init_player(t_player *p1)
 {
@@ -93,9 +100,9 @@ void	init_picture(t_game *game, t_state *state)
 
 void	init_color(t_color *color)
 {
-	color->r = 0;
-	color->g = 0;
-	color->b = 0;
+	color->red = 0;
+	color->green = 0;
+	color->blue = 0;
 }
 
 void	init_texture(t_game *game, t_texture *texture)
