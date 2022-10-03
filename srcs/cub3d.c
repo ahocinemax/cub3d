@@ -22,8 +22,6 @@ t_error_code	ft_reopen(t_cub3d *cub3d)
 	return (SUCCESS);
 }
 
-// must handle when file was already open, and red or not (due to gnl).
-// Sometimes it start at the begining, sometimes in the middle of file.
 static void	ft_parsing(char *argv, t_cub3d *cub3d)
 {
 	if (ft_check_file(argv, cub3d) != SUCCESS || ft_check_info(cub3d) != \
@@ -33,9 +31,8 @@ static void	ft_parsing(char *argv, t_cub3d *cub3d)
 	ft_reopen(cub3d) != SUCCESS)
 		return ;
 	ft_fill_map(cub3d);
-	if (cub3d->fd > 2)
-		close(cub3d->fd);
-	cub3d->fd = -1;
+	if (cub3d->exit_code != SUCCESS || ft_reopen(cub3d) != SUCCESS)
+		return ;
 	if (cub3d->exit_code != SUCCESS)
 		return ;
 }
@@ -55,7 +52,7 @@ int	main(int argc, char *argv[], char **envp)
 	if (cub3d.exit_code != SUCCESS)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 	int	i = 0;
-	printf("%s\n%s\n%s\n%s\n%s\n%s\n", cub3d.no.path, cub3d.so.path, cub3d.ea.path, cub3d.we.path, cub3d.f.path,  cub3d.c.path);
+	printf("%s\n%s\n%s\n%s\n%s\n%s\n\n\n", cub3d.no.path, cub3d.so.path, cub3d.ea.path, cub3d.we.path, cub3d.f.path,  cub3d.c.path);
 	while (cub3d.map.map && cub3d.map.map[i])
 		printf("%s\n", cub3d.map.map[i++]);
 	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);

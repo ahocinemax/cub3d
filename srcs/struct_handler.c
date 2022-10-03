@@ -48,8 +48,6 @@ void	ft_init_struct(t_cub3d *cub3d)
 	cub3d->exit_code = SUCCESS;
 	cub3d->level_name = NULL;
 	cub3d->fd = -1;
-	cub3d->x = 0;
-	cub3d->y = 0;
 }
 
 void	ft_free_struct(t_cub3d *cub3d)

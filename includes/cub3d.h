@@ -93,8 +93,6 @@ struct s_cub3d
 	int				exit_code;
 	t_map			map;
 	int				fd;
-	int				x;
-	int				y;
 };
 
 // checker

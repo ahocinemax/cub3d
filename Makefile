@@ -17,7 +17,9 @@ SRC_DIR		=	srcs/
 SRC_FILE	=	cub3d.c				\
 				struct_handler.c	\
 				parsing_utils.c		\
-				checker.c			\
+				checker_info.c		\
+				checker_map.c		\
+				errors.c			\
 				fill_info.c			\
 				fill_map.c			\
 
