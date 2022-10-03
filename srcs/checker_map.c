@@ -12,6 +12,20 @@
 
 #include "../includes/cub3d.h"
 
+t_error_code	ft_check_line(t_cub3d *cub3d, char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!ft_valid_char_map(line[i]))
+			return (ft_print_error(cub3d, INVALID_CHAR));
+		i++;
+	}
+	return (SUCCESS);
+}
+
 t_error_code	ft_check_map(t_cub3d *cub3d)
 {
 	char	*line;
@@ -26,6 +40,8 @@ t_error_code	ft_check_map(t_cub3d *cub3d)
 	{
 		if (ft_strlen(line) < cub3d->map.large)
 			cub3d->map.large = ft_strlen(line);
+		if (ft_check_line(cub3d, line) != SUCCESS)
+			return (ft_skip_gnl(cub3d, &line), free(line), cub3d->exit_code);
 		cub3d->map.longu++;
 		free(line);
 		line = get_next_line(cub3d->fd);

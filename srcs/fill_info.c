@@ -47,10 +47,6 @@ t_error_code	ft_texture_handler(char *str, t_cub3d *cub3d)
 		return (parse_txt(cub3d, &(cub3d->ea), str));
 	else if (*str == 'W')
 		return (parse_txt(cub3d, &(cub3d->we), str));
-	else if (*str == 'F')
-		return (parse_txt(cub3d, &(cub3d->f), str));
-	else if (*str == 'C')
-		return (parse_txt(cub3d, &(cub3d->c), str));
 	return (SUCCESS);
 }
 

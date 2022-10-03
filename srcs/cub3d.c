@@ -12,6 +12,24 @@
 
 #include "../includes/cub3d.h"
 
+t_error_code	ft_check_file(char *argv, t_cub3d *cub3d)
+{
+	int	len;
+	int	fd;
+
+	len = ft_strlen(argv);
+	if (!len)
+		return (ft_print_error(cub3d, ARGC_ERROR));
+	if (len < 4 || ft_strncmp(argv + len - 4, ".cub", 4))
+		return (ft_print_error(cub3d, WRONG_EXTENTION));
+	fd = open(argv, O_RDONLY);
+	if (fd < 0)
+		return (ft_print_error(cub3d, BAD_FILE));
+	cub3d->level_name = ft_strdup(argv);
+	cub3d->fd = fd;
+	return (SUCCESS);
+}
+
 t_error_code	ft_reopen(t_cub3d *cub3d)
 {
 	if (cub3d->fd > 2)
@@ -22,7 +40,7 @@ t_error_code	ft_reopen(t_cub3d *cub3d)
 	return (SUCCESS);
 }
 
-static void	ft_parsing(char *argv, t_cub3d *cub3d)
+void	ft_parsing(char *argv, t_cub3d *cub3d)
 {
 	if (ft_check_file(argv, cub3d) != SUCCESS || ft_check_info(cub3d) != \
 	SUCCESS || ft_reopen(cub3d) != SUCCESS || ft_fill_info(cub3d) != SUCCESS)
@@ -31,8 +49,6 @@ static void	ft_parsing(char *argv, t_cub3d *cub3d)
 	ft_reopen(cub3d) != SUCCESS)
 		return ;
 	ft_fill_map(cub3d);
-	if (cub3d->exit_code != SUCCESS || ft_reopen(cub3d) != SUCCESS)
-		return ;
 	if (cub3d->exit_code != SUCCESS)
 		return ;
 	//if (check_player_position(cub3d->map.map, cub3d) != SUCCESS)
@@ -122,3 +138,8 @@ int	main(int argc, char *argv[], char **envp)
 	free_all(game);
 	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 }
+// int				i = 0;
+// printf("%s\n%s\n%s\n%s\n\n", cub3d.no.path, cub3d.so.path, cub3d.ea.path, cub3d.we.path);
+// printf("floor: [%d], [%d], [%d]\ncelling: : [%d], [%d], [%d]\n\n", cub3d.floor.red, cub3d.floor.green, cub3d.floor.blue, cub3d.celling.red, cub3d.celling.green, cub3d.celling.blue);
+// while (cub3d.map.map && cub3d.map.map[i])
+// 	printf("%s\n", cub3d.map.map[i++]);

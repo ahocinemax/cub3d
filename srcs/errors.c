@@ -22,6 +22,12 @@ void	ft_print_error2(t_error_code error_code)
 	}
 	else if (error_code == EMPTY_FILE)
 		ft_putstr_fd("file: file is empty.\n", _STD_ERR);
+	else if (error_code == WRONG_COLOR)
+		ft_putstr_fd("parsing: 3 colors must be between 0-255.\n", _STD_ERR);
+	else if (error_code == WRONG_SEPARATOR)
+		ft_putstr_fd("parsing: separate colors with comma ','.\n", _STD_ERR);
+	else if (error_code == WRONG_EXTENTION2)
+		ft_putstr_fd("parsing: texture must have .xmp extension.\n", _STD_ERR);
 	else
 		ft_putstr_fd("Unexpected error, well done.\n", _STD_ERR);
 }
