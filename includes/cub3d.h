@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include "../libft/libft.h"
-# include <../mlx/mlx.h>
+# include "../mlx/mlx.h"
 # include <math.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -49,6 +49,9 @@ enum	e_error_code
 	BAD_FILE,
 	ARGC_ERROR,
 	WRONG_EXTENTION,
+	WRONG_EXTENTION2,
+	WRONG_COLOR,
+	WRONG_SEPARATOR,
 	INVALID_MAP_SIZE,
 	INVALID_CHAR,
 	INVALID_DESCRIPTOR,
@@ -88,21 +91,26 @@ struct s_cub3d
 	t_texture		so;
 	t_texture		ea;
 	t_texture		we;
-	t_texture		f;
-	t_texture		c;
+	t_color			floor;
+	t_color			celling;
 	int				exit_code;
 	t_map			map;
 	int				fd;
 };
 
-// checker
-t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code);
-t_error_code	ft_check_file(char *argv, t_cub3d *cub3d);
+// checker_info
+void			ft_fill_color(t_cub3d *cub3d, char c, int res, int nbr);
+t_error_code	ft_check_identifier(t_cub3d *cub3d, char *s);
+t_error_code	ft_check_colors(t_cub3d *cub3d, char *str);
+t_error_code	ft_check_line(t_cub3d *cub3d, char *str);
 t_error_code	ft_check_info(t_cub3d *cub3d);
+
+// checker_map
 t_error_code	ft_check_map(t_cub3d *cub3d);
 
 // fill info
 t_error_code	parse_txt(t_cub3d *cub3d, t_texture *texture, char *line);
+t_error_code	ft_texture_handler(char *str, t_cub3d *cub3d);
 void			ft_skip_gnl(t_cub3d *cub3d, char **line);
 t_error_code	ft_fill_info(t_cub3d *cub3d);
 
@@ -119,5 +127,14 @@ int				ft_valid_char_map(char c);
 // struct handler
 void			ft_init_struct(t_cub3d *cub3d);
 void			ft_free_struct(t_cub3d *cub3d);
+
+// errors
+t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code);
+void			ft_print_error2(t_error_code error_code);
+
+// main
+t_error_code	ft_check_file(char *argv, t_cub3d *cub3d);
+void			ft_parsing(char *argv, t_cub3d *cub3d);
+t_error_code	ft_reopen(t_cub3d *cub3d);
 
 #endif
