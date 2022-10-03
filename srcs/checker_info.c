@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-t_error_code	ft_check_line(t_cub3d *cub3d, char *str)
+t_error_code	ft_check_path(t_cub3d *cub3d, char *str)
 {
 	int	i;
 
@@ -117,7 +117,7 @@ t_error_code	ft_check_info(t_cub3d *cub3d)
 		if (ft_check_identifier(cub3d, s + i) != SUCCESS)
 			return (ft_skip_gnl(cub3d, &s), free(s), cub3d->exit_code);
 		if ((s[i] == 'N' || s[i] == 'S' || s[i] == 'E' || s[i] == 'W') && \
-		ft_check_line(cub3d, s + i) != SUCCESS)
+		ft_check_path(cub3d, s + i) != SUCCESS)
 			return (ft_skip_gnl(cub3d, &s), free(s), cub3d->exit_code);
 		else if ((s[i] == 'C' || s[i] == 'F') && \
 		ft_check_colors(cub3d, s + i) != SUCCESS)
