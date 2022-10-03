@@ -67,10 +67,10 @@ int	main(int argc, char *argv[], char **envp)
 	ft_parsing(*argv, &cub3d);
 	if (cub3d.exit_code != SUCCESS)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
+	int				i = 0;
+	printf("%s\n%s\n%s\n%s\n\n", cub3d.no.path, cub3d.so.path, cub3d.ea.path, cub3d.we.path);
+	printf("floor: [%d], [%d], [%d]\ncelling: : [%d], [%d], [%d]\n\n", cub3d.floor.red, cub3d.floor.green, cub3d.floor.blue, cub3d.celling.red, cub3d.celling.green, cub3d.celling.blue);
+	while (cub3d.map.map && cub3d.map.map[i])
+		printf("%s\n", cub3d.map.map[i++]);
 	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 }
-// int				i = 0;
-// printf("%s\n%s\n%s\n%s\n\n", cub3d.no.path, cub3d.so.path, cub3d.ea.path, cub3d.we.path);
-// printf("floor: [%d], [%d], [%d]\ncelling: : [%d], [%d], [%d]\n\n", cub3d.floor.red, cub3d.floor.green, cub3d.floor.blue, cub3d.celling.red, cub3d.celling.green, cub3d.celling.blue);
-// while (cub3d.map.map && cub3d.map.map[i])
-// 	printf("%s\n", cub3d.map.map[i++]);

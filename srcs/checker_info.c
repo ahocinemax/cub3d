@@ -57,12 +57,10 @@ void	ft_fill_color(t_cub3d *cub3d, char c, int res, int nbr)
 t_error_code	ft_check_colors(t_cub3d *cub3d, char *str)
 {
 	int	nbr;
-	int	res;
 	int	i;
 
 	if (!str)
 		return (SUCCESS);
-	res = 0;
 	i = 1;
 	nbr = 0;
 	while (str[i])
@@ -70,17 +68,15 @@ t_error_code	ft_check_colors(t_cub3d *cub3d, char *str)
 		ft_skip_spaces(str, &i);
 		if (!ft_isdigit(str[i]) && str[i] != '+' && str[i] != '-')
 			return (ft_print_error(cub3d, INVALID_DESCRIPTOR));
-		res = ft_atoi(str + i);
-		if (res < 0 || res > 255 || nbr > 2)
+		if (ft_atoi(str + i) < 0 || ft_atoi(str + i) > 255 || nbr > 2)
 			return (ft_print_error(cub3d, WRONG_COLOR));
-		ft_fill_color(cub3d, *str, res, nbr);
+		ft_fill_color(cub3d, *str, ft_atoi(str + i), nbr++);
 		while (ft_isdigit(str[i]))
 			i++;
 		ft_skip_spaces(str, &i);
-		if (str[i] && str[i] != ',')
+		if (str[i] && str[i] != ',' )
 			return (ft_print_error(cub3d, WRONG_SEPARATOR));
 		i++;
-		nbr++;
 	}
 	return (SUCCESS);
 }

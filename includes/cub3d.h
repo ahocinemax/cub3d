@@ -55,6 +55,7 @@ enum	e_error_code
 	INVALID_MAP_SIZE,
 	INVALID_CHAR,
 	INVALID_DESCRIPTOR,
+	INVALID_PLAYER_NB,
 	MALLOC_FAILURE,
 	EMPTY_FILE,
 	OPEN_FAILED,
@@ -116,7 +117,7 @@ void			ft_skip_gnl(t_cub3d *cub3d, char **line);
 t_error_code	ft_fill_info(t_cub3d *cub3d);
 
 // fill map
-char			*ft_fill_line(t_cub3d *cub3d);
+char			*ft_fill_line(t_cub3d *cub3d, int line_nb);
 void			ft_fill_map(t_cub3d *cub3d);
 
 // parsing utils

@@ -14,13 +14,19 @@
 
 t_error_code	ft_check_line(t_cub3d *cub3d, char *line)
 {
-	int	i;
+	static int	nb_player = 0;
+	int			i;
 
 	i = 0;
 	while (line[i])
 	{
 		if (!ft_valid_char_map(line[i]))
 			return (ft_print_error(cub3d, INVALID_CHAR));
+		if (line[i] == 'N' || line[i] == 'S' || \
+		line[i] == 'E' || line[i] == 'W')
+			nb_player++;
+		if (nb_player > 1)
+			return (ft_print_error(cub3d, INVALID_PLAYER_NB));
 		i++;
 	}
 	return (SUCCESS);
@@ -38,7 +44,7 @@ t_error_code	ft_check_map(t_cub3d *cub3d)
 		return (ft_print_error(cub3d, INVALID_MAP_SIZE));
 	while (line)
 	{
-		if (ft_strlen(line) < cub3d->map.large)
+		if (ft_strlen(line) > cub3d->map.large)
 			cub3d->map.large = ft_strlen(line);
 		if (ft_check_line(cub3d, line) != SUCCESS)
 			return (ft_skip_gnl(cub3d, &line), free(line), cub3d->exit_code);

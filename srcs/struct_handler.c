@@ -18,12 +18,12 @@ static void	ft_init_texture(t_cub3d *cub3d)
 	cub3d->so.path = NULL;
 	cub3d->ea.path = NULL;
 	cub3d->we.path = NULL;
-	cub3d->floor.green = 0;
 	cub3d->celling.green = 0;
-	cub3d->floor.blue = 0;
 	cub3d->celling.blue = 0;
-	cub3d->floor.red = 0;
 	cub3d->celling.red = 0;
+	cub3d->floor.green = 0;
+	cub3d->floor.blue = 0;
+	cub3d->floor.red = 0;
 }
 
 static void	ft_free_texture(t_cub3d *cub3d)
