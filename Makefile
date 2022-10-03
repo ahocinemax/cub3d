@@ -14,10 +14,14 @@ CC			= gcc
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILE))
 SRC_DIR		=	srcs/
-SRC_FILE	=	cub3d.c							\
-				\
-				raycasting/init_struct_game.c	\
-				raycasting/setting_player.c		\
+SRC_FILE	=	cub3d.c				\
+				struct_handler.c	\
+				parsing_utils.c		\
+				checker_info.c		\
+				checker_map.c		\
+				errors.c			\
+				fill_info.c			\
+				fill_map.c			\
 
 #------------------------------------#
 #               OBJECTS              #

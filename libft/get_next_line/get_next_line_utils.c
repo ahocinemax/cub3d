@@ -20,7 +20,7 @@ void	ft_strcat(char *dest, char *src)
 	if (!src || !dest)
 		return ;
 	i = 0;
-	while (*(dest + i))
+	while (dest[i])
 		i++;
 	j = 0;
 	while (src[j])

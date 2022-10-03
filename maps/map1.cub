@@ -1,11 +1,25 @@
-N1111
-E2222
-S3333
-N4444
+     NO   ./textures/so_bad.xpm
+EA          ./textures/so_cool.xpm
+       SO  ./textures/so_normal.xpm
+WE   ./textures/so_it.xpm
+C 220, 100, 30
 
-1          111111
-1    0 110     01
-100      0001
 
-11 001  01
-11    1   1111
+
+F        30, 100, 220
+
+
+11111        111111
+10001        100001
+10001        100001
+10001        100001
+1000111111111100011
+1000100010000000001
+1100010000000001011
+10010001110000010N1
+1000000000000000001
+1111111111111111111
+
+# gerer les fermetures de la map
+# check s'il n'y a rien apres le path de la texture
+# l'extension doit etre .xpm
