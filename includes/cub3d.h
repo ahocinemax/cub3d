@@ -99,13 +99,12 @@ struct s_cub3d
 };
 
 // checker_info
-{
-	void			ft_fill_color(t_cub3d *cub3d, char c, int res, int nbr);
-	t_error_code	ft_check_identifier(t_cub3d *cub3d, char *s);
-	t_error_code	ft_check_colors(t_cub3d *cub3d, char *str);
-	t_error_code	ft_check_path(t_cub3d *cub3d, char *str);
-	t_error_code	ft_check_info(t_cub3d *cub3d);
-}
+void			ft_fill_color(t_cub3d *cub3d, char c, int res, int nbr);
+t_error_code	ft_check_identifier(t_cub3d *cub3d, char *s);
+t_error_code	ft_check_colors(t_cub3d *cub3d, char *str);
+t_error_code	ft_check_path(t_cub3d *cub3d, char *str);
+t_error_code	ft_check_info(t_cub3d *cub3d);
+
 // checker_map
 t_error_code	ft_check_line(t_cub3d *cub3d, char *line);
 t_error_code	ft_check_map(t_cub3d *cub3d);
