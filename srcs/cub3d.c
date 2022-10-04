@@ -68,16 +68,16 @@ void	running(t_game *game)
 
 void	game_start(t_cub3d *cub3d)
 {
-	game->state->step_of_game = 2;
-	init_struct_player(game->state->p1);
-	game->state->p1->pos_x = game->state->pos->pos_x + 0.5;
-	game->state->p1->pos_y = game->state->pos->pos_y + 0.5;
-	set_player_view(game, game->state->p1);
-	mlx_loop_hook(cub3d->mlx_ptr, &running, game);
+	cub3d->step_of_game = 2;
+	init_struct_player(&(cub3d->p1));
+	cub3d->p1.pos_x = cub3d->pos.pos_x + 0.5;
+	cub3d->p1.pos_y = cub3d->pos.pos_y + 0.5;
+	set_player_view(cub3d, &(cub3d->p1));
+	mlx_loop_hook(cub3d->mlx_ptr, &running, cub3d);
 	//running : game is still running,continue ray_casting
 	//->check step, renew the values
-	mlx_hook(game->state->win_ptr, 0, 1L << 0, &key_press, game);
-	mlx_hook(game->state->win_ptr, 17, 1L << 0, &free_all_exit, game);
+	mlx_hook(cub3d->window->win_ptr, 0, 1L << 0, &key_press, cub3d);
+	mlx_hook(cub3d->window->win_ptr, 17, 1L << 0, &free_all_exit, cub3d);
 	mlx_loop(cub3d->mlx_ptr);
 }
 
@@ -96,7 +96,7 @@ int	main(int argc, char *argv[], char **envp)
 	ft_parsing(*argv, &cub3d);
 	if (cub3d.exit_code != SUCCESS)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
-	introduction_of_game(game,  game->state);
-	free_all(game);
+	introduction_of_game(&cub3d);
+	free_all(cub3d);
 	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 }

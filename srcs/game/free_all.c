@@ -12,31 +12,27 @@
 
 #include "../../includes/cub3d.h"
 
-void	free_texture(t_state *state, t_texture *texture)
+void	free_texture(t_cub3d *cub3d)
 {
-	if (texture->floor)
-		free(texture->floor);
-	if (texture->celling)
-		free(texture->celling);
-	if (state->step_of_game >= 3)
+	if (cub3d->step_of_game >= 3)
 	{
-		if (texture->wall_no->mlx_img)
-			mlx_destroy_image(state->mlx_ptr, texture->wall_no->mlx_img);
-		if (texture->wall_so->mlx_img)
-			mlx_destroy_image(state->mlx_ptr, texture->wall_so->mlx_img);
-		if (texture->wall_we->mlx_img)
-			mlx_destroy_image(state->mlx_ptr, texture->wall_we->mlx_img);
-		if (texture->wall_ea->mlx_img)
-			mlx_destroy_image(state->mlx_ptr, texture->wall_ea->mlx_img);
+		if (cub3d->mlx_img)
+			mlx_destroy_image(cub3d->mlx_ptr, cub3d->no.mlx_img);
+		if (cub3d->so.mlx_img)
+			mlx_destroy_image(cub3d->mlx_ptr, cub3d->so.mlx_img);
+		if (cub3d->we.mlx_img)
+			mlx_destroy_image(cub3d->mlx_ptr, cub3d->we.mlx_img);
+		if (cub3d->ea.mlx_img)
+			mlx_destroy_image(cub3d->mlx_ptr, cub3d->ea.mlx_img);
 	}
-	if (texture->wall_no)
-		free(texture->wall_no);
-	if (texture->wall_so)
-		free(texture->wall_so);
-	if (texture->wall_we)
-		free(texture->wall_we);
-	if (texture->wall_ea)
-		free(texture->wall_ea);
+	if (cub3d->no)
+		free(cub3d->no);
+	if (cub3d->so)
+		free(cub3d->so);
+	if (cub3d->we)
+		free(cub3d->we);
+	if (cub3d->ea)
+		free(cub3d->ea);
 	if (texture)
 		free(texture);
 }
@@ -77,9 +73,9 @@ void	free_game_and_mlx(t_state *state)
 		free(state->p1);
 }
 
-int	free_all(t_game *game)
+int	free_all(t_cub3d *cub3d)
 {
-	free_texture(game->state, game->state->texture);
+	free_texture(cub3d);
 	free_img(game->state, game->img);
 	free_game_and_mlx(game->state);
 	if (game->state)

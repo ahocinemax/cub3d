@@ -157,6 +157,7 @@ struct s_map
 
 struct s_texture
 {
+	t_img			*mlx_img;
 	t_direction		direction;
 	char			*path;
 };
@@ -166,7 +167,9 @@ struct s_cub3d
 	void			*mlx_ptr;
 	char			*level_name;
 	int				step_of_game;
+	t_pos			pos;
 	t_pic			intro;
+	t_player		p1;
 	t_window		*window;
 	t_texture		no;
 	t_texture		so;

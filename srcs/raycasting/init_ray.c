@@ -20,8 +20,8 @@ void	init_struct_player(t_player *p1)
 	p1->dir_y = 0;
 	p1->plane_x = 0;
 	p1->plane_y = 0;
-	p1->move_speed = 0.3;//ask ahocine
-	p1->rot_speed = 0.5;//ask ahocine
+	p1->move_speed = 0.3;	//ask ahocine
+	p1->rot_speed = 0.5;	//ask ahocine
 	p1->camera_x = 0;
 	p1->map_x = 0;
 	p1->map_y = 0;
@@ -33,30 +33,30 @@ void	init_struct_player(t_player *p1)
 }
 
 
-void	set_player_view(t_game *game, t_player *p1)
+void	set_player_view(t_cub3d *cub3d, t_player *p1)
 {
-	if (game->state->pos->pos == 'N')
+	if (cub3d->pos.pos == 'N')
 	{
 		p1->dir_x = 0;
 		p1->dir_y = -1;
 		p1->plane_x = -0.66;
 		p1->plane_y = 0;
 	}
-	else if (game->state->pos->pos == 'S')
+	else if (cub3d->pos.pos == 'S')
 	{
 		p1->dir_x = 0;
 		p1->dir_y = 1;
 		p1->plane_x = -0.66;
 		p1->plane_y = 0;
 	}
-    	if (game->state->pos->pos == 'W')
+    	if (cub3d->pos.pos == 'W')
 	{
 		p1->dir_x = -1;
 		p1->dir_y = 0;
 		p1->plane_x = 0;
 		p1->plane_y = -0.66;
 	}
-	else if (game->state->pos->pos == 'E')
+	else if (cub3d->pos.pos == 'E')
 	{
 		p1->dir_x = 1;
 		p1->dir_y = 0;
