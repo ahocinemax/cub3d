@@ -85,8 +85,18 @@ int	running(t_game *game)
     	draw_end = line_height / 2 + WIN_H / 2;
     	if(draw_end >= WIN_H) 
 			draw_end = WIN_H - 1;
+		prepare_wall(game, x, draw_start, draw_end);
+		//fonction to display the images
+		/*if (game->state->p1->side == EAST || game->state->p1->side == WEST)
+			game->state->p1->wall_x = game->state->p1->pos_y + game->state->p1->perp_wall_dist * game->state->p1->raydir_y;
+		else
+			game->state->p1->wall_x = game->state->p1->pos_x + game->state->p1->perp_wall_dist * game->state->p1->raydir_x;
+		game->state->p1->wall_x = floor(game->state->p1->wall_x);*/
 		x++;
 	}
+	mlx_put_image_to_window(game->state->mlx_ptr, game->state->win_ptr, \
+		game->state->screen->mlx_img, 0, 0);
+
 	return (0);
 }
 

@@ -125,6 +125,7 @@ typedef struct s_player
 	int		map_y;
 	int		step_x;
 	int		step_y;
+	double	wall_x;
 	int		check_pos;
 	double	time;
 	double	old_time;
@@ -241,6 +242,10 @@ void			set_player_view(t_game *game, t_player *p1);
 //raycasting
 void			perpwall_dist(t_player *p1);
 void			dda_perform(t_game *game, t_player *p1);
+
+//drawing
+void			wall_x(t_player *p1);
+void			prepare_wall(t_game *game, int x, int draw_start, int draw_end);
 
 //game
 //free game structure

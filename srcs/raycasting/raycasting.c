@@ -45,7 +45,7 @@ void    dda_perform(t_game *game, t_player *p1)
           else
             p1->side = NORTH;
         }
-        if (game->map.map[p1->map_x][p1->map_y] == '1')
+        if (game->map.map[p1->map_y][p1->map_x] == '1')
         //il faut utiliser la valeur de cub3d->map.map!
         //map_width <= map_x / map_height <= map_y  : hit == 1
           p1->hit = 1;

@@ -25,6 +25,7 @@ SRC_FILE	=	cub3d.c							\
 				raycasting/init_ray.c			\
 				raycasting/init_struct_game.c	\
 				raycasting/raycasting.c			\
+				raycasting/drawing.c			\
 				raycasting/setting_player.c		\
 				game/free_all.c					\
 				game/init_struct.c				\

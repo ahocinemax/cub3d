@@ -16,7 +16,7 @@
 void	img_intro(t_game *game, t_state *state)
 {
 	state->intro->img = mlx_xpm_file_to_image(state->mlx_ptr, \
-        INTRO, &state->intro->width, &state->intro->height);
+        "./image/intro.xpm", &state->intro->width, &state->intro->height);
 	if (!state->intro->img)
 		ft_error_and_exit(ERROR_IMAGE, game);
 }
