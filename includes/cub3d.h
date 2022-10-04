@@ -42,13 +42,6 @@ typedef struct s_pos		t_pos;
 typedef struct s_map		t_map;
 typedef struct s_pic		t_pic;
 
-struct s_pic
-{
-	void			*img;
-	int				width;
-	int				height;
-};
-
 enum	e_direction
 {
 	NORTH,
@@ -79,6 +72,13 @@ enum	e_error_code
 	ERROR_MLX,
 	DUPICATE_PATH,
 	MAP_ERROR
+};
+
+struct s_pic
+{
+	void			*img;
+	int				width;
+	int				height;
 };
 
 struct s_img
@@ -129,6 +129,7 @@ struct s_player
 	int				line_height;
 	double			rot_speed;
 	double			move_speed;
+	double			wall_x;
 };
 
 struct s_pos
@@ -189,6 +190,7 @@ t_error_code	ft_check_identifier(t_cub3d *cub3d, char *s);
 t_error_code	ft_check_colors(t_cub3d *cub3d, char *str);
 t_error_code	ft_check_path(t_cub3d *cub3d, char *str);
 t_error_code	ft_check_info(t_cub3d *cub3d);
+t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code);
 
 // checker_map
 t_error_code	ft_check_line(t_cub3d *cub3d, char *line);
@@ -214,10 +216,6 @@ int				ft_valid_char_map(char c);
 t_error_code	ft_init_struct(t_cub3d *cub3d);
 void			ft_free_struct(t_cub3d *cub3d);
 
-// errors
-t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code);
-void			ft_print_error2(t_error_code error_code);
-
 // main
 t_error_code	ft_check_file(char *argv, t_cub3d *cub3d);
 void			ft_parsing(char *argv, t_cub3d *cub3d);
@@ -228,7 +226,7 @@ t_error_code	ft_reopen(t_cub3d *cub3d);
 int				ft_valid_position(char c);
 int				ft_no_void(char c);
 int				ft_check_void(t_cub3d *cub3d, t_pos *pos, char **map);
-t_error_code	check_player_position(t_cub3d *cub3d, char **map, t_pos *pos);
+t_error_code    check_player_position(t_cub3d *cub3d, char **map, t_pos *pos);
 
 //init_raycasting structure
 void			init_struct_player(t_player *p1);
@@ -237,6 +235,10 @@ void			set_player_view(t_cub3d *cub3d, t_player *p1);
 //raycasting
 void			perpwall_dist(t_player *p1);
 void			dda_perform(t_cub3d *cub3d, t_player *p1);
+
+//drawing
+void			wall_x(t_player *p1);
+void			prepare_wall(t_game *game, int x, int draw_start, int draw_end);
 
 //game
 //free game structure
@@ -250,6 +252,7 @@ int				free_all_exit(t_cub3d *cub3d);
 //init_game
 void			renew_player_value(t_cub3d *cub3d, t_player *p1, int x);
 void			step_player(t_player *p1);
+
 
 //init struct
 int				ft_error_and_exit(char *error, t_cub3d *cub3d);
@@ -277,7 +280,7 @@ void			s_key(t_cub3d *cub3d);
 
 //main
 void			game_start(t_cub3d *cub3d);
-int			running(t_cub3d *cub3d);
+int				running(t_cub3d *cub3d);
 
 //image
 void			img_intro(t_cub3d *cub3d);

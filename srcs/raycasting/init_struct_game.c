@@ -13,14 +13,6 @@
 #include "../../includes/cub3d.h"
 
 /*
-void    init_struct_pos(t_pos *pos)
-{
-    pos->check_pos = 0;
-    pos->pos_x = 0;
-    pos->pos_y = 0;
-
-}
-
 void    init_struct_game(t_game *game)
 {
     game->pos = malloc(sizeof(t_pos));

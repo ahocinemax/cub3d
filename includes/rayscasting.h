@@ -14,8 +14,11 @@
 # define RAYCASTING_H
 # define ERROR_MALLOC "malloc error"
 # define ERROR_MLX "mlx_ptr error"
-
-
+# define ERROR_IMAGE "image error"
+# define WIN_H 800
+# define WIN_W 1200 
+# define INTRO "./image/intro.xpm"
+/*
 typedef struct s_win
 {
     int win_width;
@@ -80,15 +83,7 @@ typedef struct s_color
 	int		b;
 }	t_color;
 
-typedef struct s_texture
-{
-	t_img	*wall_no;
-	t_img	*wall_so;
-	t_img	*wall_we;
-	t_img	*wall_ea;
-	t_color	*floor;
-	t_color	*celling;
-}	t_texture;
+
 
 typedef struct s_pic
 {
@@ -97,17 +92,7 @@ typedef struct s_pic
 	int		height;
 }	t_pic;
 
-typedef struct s_state
-{
-	void		*mlx_ptr;
-	void		*win_ptr;
-	int			step_of_game;
-	t_pic		*intro;
-	t_texture	*texture;
-	t_pos		*pos;
-	t_player	*p1;
-	t_img		*screen;
-}	t_state;
+
 
 typedef struct s_game
 {

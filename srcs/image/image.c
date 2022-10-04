@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_struct.c                                      :+:      :+:    :+:   */
+/*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtsuji <mtsuji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msuji <mtsuji@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 02:36:18 by mtsuji            #+#    #+#             */
-/*   Updated: 2022/10/03 02:36:21 by mtsuji           ###   ########.fr       */
+/*   Created: 2022/10/03 22:05:26 by msuji             #+#    #+#             */
+/*   Updated: 2022/10/03 22:05:28 by msuji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void    init_struct_pos(t_pos *pos)
+
+void	img_intro(t_game *game, t_state *state)
 {
-    pos->check_pos = 0;
-    pos->pos_x = 0;
-    pos->pos_y = 0;
+	state->intro->img = mlx_xpm_file_to_image(state->mlx_ptr, \
+        "./image/intro.xpm", &state->intro->width, &state->intro->height);
+	if (!state->intro->img)
+		ft_error_and_exit(ERROR_IMAGE, game);
 }

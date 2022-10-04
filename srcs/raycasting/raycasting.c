@@ -14,33 +14,40 @@
 
 void    perpwall_dist(t_player *p1)
 {
-    if (p1->side == 1)//sidedist:x
+    if (p1->side == NORTH || p1->side == SOUTH)
         p1->perp_wall_dist = (p1->side_dist_x - p1->delta_dist_x);
-    else//sidedist:y
+    else
         p1->perp_wall_dist = (p1->side_dist_y - p1->delta_dist_y);        
     p1->line_height = (int)(WIN_H / p1->perp_wall_dist); 
 }
 
-void    dda_perform(g_game *game, t_player *p1)
+void    dda_perform(t_game *game, t_player *p1)
 {
-
-      //perform DDA
-      while (hit == 0)
+      while (p1->hit == 0)
       {
-        //jump to next map square, either in x-direction, or in y-direction
-        if (sideDistX < sideDistY)
+        if (p1->side_dist_x < p1->side_dist_y)
         {
-          sideDistX += deltaDistX;
-          mapX += stepX;
-          side = 0;
+          p1->side_dist_x += p1->delta_dist_y;
+          if (p1->map_x > 0)
+            p1->map_x += p1->step_x;
+          if (p1->raydir_x > 0)
+            p1->side = EAST;
+          else
+            p1->side = WEST;
         }
         else
         {
-          sideDistY += deltaDistY;
-          mapY += stepY;
-          side = 1;
+          p1->side_dist_y += p1->delta_dist_y;
+          if (p1->map_y > 0)
+            p1->map_y += p1->step_y;
+          if (p1->raydir_y > 0)
+            p1->side = SOUTH;
+          else
+            p1->side = NORTH;
         }
-        //Check if ray has hit a wall
-        if (worldMap[mapX][mapY] > 0) hit = 1;
+        if (game->map.map[p1->map_y][p1->map_x] == '1')
+        //il faut utiliser la valeur de cub3d->map.map!
+        //map_width <= map_x / map_height <= map_y  : hit == 1
+          p1->hit = 1;
       }
 }
