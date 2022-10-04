@@ -66,18 +66,18 @@ int	running(t_game *game)
 	{
 		renew_player_value(game->state->p1, x);
 		step_player(game->state->p1);
-		dda_perform(game, game->state->p1);
+		while (game->state->p1->hit == 0)
+			dda_perform(game, game->state->p1);
 		perpwall_dist(game->state->p1);
-		if(game->state->p1->side == EAST || game->state->p1->side == WEST)
+		/*if(game->state->p1->side == EAST || game->state->p1->side == WEST)
 			game->state->p1->perp_wall_dist = \
 				(game->state->p1->side_dist_x - game->state->p1->delta_dist_x);
     	else
 			game->state->p1->perp_wall_dist = \
-				(game->state->p1->side_dist_y - game->state->p1->delta_dist_y);
+				(game->state->p1->side_dist_y - game->state->p1->delta_dist_y);*/
 
       //Calculate height of line to draw on screen
     	line_height = (int)(WIN_H / game->state->p1->perp_wall_dist);
-   
       //calculate lowest and highest pixel to fill in current stripe
     	draw_start = -line_height / 2 + WIN_H / 2;
     	if (draw_start < 0) 
