@@ -12,18 +12,42 @@
 
 #include "../includes/cub3d.h"
 
-static void	ft_init_texture(t_cub3d *cub3d)
+static void	ft_init_img(t_img *img)
 {
-	cub3d->no.path = NULL;
-	cub3d->so.path = NULL;
-	cub3d->ea.path = NULL;
-	cub3d->we.path = NULL;
+	img->mlx_img = NULL;
+	img->addr = NULL;
+	img->line_len = 0;
+	img->endian = 0;
+	img->width = 0;
+	img->height = 0;
+}
+
+static void	ft_init_texture(t_texture *texture, t_direction dir)
+{
+	texture->path = NULL;
+	texture->direction = dir;
+	ft_init_img(&(texture->img));
+}
+
+void	init_picture(t_pic *intro)
+{
+	intro->img = NULL;
+	intro->width = 0;
+	intro->height = 0;
+}
+
+static void	ft_init_texture_color(t_cub3d *cub3d)
+{
 	cub3d->celling.green = 0;
 	cub3d->celling.blue = 0;
 	cub3d->celling.red = 0;
 	cub3d->floor.green = 0;
 	cub3d->floor.blue = 0;
 	cub3d->floor.red = 0;
+	ft_init_texture(&(cub3d->no), NORTH);
+	ft_init_texture(&(cub3d->so), SOUTH);
+	ft_init_texture(&(cub3d->ea), EAST);
+	ft_init_texture(&(cub3d->we), WEST);
 }
 
 static void	ft_free_texture(t_cub3d *cub3d)
@@ -43,22 +67,44 @@ static void	ft_init_map(t_cub3d *cub3d)
 	cub3d->map.y = 0;
 }
 
+void	init_player(t_player *p1)
+{
+	p1->pos_x = 0;
+	p1->pos_y = 0;
+	p1->dir_x = 0;
+	p1->dir_y = 0;
+	p1->plane_x = 0;
+	p1->plane_y = 0;
+	p1->move_speed = 0.3;	//ask ahocine
+	p1->rot_speed = 0.5;	//ask ahocine
+	p1->camera_x = 0;
+	p1->map_x = 0;
+	p1->map_y = 0;
+	p1->delta_dist_x = 0;
+	p1->delta_dist_y = 0;
+	p1->hit = 0;
+	p1->raydir_x = 0;
+	p1->raydir_y = 0;
+}
+
 t_error_code	ft_init_window(t_cub3d *cub3d)
 {
-	cub3d->window->height = 1000;
-	cub3d->window->width = 1200;
-	cub3d->window->win_ptr = mlx_new_window(cub3d->mlx_ptr, \
-	cub3d->window->width, cub3d->window->height, "Welcome to my home");
+	cub3d->window.height = 800;
+	cub3d->window.width = 1200;
+	cub3d->window.win_ptr = mlx_new_window(cub3d->mlx_ptr, \
+	cub3d->window.width, cub3d->window.height, "Welcome to my home");
 }
 
 t_error_code	ft_init_struct(t_cub3d *cub3d)
 {
-	ft_init_texture(cub3d);
+	ft_init_texture_color(cub3d);
 	ft_init_map(cub3d);
-	cub3d->mlx_ptr = mlx_init();
+	ft_init_img(&(cub3d->screen));
+	cub3d->mlx_ptr = NULL;
 	ft_init_window(cub3d);
-	if (!cub3d->mlx_ptr || cub3d->window->win_ptr)
-		return (mlx_destroy_window(cub3d->mlx_ptr, cub3d->window->win_ptr), \
+	init_player(&(cub3d->p1));
+	init_picture(&(cub3d->intro));
+		return (mlx_destroy_window(cub3d->mlx_ptr, cub3d->window.win_ptr), \
 		ft_print_error(cub3d, ERROR_MLX));
 	cub3d->exit_code = SUCCESS;
 	cub3d->step_of_game = 1;

@@ -12,9 +12,9 @@
 
 #include "../../includes/cub3d.h"
 
-void	renew_player_value(t_player *p1, int x)
+void	renew_player_value(t_cub3d *cub3d, t_player *p1, int x)
 {
-	p1->camera_x = 2 * x / (double)WIN_W - 1;
+	p1->camera_x = 2 * x / (double)cub3d->window.width - 1;
 	p1->raydir_x = p1->dir_x + p1->plane_x * p1->camera_x;
 	p1->raydir_y = p1->dir_y + p1->plane_y * p1->camera_x;
 	p1->map_x = (int)p1->pos_x;
