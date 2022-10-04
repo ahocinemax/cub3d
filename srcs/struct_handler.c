@@ -43,11 +43,25 @@ static void	ft_init_map(t_cub3d *cub3d)
 	cub3d->map.y = 0;
 }
 
-void	ft_init_struct(t_cub3d *cub3d)
+t_error_code	ft_init_window(t_cub3d *cub3d)
+{
+	cub3d->window->height = 1000;
+	cub3d->window->width = 1200;
+	cub3d->window->win_ptr = mlx_new_window(cub3d->mlx_ptr, \
+	cub3d->window->width, cub3d->window->height, "Welcome to my home");
+}
+
+t_error_code	ft_init_struct(t_cub3d *cub3d)
 {
 	ft_init_texture(cub3d);
 	ft_init_map(cub3d);
+	cub3d->mlx_ptr = mlx_init();
+	ft_init_window(cub3d);
+	if (!cub3d->mlx_ptr || cub3d->window->win_ptr)
+		return (mlx_destroy_window(cub3d->mlx_ptr, cub3d->window->win_ptr), \
+		ft_print_error(cub3d, ERROR_MLX));
 	cub3d->exit_code = SUCCESS;
+	cub3d->step_of_game = 1;
 	cub3d->level_name = NULL;
 	cub3d->fd = -1;
 }

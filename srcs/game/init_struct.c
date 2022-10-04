@@ -21,35 +21,23 @@ int	ft_error_and_exit(char *error, t_game *game)
 	return (-1);
 }
 
-int	init_mlx_and_window(t_game *game, t_state *state, t_win *window)
+void	init_struct_malloc(t_cub3d *cub3d)
 {
-	(void) game;
-	window->win_height = WIN_H;
-	window->win_width = WIN_W;
-	state->win_ptr = mlx_new_window(state->mlx_ptr, window->win_width, \
-	window->win_height, "Welcome to my home");
-	if (state->win_ptr == NULL)
-		return (1);
-	return (0);
-}
-
-void	init_struct_malloc(t_game *game)
-{
-	game->state = malloc(sizeof(t_state));
-	if (!game->state)
-		ft_error_and_exit(ERROR_MALLOC, game);
-	game->state->texture = malloc(sizeof(t_texture));
-	if (!game->state->texture)
-		ft_error_and_exit(ERROR_MALLOC, game);
-	game->state->pos = malloc(sizeof(t_pos));
-	if (!game->state->pos)
-		ft_error_and_exit(ERROR_MALLOC, game);
-	game->state->p1 = malloc(sizeof(t_player));
-	if (!game->state->p1)
-		ft_error_and_exit(ERROR_MALLOC, game);
-	game->img = malloc(sizeof(t_img));
-	if (!game->img)
-		ft_error_and_exit(ERROR_MALLOC, game);
+	cub3d->state = malloc(sizeof(t_state));
+	if (!cub3d->state)
+		ft_error_and_exit(ERROR_MALLOC, cub3d);
+	cub3d->state->texture = malloc(sizeof(t_texture));
+	if (!cub3d->state->texture)
+		ft_error_and_exit(ERROR_MALLOC, cub3d);
+	cub3d->state->pos = malloc(sizeof(t_pos));
+	if (!cub3d->state->pos)
+		ft_error_and_exit(ERROR_MALLOC, cub3d);
+	cub3d->state->p1 = malloc(sizeof(t_player));
+	if (!cub3d->state->p1)
+		ft_error_and_exit(ERROR_MALLOC, cub3d);
+	cub3d->img = malloc(sizeof(t_img));
+	if (!cub3d->img)
+		ft_error_and_exit(ERROR_MALLOC, cub3d);
 }
 
 int	init_img(t_img *img)
@@ -144,9 +132,6 @@ void	init_struct_state(t_game *game, t_state *state)
 
 t_game	*init_struct_game(t_game *game)
 {
-	game = malloc(sizeof(t_game));
-	if (!game)
-		ft_error_and_exit(ERROR_MALLOC, game);
 	init_struct_malloc(game);
 	init_img(game->img);
 	init_struct_state(game, game->state);

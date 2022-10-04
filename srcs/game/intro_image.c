@@ -151,12 +151,12 @@ int	key_press(int key, t_game *game)
 	return (key_press_other(key, game));
 }
 
-void	introduction_of_game(t_game *game, t_state *state)
+void	introduction_of_game(t_cub3d *cub3d)
 {
-	state->step_of_game = 1;
-	mlx_key_hook(game->state->win_ptr, &key_press, game);
-	mlx_hook(state->win_ptr, 17, 1L << 0, &free_all_exit, game);
-	mlx_put_image_to_window(state->mlx_ptr, state->win_ptr, \
-	state->intro->img, 0, 0);
-	mlx_loop(state->mlx_ptr);
+	img_intro(cub3d);
+	mlx_key_hook(cub3d->window->win_ptr, &key_press, &cub3d);
+	mlx_hook(cub3d->window->win_ptr, 17, 1L << 0, &free_all_exit, &cub3d);
+	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window->win_ptr, \
+	cub3d->intro.img, 0, 0);
+	mlx_loop(cub3d->mlx_ptr);
 }

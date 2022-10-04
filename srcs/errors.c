@@ -28,6 +28,8 @@ void	ft_print_error2(t_error_code error_code)
 		ft_putstr_fd("parsing: separate colors with comma ','.\n", _STD_ERR);
 	else if (error_code == WRONG_EXTENTION2)
 		ft_putstr_fd("parsing: texture must have .xmp extension.\n", _STD_ERR);
+	else if (error_code == ERROR_IMAGE)
+		ft_putstr_fd("mlx: Cannot load image.\n", _STD_ERR);
 	else
 		ft_putstr_fd("Unexpected error, well done.\n", _STD_ERR);
 }
@@ -58,5 +60,5 @@ t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code)
 	if (cub3d)
 		cub3d->exit_code = error_code;
 	ft_putstr_fd("exiting...\n", _STD_ERR);
-	return (error_code);
+	return (exit(error_code), error_code);
 }
