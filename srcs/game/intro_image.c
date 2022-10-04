@@ -26,9 +26,9 @@ void	w_key(t_game *game)
 	* game->state->p1->move_speed);
 	x2 = (game->state->p1->pos_x);
 	y1 = (game->state->p1->pos_y);
-	if (game->map[(int)y1][(int)(x1)] != '1')
+	if (game->map.map[(int)y1][(int)(x1)] != '1')
 		game->state->p1->pos_x = x1;
-	if (game->map[(int)y2][(int)x2] != '1')
+	if (game->map.map[(int)y2][(int)x2] != '1')
 		game->state->p1->pos_y = y2;
 }
 
@@ -45,9 +45,9 @@ void	s_key(t_game *game)
 	* game->state->p1->move_speed);
 	x2 = (game->state->p1->pos_x);
 	y1 = (game->state->p1->pos_y);
-	if (game->map[(int)y1][(int)(x1)] != '1')
+	if (game->map.map[(int)y1][(int)(x1)] != '1')
 		game->state->p1->pos_x = x1;
-	if (game->map[(int)y2][(int)x2] != '1')
+	if (game->map.map[(int)y2][(int)x2] != '1')
 		game->state->p1->pos_y = y2;
 }
 
@@ -64,9 +64,9 @@ void	a_key(t_game *game)
 	* game->state->p1->move_speed);
 	x2 = (game->state->p1->pos_x);
 	y1 = (game->state->p1->pos_y);
-	if (game->map[(int)y1][(int)(x1)] != '1')
+	if (game->map.map[(int)y1][(int)(x1)] != '1')
 		game->state->p1->pos_x = x1;
-	if (game->map[(int)y2][(int)x2] != '1')
+	if (game->map.map[(int)y2][(int)x2] != '1')
 		game->state->p1->pos_y = y2;
 }
 
@@ -83,9 +83,9 @@ void	d_key(t_game *game)
 	* game->state->p1->move_speed);
 	x2 = (game->state->p1->pos_x);
 	y1 = (game->state->p1->pos_y);
-	if (game->map[(int)y1][(int)(x1)] != '1')
+	if (game->map.map[(int)y1][(int)(x1)] != '1')
 		game->state->p1->pos_x = x1;
-	if (game->map[(int)y2][(int)x2] != '1')
+	if (game->map.map[(int)y2][(int)x2] != '1')
 		game->state->p1->pos_y = y2;
 }
 

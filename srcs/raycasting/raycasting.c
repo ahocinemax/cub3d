@@ -45,7 +45,8 @@ void    dda_perform(t_game *game, t_player *p1)
           else
             p1->side = SOUTH;
         }
-        if (game->map[p1->map_x][p1->map_y] > 0) 
+        if (game->map.map[p1->map_x][p1->map_y] > 0) 
+        //il faut utiliser la valeur de cub3d->map.map!
           p1->hit = 1;
       }
 }

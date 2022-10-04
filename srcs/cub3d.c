@@ -40,7 +40,7 @@ t_error_code	ft_reopen(t_cub3d *cub3d)
 	return (SUCCESS);
 }
 
-void	ft_parsing(char *argv, t_cub3d *cub3d)
+void	ft_parsing(char *argv, t_cub3d *cub3d, t_game *game)
 {
 	if (ft_check_file(argv, cub3d) != SUCCESS || ft_check_info(cub3d) != \
 	SUCCESS || ft_reopen(cub3d) != SUCCESS || ft_fill_info(cub3d) != SUCCESS)
@@ -48,7 +48,7 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 	if (ft_reopen(cub3d) != SUCCESS || ft_check_map(cub3d) != SUCCESS || \
 	ft_reopen(cub3d) != SUCCESS)
 		return ;
-	ft_fill_map(cub3d);
+	ft_fill_map(cub3d, game);
 	if (cub3d->exit_code != SUCCESS)
 		return ;
 	//if (check_player_position(cub3d->map.map, cub3d) != SUCCESS)
@@ -76,7 +76,7 @@ int	running(t_game *game)
 				(game->state->p1->side_dist_y - game->state->p1->delta_dist_y);
 
       //Calculate height of line to draw on screen
-    	game->state->p1->line_height = (int)(WIN_H / game->state->p1->perp_wall_dist);
+    	line_height = (int)(WIN_H / game->state->p1->perp_wall_dist);
    
       //calculate lowest and highest pixel to fill in current stripe
     	draw_start = -line_height / 2 + WIN_H / 2;
@@ -93,6 +93,8 @@ int	running(t_game *game)
 void	game_start(t_game *game)
 {
 	game->state->step_of_game = 2;
+	game->state->screen->mlx_img = \
+	mlx_new_image(game->state->mlx_ptr, WIN_W, WIN_H);
 	init_struct_player(game->state->p1);
 	game->state->p1->pos_x = game->state->pos->pos_x + 0.5;
 	game->state->p1->pos_y = game->state->pos->pos_y + 0.5;
@@ -122,10 +124,10 @@ int	main(int argc, char *argv[], char **envp)
 	if (!game->state->mlx_ptr)
 		ft_error_and_exit(ERROR_MLX, game);
 	ft_init_struct(&cub3d);
-	ft_parsing(*argv, &cub3d);
+	ft_parsing(*argv, &cub3d, game);
 	if (cub3d.exit_code != SUCCESS)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
-	printf("%s\n%s\n%s\n%s\n%s\n%s\n\n\n", cub3d.no.path, cub3d.so.path, cub3d.ea.path, cub3d.we.path, cub3d.f.path,  cub3d.c.path);
+	printf("%s\n%s\n%s\n%s\n\n\n\n", cub3d.no.path, cub3d.so.path, cub3d.ea.path, cub3d.we.path);
 	int i = 0;
 	while (cub3d.map.map && cub3d.map.map[i])
 		printf("%s\n", cub3d.map.map[i++]);

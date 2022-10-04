@@ -24,7 +24,7 @@ char	*ft_fill_line(t_cub3d *cub3d)
 	return (free(gnl), line);
 }
 
-void	ft_fill_map(t_cub3d *cub3d)
+void	ft_fill_map(t_cub3d *cub3d, t_game *game)
 {
 	char	**res;
 	int		i;
@@ -41,6 +41,7 @@ void	ft_fill_map(t_cub3d *cub3d)
 		i++;
 	}
 	cub3d->map.map = res;
+	game->map.map = res;
 	close(cub3d->fd);
 	cub3d->fd = -1;
 }

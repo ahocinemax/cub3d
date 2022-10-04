@@ -148,12 +148,21 @@ void	init_struct_state(t_game *game, t_state *state)
 	init_texture(game, state->texture);
 	init_struct_pos(state->pos);
 }
+void	init_map(t_game *game)
+{
+	game->map.map = NULL;
+	game->map.large = 0;
+	game->map.longu = 0;
+	game->map.x = 0;
+	game->map.y = 0;
+}
 
 t_game	*init_struct_game(t_game *game)
 {
 	game = malloc(sizeof(t_game));
 	if (!game)
 		ft_error_and_exit(ERROR_MALLOC, game);
+	init_map(game);
 	init_struct_malloc(game);
 	init_img(game->img);
 	init_struct_state(game, game->state);

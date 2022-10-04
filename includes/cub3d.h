@@ -162,19 +162,19 @@ typedef struct s_state
 
 typedef struct s_texture
 {
-	t_img	*wall_no;
-	t_img	*wall_so;
-	t_img	*wall_we;
-	t_img	*wall_ea;
-	t_color	*floor;
-	t_color	*celling;
-	char	*path;
-	t_direction		direction;
+	t_img		*wall_no;
+	t_img		*wall_so;
+	t_img		*wall_we;
+	t_img		*wall_ea;
+	t_color		*floor;
+	t_color		*celling;
+	char		*path;
+	t_direction	direction;
 }	t_texture;
 
 typedef struct s_game
 {
-	char		**map;
+	t_map		map;
 	t_state		*state;
 	t_win		win;
 	t_img		*img;
@@ -183,6 +183,7 @@ typedef struct s_game
 struct s_cub3d
 {
 	char			*level_name;
+	t_state			*state;
 	t_texture		no;
 	t_texture		so;
 	t_texture		ea;
@@ -200,6 +201,7 @@ t_error_code	ft_check_identifier(t_cub3d *cub3d, char *s);
 t_error_code	ft_check_colors(t_cub3d *cub3d, char *str);
 t_error_code	ft_check_path(t_cub3d *cub3d, char *str);
 t_error_code	ft_check_info(t_cub3d *cub3d);
+t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code);
 
 // checker_map
 t_error_code	ft_check_line(t_cub3d *cub3d, char *line);
@@ -213,7 +215,7 @@ t_error_code	ft_fill_info(t_cub3d *cub3d);
 
 // fill map
 char			*ft_fill_line(t_cub3d *cub3d);
-void			ft_fill_map(t_cub3d *cub3d);
+void			ft_fill_map(t_cub3d *cub3d, t_game *game);
 
 // parsing utils
 void			ft_remove_newline(t_cub3d *cub3d, char **line);
@@ -265,6 +267,7 @@ void			init_picture(t_game *game, t_state *state);
 void			init_color(t_color *color);
 void			init_texture(t_game *game, t_texture *texture);
 void			init_struct_state(t_game *game, t_state *state);
+void			init_map(t_game *game); //ahocine's fonction
 t_game			*init_struct_game(t_game *game);
 
 //intro_image
