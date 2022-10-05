@@ -29,6 +29,7 @@ SRC_FILE	=	cub3d.c							\
 				game/free_all.c					\
 				game/init_game.c				\
 				game/intro_image.c				\
+				game/key_press_adsw.c				\
 				image/image.c					\
 
 #------------------------------------#

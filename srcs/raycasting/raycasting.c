@@ -21,6 +21,17 @@ void	perpwall_dist(t_cub3d *cub3d, t_player *p1)
 	p1->line_height = (int)(cub3d->window.width / p1->perp_wall_dist);
 }
 
+void	dda_perform2(t_player *p1)
+{	
+	p1->side_dist_y += p1->delta_dist_y;
+	if (p1->map_y > 0)
+		p1->map_y += p1->step_y;
+	if (p1->raydir_y > 0)
+		p1->side = SOUTH;
+	else
+		p1->side = NORTH;
+}
+
 void	dda_perform(t_cub3d *cub3d, t_player *p1)
 {
 	while (p1->hit == 0)
@@ -36,17 +47,11 @@ void	dda_perform(t_cub3d *cub3d, t_player *p1)
 				p1->side = WEST;
 		}
 		else
-		{
-			p1->side_dist_y += p1->delta_dist_y;
-			if (p1->map_y > 0)
-				p1->map_y += p1->step_y;
-			if (p1->raydir_y > 0)
-				p1->side = SOUTH;
-			else
-				p1->side = NORTH;
-		}
+			dda_perform2(p1);
 		if (cub3d->map.map[p1->map_y][p1->map_x] == '1')
 			p1->hit = 1;
-			//map_width <= map_x / map_height <= map_y: hit == 1
+		else if (p1->map_x < 0 || p1->map_y < 0
+			|| cub3d->map.longu <= p1->map_x || cub3d->map.large <= p1->map_y)
+			p1->hit = 1;
 	}
 }

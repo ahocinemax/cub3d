@@ -12,6 +12,24 @@
 
 #include "../../includes/cub3d.h"
 
+void	set_player_view_2(t_cub3d *cub3d, t_player *p1)
+{
+	if (cub3d->pos.pos == 'W')
+	{
+		p1->dir_x = -1;
+		p1->dir_y = 0;
+		p1->plane_x = 0;
+		p1->plane_y = -0.66;
+	}
+	else if (cub3d->pos.pos == 'E')
+	{
+		p1->dir_x = 1;
+		p1->dir_y = 0;
+		p1->plane_x = 0;
+		p1->plane_y = -0.66;
+	}
+}
+
 void	set_player_view(t_cub3d *cub3d, t_player *p1)
 {
 	if (cub3d->pos.pos == 'N')
@@ -28,18 +46,5 @@ void	set_player_view(t_cub3d *cub3d, t_player *p1)
 		p1->plane_x = -0.66;
 		p1->plane_y = 0;
 	}
-    	if (cub3d->pos.pos == 'W')
-	{
-		p1->dir_x = -1;
-		p1->dir_y = 0;
-		p1->plane_x = 0;
-		p1->plane_y = -0.66;
-	}
-	else if (cub3d->pos.pos == 'E')
-	{
-		p1->dir_x = 1;
-		p1->dir_y = 0;
-		p1->plane_x = 0;
-		p1->plane_y = -0.66;
-	}
+	set_player_view_2(cub3d, p1);
 }

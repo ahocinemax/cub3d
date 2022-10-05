@@ -228,11 +228,13 @@ t_error_code	check_player_position(t_cub3d *cub3d, char **map, t_pos *pos);
 
 //init_raycasting structure
 void			init_struct_player(t_player *p1);
+void			set_player_view_2(t_cub3d *cub3d, t_player *p1);
 void			set_player_view(t_cub3d *cub3d, t_player *p1);
 
 //raycasting
 void			perpwall_dist(t_cub3d *cub3d, t_player *p1);
 void			dda_perform(t_cub3d *cub3d, t_player *p1);
+void			dda_perform2(t_player *p1);
 
 //drawing
 void			wall_x(t_player *p1);

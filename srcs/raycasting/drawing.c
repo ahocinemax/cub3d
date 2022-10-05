@@ -12,9 +12,9 @@
 
 #include "../../includes/cub3d.h"
 
-void    wall_x(t_player *p1)
+void	wall_x(t_player *p1)
 {
-    if (p1->side == EAST || p1->side == WEST)
+	if (p1->side == EAST || p1->side == WEST)
 		p1->wall_x = p1->pos_y + p1->perp_wall_dist * p1->raydir_y;
 	else
 		p1->wall_x = p1->pos_x + p1->perp_wall_dist * p1->raydir_x;
