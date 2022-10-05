@@ -26,13 +26,21 @@
 # define KEY_A			97
 # define KEY_S			115
 # define KEY_D			100
+# define KEY_RETURN		65293
+# define KEY_RIGHT		65363
+# define KEY_LEFT		65361
 
 typedef enum e_error_code	t_error_code;
 typedef enum e_direction	t_direction;
 typedef struct s_texture	t_texture;
+typedef struct s_window		t_window;
+typedef struct s_player		t_player;
 typedef struct s_cub3d		t_cub3d;
 typedef struct s_color		t_color;
+typedef struct s_img		t_img;
+typedef struct s_pos		t_pos;
 typedef struct s_map		t_map;
+typedef struct s_pic		t_pic;
 
 enum	e_direction
 {
@@ -58,9 +66,77 @@ enum	e_error_code
 	INVALID_PLAYER_NB,
 	MALLOC_FAILURE,
 	EMPTY_FILE,
+	ERROR_IMAGE,
 	OPEN_FAILED,
 	NO_MAP,
-	DUPICATE_PATH
+	ERROR_MLX,
+	DUPICATE_PATH,
+	MAP_ERROR
+};
+
+struct s_pic
+{
+	void			*img;
+	int				width;
+	int				height;
+};
+
+struct s_img
+{
+	void			*mlx_img;
+	char			*addr;
+	int				bpp;
+	int				line_len;
+	int				endian;
+	int				width;
+	int				height;
+};
+
+struct s_window
+{
+	int				width;
+	int				height;
+	void			*win_ptr;
+};
+
+struct s_player
+{
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			old_dir_x;
+	double			plane_x;
+	double			plane_y;
+	double			old_plane_x;
+	double			raydir_x;
+	double			raydir_y;
+	double			camera_x;
+	int				map_x;
+	int				map_y;
+	int				step_x;
+	int				step_y;
+	int				check_pos;
+	double			time;
+	double			old_time;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				hit;
+	int				side;
+	int				line_height;
+	double			rot_speed;
+	double			move_speed;
+	double			wall_x;
+};
+
+struct s_pos
+{
+	char			pos;
+	int				pos_x;
+	int				pos_y;
 };
 
 struct s_color
@@ -72,8 +148,6 @@ struct s_color
 
 struct s_map
 {
-	int				x;
-	int				y;
 	int				large;
 	int				longu;
 	char			**map;
@@ -81,13 +155,20 @@ struct s_map
 
 struct s_texture
 {
+	t_img			img;
 	t_direction		direction;
 	char			*path;
 };
 
 struct s_cub3d
 {
+	void			*mlx_ptr;
 	char			*level_name;
+	int				step_of_game;
+	t_pos			pos;
+	t_pic			intro;
+	t_player		p1;
+	t_window		window;
 	t_texture		no;
 	t_texture		so;
 	t_texture		ea;
@@ -96,6 +177,7 @@ struct s_cub3d
 	t_color			celling;
 	int				exit_code;
 	t_map			map;
+	t_img			screen;
 	int				fd;
 };
 
@@ -126,13 +208,16 @@ int				ft_size_line(char *line, t_cub3d *cub3d);
 char			*ft_skip_info(t_cub3d *cub3d);
 int				ft_valid_char_map(char c);
 
-// struct handler
-void			ft_init_struct(t_cub3d *cub3d);
+// struct init
+t_error_code	ft_init_struct(t_cub3d *cub3d);
+t_error_code	ft_init_window(t_cub3d *cub3d);
+void			img_intro(t_cub3d *cub3d);
+
+// struct free
 void			ft_free_struct(t_cub3d *cub3d);
 
 // errors
 t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code);
-void			ft_print_error2(t_error_code error_code);
 
 // main
 t_error_code	ft_check_file(char *argv, t_cub3d *cub3d);

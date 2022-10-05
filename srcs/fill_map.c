@@ -28,8 +28,9 @@ char	*ft_fill_line(t_cub3d *cub3d, int line_nb)
 		if (line[col] == 'N' || line[col] == 'S' || line[col] == 'E' || \
 		line[col] == 'W')
 		{
-			cub3d->map.x = line_nb;
-			cub3d->map.y = col;
+			cub3d->pos.pos_x = line_nb;
+			cub3d->pos.pos_y = col;
+			cub3d->pos.pos = line[col];
 		}
 		col++;
 	}

@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_handler.c                                   :+:      :+:    :+:   */
+/*   struct_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahocine <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/01 14:50:22 by ahocine           #+#    #+#             */
-/*   Updated: 2022/10/01 14:50:35 by ahocine          ###   ########.fr       */
+/*   Created: 2022/10/05 03:37:56 by ahocine           #+#    #+#             */
+/*   Updated: 2022/10/05 03:37:58 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void	ft_init_texture(t_cub3d *cub3d)
+static void	ft_free_mlx(t_cub3d *cub3d)
 {
-	cub3d->no.path = NULL;
-	cub3d->so.path = NULL;
-	cub3d->ea.path = NULL;
-	cub3d->we.path = NULL;
-	cub3d->celling.green = 0;
-	cub3d->celling.blue = 0;
-	cub3d->celling.red = 0;
-	cub3d->floor.green = 0;
-	cub3d->floor.blue = 0;
-	cub3d->floor.red = 0;
+	if (cub3d->intro.img)
+	{
+		mlx_destroy_image(cub3d->mlx_ptr, cub3d->intro.img);
+		free(cub3d->intro.img);
+	}
+	if (cub3d->window.win_ptr)
+	{
+		mlx_destroy_window(cub3d->mlx_ptr, cub3d->window.win_ptr);
+		free(cub3d->window.win_ptr);
+	}
+	if (cub3d->mlx_ptr)
+	{
+		mlx_destroy_display(cub3d->mlx_ptr);
+		free(cub3d->mlx_ptr);
+	}
 }
 
 static void	ft_free_texture(t_cub3d *cub3d)
@@ -34,24 +39,6 @@ static void	ft_free_texture(t_cub3d *cub3d)
 	free(cub3d->we.path);
 }
 
-static void	ft_init_map(t_cub3d *cub3d)
-{
-	cub3d->map.map = NULL;
-	cub3d->map.large = 0;
-	cub3d->map.longu = 0;
-	cub3d->map.x = 0;
-	cub3d->map.y = 0;
-}
-
-void	ft_init_struct(t_cub3d *cub3d)
-{
-	ft_init_texture(cub3d);
-	ft_init_map(cub3d);
-	cub3d->exit_code = SUCCESS;
-	cub3d->level_name = NULL;
-	cub3d->fd = -1;
-}
-
 void	ft_free_struct(t_cub3d *cub3d)
 {
 	if (cub3d->level_name)
@@ -60,4 +47,5 @@ void	ft_free_struct(t_cub3d *cub3d)
 		close(cub3d->fd);
 	ft_free_texture(cub3d);
 	ft_free_array((void **)cub3d->map.map, free);
+	ft_free_mlx(cub3d);
 }

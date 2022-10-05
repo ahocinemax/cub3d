@@ -51,6 +51,8 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 	ft_fill_map(cub3d);
 	if (cub3d->exit_code != SUCCESS)
 		return ;
+	if (ft_init_window(cub3d) != SUCCESS)
+		return ;
 }
 
 int	main(int argc, char *argv[], char **envp)
