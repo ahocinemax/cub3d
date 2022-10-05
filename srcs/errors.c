@@ -30,6 +30,8 @@ void	ft_print_error2(t_error_code error_code)
 		ft_putstr_fd("parsing: texture must have .xmp extension.\n", _STD_ERR);
 	else if (error_code == ERROR_IMAGE)
 		ft_putstr_fd("mlx: cannot find image.\n", _STD_ERR);
+	else if (error_code == ERROR_MLX)
+		ft_putstr_fd("mlx: mlx not configured properly.\n", _STD_ERR);
 	else
 		ft_putstr_fd("Unexpected error, well done.\n", _STD_ERR);
 }
@@ -58,6 +60,5 @@ t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code)
 	else
 		ft_print_error2(error_code);
 	cub3d->exit_code = error_code;
-	ft_putstr_fd("exiting...\n", _STD_ERR);
-	return (error_code);
+	return (ft_putstr_fd("exiting...\n", _STD_ERR), error_code);
 }
