@@ -96,10 +96,17 @@ t_error_code	ft_init_window(t_cub3d *cub3d)
 {
 	cub3d->window.height = 800;
 	cub3d->window.width = 1200;
+	cub3d->mlx_ptr = mlx_init();
+	if (!cub3d->mlx_ptr)
+		return (ft_print_error(cub3d, ERROR_MLX));
 	cub3d->window.win_ptr = mlx_new_window(cub3d->mlx_ptr, \
 	cub3d->window.width, cub3d->window.height, "Welcome to my home");
 	if (cub3d->window.win_ptr == NULL)
 		return (ft_print_error(cub3d, ERROR_MLX));
+	cub3d->intro.img = mlx_xpm_file_to_image(cub3d->mlx_ptr, \
+	"./image/intro.xpm", &(cub3d->intro.width), &(cub3d->intro.height));
+	if (!cub3d->intro.img)
+		return (ft_print_error(cub3d, ERROR_IMAGE));
 	return (SUCCESS);
 }
 

@@ -51,12 +51,10 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 	ft_fill_map(cub3d);
 	if (cub3d->exit_code != SUCCESS)
 		return ;
-	cub3d->mlx_ptr = mlx_init();
 	if (ft_init_window(cub3d) != SUCCESS)
-		return (mlx_destroy_window(cub3d->mlx_ptr, cub3d->window.win_ptr), \
-		ft_print_error(cub3d, ERROR_MLX), (void)0);
-	img_intro(cub3d);
+		return ;
 }
+
 
 int	running(t_cub3d *cub3d)
 {
