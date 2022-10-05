@@ -74,5 +74,6 @@ int	main(int argc, char *argv[], char **envp)
 	printf("floor: [%d], [%d], [%d]\ncelling: : [%d], [%d], [%d]\n\n", cub3d.floor.red, cub3d.floor.green, cub3d.floor.blue, cub3d.celling.red, cub3d.celling.green, cub3d.celling.blue);
 	while (cub3d.map.map && cub3d.map.map[i])
 		printf("%s\n", cub3d.map.map[i++]);
+	printf("pos_x: %d\npos_y: %d\ndir: %c\n", cub3d.pos.pos_x, cub3d.pos.pos_y, cub3d.pos.pos);
 	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 }

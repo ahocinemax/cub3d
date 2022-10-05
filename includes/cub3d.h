@@ -211,7 +211,6 @@ int				ft_valid_char_map(char c);
 // struct init
 t_error_code	ft_init_struct(t_cub3d *cub3d);
 t_error_code	ft_init_window(t_cub3d *cub3d);
-void			img_intro(t_cub3d *cub3d);
 
 // struct free
 void			ft_free_struct(t_cub3d *cub3d);
