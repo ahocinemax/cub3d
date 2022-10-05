@@ -60,10 +60,10 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 
 int	running(t_cub3d *cub3d)
 {
-	int x;
-	int line_height;
-	int draw_start;
-	int draw_end;
+	int	x;
+	int	line_height;
+	int	draw_start;
+	int	draw_end;
 
 	x = 0;
 	while (x < cub3d->window.width)
@@ -76,15 +76,15 @@ int	running(t_cub3d *cub3d)
 		/*if(game->state->p1->side == EAST || game->state->p1->side == WEST)
 			game->state->p1->perp_wall_dist = \
 				(game->state->p1->side_dist_x - game->state->p1->delta_dist_x);
-    	else
+		else
 			game->state->p1->perp_wall_dist = \
 				(game->state->p1->side_dist_y - game->state->p1->delta_dist_y);*/
 
-      //Calculate height of line to draw on screen
-    	line_height = (int)(cub3d->window.width / cub3d->p1.perp_wall_dist);
-      //calculate lowest and highest pixel to fill in current stripe
-    	draw_start = -line_height / 2 + cub3d->window.height / 2;
-    	if (draw_start < 0) 
+	//Calculate height of line to draw on screen
+		line_height = (int)(cub3d->window.width / cub3d->p1.perp_wall_dist);
+	//calculate lowest and highest pixel to fill in current stripe
+		draw_start = -line_height / 2 + cub3d->window.height / 2;
+		if (draw_start < 0) 
 			draw_start = 0;
     	draw_end = line_height / 2 + cub3d->window.height / 2;
     	if(draw_end >= cub3d->window.height) 

@@ -80,8 +80,8 @@ void	init_player(t_player *p1)
 	p1->dir_y = 0;
 	p1->plane_x = 0;
 	p1->plane_y = 0;
-	p1->move_speed = 0.3;	//ask ahocine
-	p1->rot_speed = 0.5;	//ask ahocine
+	p1->move_speed = 0.3;
+	p1->rot_speed = 0.5;
 	p1->camera_x = 0;
 	p1->map_x = 0;
 	p1->map_y = 0;

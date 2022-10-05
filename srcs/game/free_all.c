@@ -49,7 +49,6 @@ void	free_game_and_mlx(t_cub3d *cub3d)
 	}
 }
 
-
 int	free_all_exit(t_cub3d *cub3d)
 {
 	free_texture(cub3d);

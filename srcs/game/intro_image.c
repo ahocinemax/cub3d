@@ -12,7 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-
 void	w_key(t_cub3d *cub3d)
 {
 	double	x1;
