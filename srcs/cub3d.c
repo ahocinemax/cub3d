@@ -98,9 +98,11 @@ int	running(t_cub3d *cub3d)
 		game->state->p1->wall_x = floor(game->state->p1->wall_x);*/
 		x++;
 	}
+	cub3d->screen.mlx_img = mlx_xpm_file_to_image(cub3d->mlx_ptr, "./image/black.xpm", &(cub3d->window.width), &(cub3d->window.height));
+	if (!cub3d->screen.mlx_img)
+		ft_print_error(cub3d, ERROR_IMAGE);
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
 		cub3d->screen.mlx_img, 0, 0);
-
 	return (0);
 }
 
