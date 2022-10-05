@@ -6,7 +6,7 @@
 /*   By: ahocine <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:46:41 by ahocine           #+#    #+#             */
-/*   Updated: 2022/10/03 19:46:43 by ahocine          ###   ########.fr       */
+/*   Updated: 2022/10/05 18:15:26 by mtsuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	ft_print_error2(t_error_code error_code)
 		ft_putstr_fd("parsing: texture must have .xmp extension.\n", _STD_ERR);
 	else if (error_code == ERROR_IMAGE)
 		ft_putstr_fd("mlx: Cannot load image.\n", _STD_ERR);
+	else if (error_code == COLOR_ERROR)
+		ft_putstr_fd("mlx: RGB color value range is not good.\n", _STD_ERR);
 	else
 		ft_putstr_fd("Unexpected error, well done.\n", _STD_ERR);
 }
@@ -53,14 +55,11 @@ t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code)
 		ft_putstr_fd("parsing: duplicate path.\n", _STD_ERR);
 	else if (error_code == NO_MAP)
 		ft_putstr_fd("file: file empty.\n", _STD_ERR);
-	else if (error_code == DUPICATE_PATH)
-		ft_putstr_fd("parsing: duplicate path.\n", _STD_ERR);
-	else if (error_code == MAP_ERROR)
-		ft_putstr_fd("parsing: map error\n", _STD_ERR);
+	else if (error_code == MALLOC_FAILURE)
+		ft_putstr_fd("system: no enought memory.\n", _STD_ERR);
 	else
 		ft_print_error2(error_code);
-	if (cub3d)
-		cub3d->exit_code = error_code;
+	cub3d->exit_code = error_code;
 	ft_putstr_fd("exiting...\n", _STD_ERR);
-	return (exit(error_code), error_code);
+	return (error_code);
 }

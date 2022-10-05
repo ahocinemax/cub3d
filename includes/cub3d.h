@@ -71,6 +71,7 @@ enum	e_error_code
 	NO_MAP,
 	ERROR_MLX,
 	DUPICATE_PATH,
+	COLOR_ERROR,
 	MAP_ERROR
 };
 
@@ -145,6 +146,7 @@ struct s_color
 	int				red;
 	int				green;
 	int				blue;
+	int				trgb;
 };
 
 struct s_map
@@ -240,6 +242,9 @@ void			dda_perform2(t_player *p1);
 void			wall_x(t_player *p1);
 void			prepare_wall(t_cub3d *cub3d, int x, int start, int end);
 
+//color
+int				create_trgb(int r, int g, int b);
+int				check_color_val(int nbr);
 //game
 //free game structure
 void			free_texture(t_cub3d *cub3d);

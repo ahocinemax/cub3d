@@ -6,7 +6,7 @@
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 02:27:22 by ahocine           #+#    #+#             */
-/*   Updated: 2022/09/25 02:27:35 by ahocine          ###   ########.fr       */
+/*   Updated: 2022/10/05 18:14:54 by mtsuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 		return ;
 }
 
-
 int	running(t_cub3d *cub3d)
 {
 	int	x;
@@ -71,42 +70,36 @@ int	running(t_cub3d *cub3d)
 		while (cub3d->p1.hit == 0)
 			dda_perform(cub3d, &(cub3d->p1));
 		perpwall_dist(cub3d, &(cub3d->p1));
-		/*if(game->state->p1->side == EAST || game->state->p1->side == WEST)
-			game->state->p1->perp_wall_dist = \
-				(game->state->p1->side_dist_x - game->state->p1->delta_dist_x);
-		else
-			game->state->p1->perp_wall_dist = \
-				(game->state->p1->side_dist_y - game->state->p1->delta_dist_y);*/
-
 	//Calculate height of line to draw on screen
 		line_height = (int)(cub3d->window.width / cub3d->p1.perp_wall_dist);
 	//calculate lowest and highest pixel to fill in current stripe
 		draw_start = -line_height / 2 + cub3d->window.height / 2;
-		if (draw_start < 0) 
+		if (draw_start < 0)
 			draw_start = 0;
-    	draw_end = line_height / 2 + cub3d->window.height / 2;
-    	if(draw_end >= cub3d->window.height) 
+		draw_end = line_height / 2 + cub3d->window.height / 2;
+		if (draw_end >= cub3d->window.height)
 			draw_end = cub3d->window.height - 1;
 		// prepare_wall(cub3d, x, draw_start, draw_end);
-		//fonction to display the images
-		/*if (game->state->p1->side == EAST || game->state->p1->side == WEST)
-			game->state->p1->wall_x = game->state->p1->pos_y + game->state->p1->perp_wall_dist * game->state->p1->raydir_y;
-		else
-			game->state->p1->wall_x = game->state->p1->pos_x + game->state->p1->perp_wall_dist * game->state->p1->raydir_x;
-		game->state->p1->wall_x = floor(game->state->p1->wall_x);*/
 		x++;
 	}
-	cub3d->screen.mlx_img = mlx_xpm_file_to_image(cub3d->mlx_ptr, "./image/black.xpm", &(cub3d->window.width), &(cub3d->window.height));
-	if (!cub3d->screen.mlx_img)
-		ft_print_error(cub3d, ERROR_IMAGE);
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
-		cub3d->screen.mlx_img, 0, 0);
+	cub3d->screen.mlx_img, 0, 0);
 	return (0);
 }
 
 void	game_start(t_cub3d *cub3d)
 {
 	cub3d->step_of_game = 2;
+	/*cub3d->screen.mlx_img = mlx_xpm_file_to_image(cub3d->mlx_ptr, \
+	 * "./image/black.xpm", &(cub3d->window.width), &(cub3d->window.height));
+	if (!cub3d->screen.mlx_img)
+		ft_print_error(cub3d, ERROR_IMAGE);
+	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
+		cub3d->screen.mlx_img, 0, 0);*/
+	cub3d->screen.mlx_img = mlx_new_image(cub3d->mlx_ptr, \
+					cub3d->window.width, cub3d->window.height);
+	if (!cub3d->screen.mlx_img)
+		ft_print_error(cub3d, ERROR_IMAGE);
 	cub3d->p1.pos_x = cub3d->pos.pos_x + 0.5;
 	cub3d->p1.pos_y = cub3d->pos.pos_y + 0.5;
 	set_player_view(cub3d, &(cub3d->p1));
@@ -132,8 +125,11 @@ int	main(int argc, char *argv[], char **envp)
 	ft_parsing(*argv, &cub3d);
 	if (cub3d.exit_code != SUCCESS)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
-	printf("%s\n%s\n%s\n%s\n\n\n\n", cub3d.no.path, cub3d.so.path, cub3d.ea.path, cub3d.we.path);
-	printf("floor: [%d], [%d], [%d]\ncelling: : [%d], [%d], [%d]\n\n", cub3d.floor.red, cub3d.floor.green, cub3d.floor.blue, cub3d.celling.red, cub3d.celling.green, cub3d.celling.blue);
+	printf("%s\n%s\n%s\n%s\n\n\n\n", cub3d.no.path, cub3d.so.path, \
+		cub3d.ea.path, cub3d.we.path);
+	printf("floor: [%d], [%d], [%d]\ncelling: : [%d], [%d], [%d]\n\n", \
+		cub3d.floor.red, cub3d.floor.green, cub3d.floor.blue, \
+		cub3d.celling.red, cub3d.celling.green, cub3d.celling.blue);
 	int i = 0;
 	while (cub3d.map.map && cub3d.map.map[i])
 		printf("%s\n", cub3d.map.map[i++]);

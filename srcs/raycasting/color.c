@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setting_player.c                                   :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtsuji <mtsuji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 17:08:28 by mtsuji            #+#    #+#             */
-/*   Updated: 2022/10/05 18:16:03 by mtsuji           ###   ########.fr       */
+/*   Created: 2022/10/05 16:47:45 by mtsuji            #+#    #+#             */
+/*   Updated: 2022/10/05 18:19:37 by mtsuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	ft_valid_position(char c)
+int	check_color_val(int nbr)
 {
-	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	if (nbr <= 0 && nbr >= 255)
+		return (1);
+	else
+		return (0);
 }
 
-int	ft_no_void(char c)
+int	create_trgb(int r, int g, int b)
 {
-	return (c == '1' || c == '0');
+	int	trgb;
+
+	if (check_color_val(r) != 0 || check_color_val(g) != 0
+		|| check_color_val(b) != 0)
+		return (-1);
+	trgb = (0 << 24 | r << 16 | g << 8 | b);
+	return (trgb);
 }

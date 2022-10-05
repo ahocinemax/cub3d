@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   checker_info.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 14:50:22 by ahocine           #+#    #+#             */
-/*   Updated: 2022/10/01 14:50:35 by ahocine          ###   ########.fr       */
+/*   Updated: 2022/10/05 18:09:23 by mtsuji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,14 @@ t_error_code	ft_check_colors(t_cub3d *cub3d, char *str)
 			return (ft_print_error(cub3d, WRONG_SEPARATOR));
 		i++;
 	}
+	cub3d->floor.trgb = create_trgb(cub3d->floor.red, \
+		cub3d->floor.green, cub3d->floor.blue);
+	if (cub3d->floor.trgb == -1)
+		return (ft_print_error(cub3d, COLOR_ERROR));
+	cub3d->celling.trgb = create_trgb(cub3d->celling.red, \
+		cub3d->celling.green, cub3d->celling.blue);
+	if (cub3d->celling.trgb == -1)
+		return (ft_print_error(cub3d, COLOR_ERROR));
 	return (SUCCESS);
 }
 

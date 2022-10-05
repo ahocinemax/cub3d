@@ -51,6 +51,8 @@ static void	ft_init_texture_color(t_cub3d *cub3d)
 	cub3d->floor.green = 0;
 	cub3d->floor.blue = 0;
 	cub3d->floor.red = 0;
+	cub3d->floor.trgb = 0;
+	cub3d->celling.trgb = 0;
 	ft_init_texture(&(cub3d->no), NORTH);
 	ft_init_texture(&(cub3d->so), SOUTH);
 	ft_init_texture(&(cub3d->ea), EAST);
