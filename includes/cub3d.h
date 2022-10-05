@@ -111,7 +111,7 @@ struct s_player
 	double			old_plane_x;
 	double			raydir_x;
 	double			raydir_y;
-    double  		camera_x;
+	double			camera_x;
 	int				map_x;
 	int				map_y;
 	int				step_x;
@@ -149,8 +149,6 @@ struct s_color
 
 struct s_map
 {
-	int				x;
-	int				y;
 	int				large;
 	int				longu;
 	char			**map;
@@ -226,19 +224,19 @@ t_error_code	ft_reopen(t_cub3d *cub3d);
 int				ft_valid_position(char c);
 int				ft_no_void(char c);
 int				ft_check_void(t_cub3d *cub3d, t_pos *pos, char **map);
-t_error_code    check_player_position(t_cub3d *cub3d, char **map, t_pos *pos);
+t_error_code	check_player_position(t_cub3d *cub3d, char **map, t_pos *pos);
 
 //init_raycasting structure
 void			init_struct_player(t_player *p1);
 void			set_player_view(t_cub3d *cub3d, t_player *p1);
 
 //raycasting
-void			perpwall_dist(t_player *p1);
+void			perpwall_dist(t_cub3d *cub3d, t_player *p1);
 void			dda_perform(t_cub3d *cub3d, t_player *p1);
 
 //drawing
 void			wall_x(t_player *p1);
-void			prepare_wall(t_game *game, int x, int draw_start, int draw_end);
+void			prepare_wall(t_cub3d *cub3d, int x, int start, int end);
 
 //game
 //free game structure
@@ -253,13 +251,13 @@ int				free_all_exit(t_cub3d *cub3d);
 void			renew_player_value(t_cub3d *cub3d, t_player *p1, int x);
 void			step_player(t_player *p1);
 
-
 //init struct
 int				ft_error_and_exit(char *error, t_cub3d *cub3d);
 int				init_mlx_and_window(t_cub3d *cub3d, t_window *window);
 void			init_struct_malloc(t_cub3d *cub3d);
+t_error_code	ft_init_window(t_cub3d *cub3d);
 int				init_img(t_img *img);
-void   			init_struct_pos(t_pos *pos);
+void			init_struct_pos(t_pos *pos);
 void			init_player(t_player *p1);
 void			init_pic(t_pic *pic);
 void			init_picture(t_pic *picture);

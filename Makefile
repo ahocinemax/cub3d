@@ -23,12 +23,10 @@ SRC_FILE	=	cub3d.c							\
 				fill_info.c						\
 				fill_map.c						\
 				raycasting/init_ray.c			\
-				raycasting/init_struct_game.c	\
 				raycasting/raycasting.c			\
 				raycasting/drawing.c			\
 				raycasting/setting_player.c		\
 				game/free_all.c					\
-				game/init_struct.c				\
 				game/init_game.c				\
 				game/intro_image.c				\
 				image/image.c					\

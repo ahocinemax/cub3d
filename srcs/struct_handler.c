@@ -36,6 +36,13 @@ void	init_picture(t_pic *intro)
 	intro->height = 0;
 }
 
+void	init_struct_pos(t_pos *pos)
+{
+	pos->check_pos = 0;
+	pos->pos_x = 0;
+	pos->pos_y = 0;
+}
+
 static void	ft_init_texture_color(t_cub3d *cub3d)
 {
 	cub3d->celling.green = 0;
@@ -63,8 +70,6 @@ static void	ft_init_map(t_cub3d *cub3d)
 	cub3d->map.map = NULL;
 	cub3d->map.large = 0;
 	cub3d->map.longu = 0;
-	cub3d->map.x = 0;
-	cub3d->map.y = 0;
 }
 
 void	init_player(t_player *p1)
@@ -93,6 +98,9 @@ t_error_code	ft_init_window(t_cub3d *cub3d)
 	cub3d->window.width = 1200;
 	cub3d->window.win_ptr = mlx_new_window(cub3d->mlx_ptr, \
 	cub3d->window.width, cub3d->window.height, "Welcome to my home");
+	if (cub3d->window.win_ptr == NULL)
+		return (ft_print_error(cub3d, ERROR_MLX));
+	return (SUCCESS);
 }
 
 t_error_code	ft_init_struct(t_cub3d *cub3d)
@@ -101,15 +109,14 @@ t_error_code	ft_init_struct(t_cub3d *cub3d)
 	ft_init_map(cub3d);
 	ft_init_img(&(cub3d->screen));
 	cub3d->mlx_ptr = NULL;
-	ft_init_window(cub3d);
 	init_player(&(cub3d->p1));
 	init_picture(&(cub3d->intro));
-		return (mlx_destroy_window(cub3d->mlx_ptr, cub3d->window.win_ptr), \
-		ft_print_error(cub3d, ERROR_MLX));
+	init_struct_pos(&(cub3d->pos));
 	cub3d->exit_code = SUCCESS;
 	cub3d->step_of_game = 1;
 	cub3d->level_name = NULL;
 	cub3d->fd = -1;
+	return (SUCCESS);
 }
 
 void	ft_free_struct(t_cub3d *cub3d)

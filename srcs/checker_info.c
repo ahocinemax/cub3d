@@ -74,7 +74,7 @@ t_error_code	ft_check_colors(t_cub3d *cub3d, char *str)
 		while (ft_isdigit(str[i]))
 			i++;
 		ft_skip_spaces(str, &i);
-		if (str[i] && str[i] != ',' )
+		if (str[i] && str[i] != ',')
 			return (ft_print_error(cub3d, WRONG_SEPARATOR));
 		i++;
 	}

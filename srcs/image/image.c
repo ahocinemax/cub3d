@@ -12,11 +12,10 @@
 
 #include "../../includes/cub3d.h"
 
-
-void	img_intro(t_game *game, t_state *state)
+void	img_intro(t_cub3d *cub3d)
 {
-	state->intro->img = mlx_xpm_file_to_image(state->mlx_ptr, \
-        "./image/intro.xpm", &state->intro->width, &state->intro->height);
-	if (!state->intro->img)
-		ft_error_and_exit(ERROR_IMAGE, game);
+	cub3d->intro.img = mlx_xpm_file_to_image(cub3d->mlx_ptr, \
+	"./image/intro.xpm", &(cub3d->intro.width), &(cub3d->intro.height));
+	if (!cub3d->intro.img)
+		ft_print_error(cub3d, ERROR_IMAGE);
 }

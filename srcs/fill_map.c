@@ -28,15 +28,16 @@ char	*ft_fill_line(t_cub3d *cub3d, int line_nb)
 		if (line[col] == 'N' || line[col] == 'S' || line[col] == 'E' || \
 		line[col] == 'W')
 		{
-			cub3d->map.x = line_nb;
-			cub3d->map.y = col;
+			cub3d->pos.pos_x = line_nb;
+			cub3d->pos.pos_y = col;
+			cub3d->pos.pos = line[col];
 		}
 		col++;
 	}
 	return (free(gnl), line);
 }
 
-void	ft_fill_map(t_cub3d *cub3d, t_game *game)
+void	ft_fill_map(t_cub3d *cub3d)
 {
 	char	**res;
 	int		i;
@@ -53,7 +54,6 @@ void	ft_fill_map(t_cub3d *cub3d, t_game *game)
 		i++;
 	}
 	cub3d->map.map = res;
-	game->map.map = res;
 	close(cub3d->fd);
 	cub3d->fd = -1;
 }

@@ -52,6 +52,10 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 	if (cub3d->exit_code != SUCCESS)
 		return ;
 	cub3d->mlx_ptr = mlx_init();
+	if (ft_init_window(cub3d) != SUCCESS)
+		return (mlx_destroy_window(cub3d->mlx_ptr, cub3d->window.win_ptr), \
+		ft_print_error(cub3d, ERROR_MLX), (void)0);
+	img_intro(cub3d);
 }
 
 int	running(t_cub3d *cub3d)
@@ -68,7 +72,7 @@ int	running(t_cub3d *cub3d)
 		step_player(&(cub3d->p1));
 		while (cub3d->p1.hit == 0)
 			dda_perform(cub3d, &(cub3d->p1));
-		perpwall_dist(&(cub3d->p1));
+		perpwall_dist(cub3d, &(cub3d->p1));
 		/*if(game->state->p1->side == EAST || game->state->p1->side == WEST)
 			game->state->p1->perp_wall_dist = \
 				(game->state->p1->side_dist_x - game->state->p1->delta_dist_x);
@@ -85,7 +89,7 @@ int	running(t_cub3d *cub3d)
     	draw_end = line_height / 2 + cub3d->window.height / 2;
     	if(draw_end >= cub3d->window.height) 
 			draw_end = cub3d->window.height - 1;
-		prepare_wall(cub3d, x, draw_start, draw_end);
+		// prepare_wall(cub3d, x, draw_start, draw_end);
 		//fonction to display the images
 		/*if (game->state->p1->side == EAST || game->state->p1->side == WEST)
 			game->state->p1->wall_x = game->state->p1->pos_y + game->state->p1->perp_wall_dist * game->state->p1->raydir_y;
@@ -94,8 +98,8 @@ int	running(t_cub3d *cub3d)
 		game->state->p1->wall_x = floor(game->state->p1->wall_x);*/
 		x++;
 	}
-	mlx_put_image_to_window(game->state->mlx_ptr, game->state->win_ptr, \
-		game->state->screen->mlx_img, 0, 0);
+	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
+		cub3d->screen.mlx_img, 0, 0);
 
 	return (0);
 }
@@ -119,34 +123,22 @@ int	main(int argc, char *argv[], char **envp)
 	t_cub3d			cub3d;
 	t_error_code	code;
 
-	if (!envp)
+	if (!*envp)
 		return (ft_print_error(NULL, NO_ENV));
 	if (argc != 2)
 		return (ft_print_error(NULL, ARGC_ERROR));
 	argv++;
-	game = init_struct_game(game);
-	game->state->mlx_ptr = mlx_init();
-	if (!game->state->mlx_ptr)
-		ft_error_and_exit(ERROR_MLX, game);
 	ft_init_struct(&cub3d);
-	ft_parsing(*argv, &cub3d, game);
+	ft_parsing(*argv, &cub3d);
 	if (cub3d.exit_code != SUCCESS)
 		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 	printf("%s\n%s\n%s\n%s\n\n\n\n", cub3d.no.path, cub3d.so.path, cub3d.ea.path, cub3d.we.path);
+	printf("floor: [%d], [%d], [%d]\ncelling: : [%d], [%d], [%d]\n\n", cub3d.floor.red, cub3d.floor.green, cub3d.floor.blue, cub3d.celling.red, cub3d.celling.green, cub3d.celling.blue);
 	int i = 0;
 	while (cub3d.map.map && cub3d.map.map[i])
 		printf("%s\n", cub3d.map.map[i++]);
-	img_intro(game, game->state);
-	if (init_mlx_and_window(game, game->state, &game->win))
-		ft_error_and_exit(ERROR_MLX, game);
-	check_player_position(&cub3d, cub3d.map.map, game->state->pos);
-	introduction_of_game(game,  game->state);
-	game_start(game);
-	free_all(game);
+	introduction_of_game(&cub3d);
+	game_start(&cub3d);
+	free_all(&cub3d);
 	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 }
-// int				i = 0;
-// printf("%s\n%s\n%s\n%s\n\n", cub3d.no.path, cub3d.so.path, cub3d.ea.path, cub3d.we.path);
-// printf("floor: [%d], [%d], [%d]\ncelling: : [%d], [%d], [%d]\n\n", cub3d.floor.red, cub3d.floor.green, cub3d.floor.blue, cub3d.celling.red, cub3d.celling.green, cub3d.celling.blue);
-// while (cub3d.map.map && cub3d.map.map[i])
-// 	printf("%s\n", cub3d.map.map[i++]);

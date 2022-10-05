@@ -21,13 +21,15 @@ void    wall_x(t_player *p1)
 	p1->wall_x = floor(p1->wall_x);
 }
 
-void    prepare_wall(t_cub3d *cub3d, int x, int draw_start, int draw_end)
+/*void    prepare_wall(t_cub3d *cub3d, int x, int draw_start, int draw_end)
 {
+    (void)draw_start;
+    (void)draw_end;
     wall_x(&(cub3d->p1));
     if (cub3d->p1.check_pos == 'N' || cub3d->p1.check_pos == 'E')
         x = cub3d->window.width - x - 1;
 
-    /*
+    
     preparetion_image floor + celling;
-    */
 }
+*/
