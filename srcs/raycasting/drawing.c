@@ -20,14 +20,14 @@ void    wall_x(t_player *p1)
 		p1->wall_x = p1->pos_x + p1->perp_wall_dist * p1->raydir_x;
 	p1->wall_x = floor(p1->wall_x);
 }
-
+/*
 void    prepare_wall(t_game *game, int x, int draw_start, int draw_end)
 {
     wall_x(game->state->p1);
     if (game->state->p1->check_pos == 'N' || game->state->p1->check_pos == 'E')
         x = WIN_W - x - 1;
 
-    /*
+    
     preparetion_image floor + celling;
-    */
-}
+    
+}*/

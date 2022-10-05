@@ -85,7 +85,7 @@ int	running(t_game *game)
     	draw_end = line_height / 2 + WIN_H / 2;
     	if(draw_end >= WIN_H) 
 			draw_end = WIN_H - 1;
-		prepare_wall(game, x, draw_start, draw_end);
+		//prepare_wall(game, x, draw_start, draw_end);
 		//fonction to display the images
 		/*if (game->state->p1->side == EAST || game->state->p1->side == WEST)
 			game->state->p1->wall_x = game->state->p1->pos_y + game->state->p1->perp_wall_dist * game->state->p1->raydir_y;
