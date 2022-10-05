@@ -139,6 +139,6 @@ int	main(int argc, char *argv[], char **envp)
 		printf("%s\n", cub3d.map.map[i++]);
 	introduction_of_game(&cub3d);
 	game_start(&cub3d);
-	free_all(&cub3d);
-	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
+	free_all_exit(&cub3d);
+	return (0);
 }

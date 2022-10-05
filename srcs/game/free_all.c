@@ -27,9 +27,16 @@ void	free_texture(t_cub3d *cub3d)
 	}
 }
 
+void	free_img(t_cub3d *cub3d, t_img *screen)
+{
+	free(screen->addr);
+	mlx_destroy_image(cub3d->mlx_ptr, screen->mlx_img);
+	free(cub3d->screen.mlx_img);
+}
+
 void	free_game_and_mlx(t_cub3d *cub3d)
 {
-	if (cub3d->step_of_game >= 3)
+	if (cub3d->step_of_game >= 3 && cub3d->screen.mlx_img)
 		free_img(cub3d, &(cub3d->screen));
 	if (cub3d->intro.img)
 		mlx_destroy_image(cub3d->mlx_ptr, cub3d->intro.img);
@@ -42,21 +49,11 @@ void	free_game_and_mlx(t_cub3d *cub3d)
 	}
 }
 
-int	free_all(t_cub3d *cub3d)
-{
-	free_texture(cub3d);
-	if (cub3d->screen.mlx_img)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->screen.mlx_img);
-	free_game_and_mlx(cub3d);
-	return (0);
-}
 
 int	free_all_exit(t_cub3d *cub3d)
 {
 	free_texture(cub3d);
-	if (cub3d->step_of_game >= 1)
-		free_img(cub3d, &(cub3d->screen));
 	free_game_and_mlx(cub3d);
 	ft_free_struct(cub3d);
-	exit(EXIT_SUCCESS);
+	exit(cub3d->exit_code);
 }
