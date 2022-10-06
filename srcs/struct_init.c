@@ -60,6 +60,7 @@ void	ft_init_img(t_img *img)
 {
 	img->mlx_img = NULL;
 	img->bpp = 0;
+	img->addr = NULL;
 	img->line_len = 0;
 	img->endian = 0;
 	img->width = 0;

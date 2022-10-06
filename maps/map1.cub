@@ -1,9 +1,8 @@
-NO ./textures/so_bad.xpm
-
-EA ./textures/so_cool.xpm
-         SO          ./textures/so_normal.xpm
+NO ./image/Wall1.xpm
+EA ./image/Wall2.xpm
+SO          ./wall/Wall3.xpm
         
-WE ./textures/so_it.xpm
+WE ./image/Wall4.xpm
 F  30       ,  100,20
 C 220, 100     , 30
 
