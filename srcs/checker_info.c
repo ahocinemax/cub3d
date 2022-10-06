@@ -63,9 +63,9 @@ t_error_code	ft_check_colors(t_cub3d *cub3d, char *str)
 
 	if (!str)
 		return (SUCCESS);
-	i = 1;
+	i = 0;
 	nbr = 0;
-	while (str[i])
+	while (str[++i])
 	{
 		ft_skip_spaces(str, &i);
 		if (!ft_isdigit(str[i]) && str[i] != '+' && str[i] != '-')
@@ -78,12 +78,10 @@ t_error_code	ft_check_colors(t_cub3d *cub3d, char *str)
 		ft_skip_spaces(str, &i);
 		if (str[i] && str[i] != ',')
 			return (ft_print_error(cub3d, WRONG_SEPARATOR));
-		i++;
-	}
-	
+	}	
 	return (cub3d->floor.trgb = 0 << 24 | cub3d->floor.red << 16 | \
-	cub3d->floor.green << 8 | cub3d->floor.blue, cub3d->celling.trgb = 0 << 24\
-	| cub3d->celling.red << 16 | \
+	cub3d->floor.green << 8 | cub3d->floor.blue, cub3d->celling.trgb = 0 << \
+	24 | cub3d->celling.red << 16 | \
 	cub3d->celling.green << 8 | cub3d->celling.blue, SUCCESS);
 }
 

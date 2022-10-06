@@ -66,32 +66,6 @@ void	ft_init_img(t_img *img)
 	img->height = 0;
 }
 
-void	init_struct_pos(t_pos *pos)
-{
-	pos->check_pos = 0;
-	pos->pos_x = 0;
-	pos->pos_y = 0;
-}
-
-void	init_player(t_player *p1)
-{
-	p1->pos_x = 0;
-	p1->pos_y = 0;
-	p1->dir_x = 0;
-	p1->dir_y = 0;
-	p1->plane_x = 0;
-	p1->plane_y = 0;
-	p1->time = 0;
-	p1->old_time = 0;
-}
-
-void	init_picture(t_pic *pic)
-{
-	pic->img = NULL;
-	pic->width = 0;
-	pic->height = 0;
-}
-
 t_error_code	ft_init_struct(t_cub3d *cub3d)
 {
 	ft_init_texture_color(cub3d);

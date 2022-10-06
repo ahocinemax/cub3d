@@ -48,7 +48,6 @@ static void	ft_free_texture(t_cub3d *cub3d)
 
 int	ft_free_struct(t_cub3d *cub3d)
 {
-	printf("exiting at step %d\n", cub3d->step_of_game);
 	if (cub3d->level_name)
 		free(cub3d->level_name);
 	if (cub3d->fd > 2)
