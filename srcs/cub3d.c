@@ -50,16 +50,13 @@ int	running(t_cub3d *cub3d)
 		while (cub3d->p1.hit == 0)
 			dda_perform(cub3d, &(cub3d->p1));
 		perpwall_dist(cub3d, &(cub3d->p1));
-	//Calculate height of line to draw on screen
 		line_height = (int)(cub3d->window.width / cub3d->p1.perp_wall_dist);
-	//calculate lowest and highest pixel to fill in current stripe
 		draw_start = -line_height / 2 + cub3d->window.height / 2;
 		if (draw_start < 0)
 			draw_start = 0;
 		draw_end = line_height / 2 + cub3d->window.height / 2;
 		if (draw_end >= cub3d->window.height)
 			draw_end = cub3d->window.height - 1;
-		// prepare_wall(cub3d, x, draw_start, draw_end);
 		x++;
 	}
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
@@ -69,25 +66,17 @@ int	running(t_cub3d *cub3d)
 
 void	game_start(t_cub3d *cub3d)
 {
-	cub3d->step_of_game = 2;
-	/*cub3d->screen.mlx_img = mlx_xpm_file_to_image(cub3d->mlx_ptr, \
-	 * "./image/black.xpm", &(cub3d->window.width), &(cub3d->window.height));
-	if (!cub3d->screen.mlx_img)
-		ft_print_error(cub3d, ERROR_IMAGE);
-	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
-		cub3d->screen.mlx_img, 0, 0);*/
 	mlx_destroy_image(cub3d->mlx_ptr, cub3d->intro.img);
-	cub3d->screen.mlx_img = mlx_new_image(cub3d->mlx_ptr, \
-					cub3d->window.width, cub3d->window.height);
+	cub3d->step_of_game = 2;
+	cub3d->screen.mlx_img = mlx_new_image(cub3d->mlx_ptr, cub3d->window.width, \
+	cub3d->window.height);
 	if (!cub3d->screen.mlx_img)
 		ft_print_error(cub3d, ERROR_IMAGE);
 	cub3d->p1.pos_x = cub3d->pos.pos_x + 0.5;
 	cub3d->p1.pos_y = cub3d->pos.pos_y + 0.5;
 	set_player_view(cub3d, &(cub3d->p1));
-	//running : game is still running,continue ray_casting
-	//->check step, renew the values
 	mlx_hook(cub3d->window.win_ptr, 0, 1L << 0, &key_press, cub3d);
-	mlx_loop_hook(cub3d->mlx_ptr, &running, (void *)cub3d);
+	mlx_loop_hook(cub3d->mlx_ptr, &running, cub3d);
 	mlx_hook(cub3d->window.win_ptr, 17, 1L << 0, &ft_free_struct, cub3d);
 	mlx_loop(cub3d->mlx_ptr);
 }
@@ -95,7 +84,9 @@ void	game_start(t_cub3d *cub3d)
 int	main(int argc, char *argv[], char **envp)
 {
 	t_cub3d			cub3d;
+	int				i;
 
+	i = 0;
 	if (!*envp)
 		return (ft_print_error(NULL, NO_ENV));
 	if (argc != 2)
@@ -105,15 +96,6 @@ int	main(int argc, char *argv[], char **envp)
 	ft_parsing(*argv, &cub3d);
 	if (cub3d.exit_code != SUCCESS)
 		return (ft_free_struct(&cub3d));
-	printf("%s\n%s\n%s\n%s\n\n\n\n", cub3d.no.path, cub3d.so.path, \
-		cub3d.ea.path, cub3d.we.path);
-	printf("floor: [%d], [%d], [%d]\ncelling: : [%d], [%d], [%d]\n\n", \
-		cub3d.floor.red, cub3d.floor.green, cub3d.floor.blue, \
-		cub3d.celling.red, cub3d.celling.green, cub3d.celling.blue);
-	printf("pos_x: %d\npos_y: %d\ndir: %c\n", cub3d.pos.pos_x, cub3d.pos.pos_y, cub3d.pos.pos);
-	int i = 0;
-	while (cub3d.map.map && cub3d.map.map[i])
-		printf("%s\n", cub3d.map.map[i++]);
 	introduction_of_game(&cub3d);
 	game_start(&cub3d);
 	return (ft_free_struct(&cub3d));

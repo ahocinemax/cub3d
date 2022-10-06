@@ -244,7 +244,6 @@ t_error_code	ft_reopen(t_cub3d *cub3d);
 int				running(t_cub3d *cub3d);
 
 // init ray
-void			set_player_view_2(t_cub3d *cub3d, t_player *p1);
 void			set_player_view(t_cub3d *cub3d, t_player *p1);
 
 // raycasting
