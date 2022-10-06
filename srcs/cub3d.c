@@ -49,7 +49,7 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 	ft_reopen(cub3d) != SUCCESS)
 		return ;
 	ft_fill_map(cub3d);
-	if (cub3d->exit_code != SUCCESS)
+	if (cub3d->exit_code != SUCCESS || ft_init_window(cub3d) != SUCCESS)
 		return ;
 	if (ft_init_window(cub3d) != SUCCESS)
 		return ;
@@ -130,11 +130,12 @@ int	main(int argc, char *argv[], char **envp)
 	printf("floor: [%d], [%d], [%d]\ncelling: : [%d], [%d], [%d]\n\n", \
 		cub3d.floor.red, cub3d.floor.green, cub3d.floor.blue, \
 		cub3d.celling.red, cub3d.celling.green, cub3d.celling.blue);
+	printf("pos_x: %d\npos_y: %d\ndir: %c\n", cub3d.pos.pos_x, cub3d.pos.pos_y, cub3d.pos.pos);
 	int i = 0;
 	while (cub3d.map.map && cub3d.map.map[i])
 		printf("%s\n", cub3d.map.map[i++]);
 	introduction_of_game(&cub3d);
 	game_start(&cub3d);
 	free_all_exit(&cub3d);
-	return (0);
+	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
 }

@@ -36,21 +36,23 @@ void	ft_fill_color(t_cub3d *cub3d, char c, int res, int nbr)
 {
 	if (c == 'F')
 	{
-		if (nbr == 0)
+		if (nbr == 1)
 			cub3d->floor.red = res;
-		else if (nbr == 1)
-			cub3d->floor.green = res;
 		else if (nbr == 2)
+			cub3d->floor.green = res;
+		else if (nbr == 3)
 			cub3d->floor.blue = res;
+		cub3d->floor.nb = nbr;
 	}
 	else
 	{
-		if (nbr == 0)
+		if (nbr == 1)
 			cub3d->celling.red = res;
-		else if (nbr == 1)
-			cub3d->celling.green = res;
 		else if (nbr == 2)
+			cub3d->celling.green = res;
+		else if (nbr == 3)
 			cub3d->celling.blue = res;
+		cub3d->celling.nb = nbr;
 	}
 }
 
@@ -68,9 +70,9 @@ t_error_code	ft_check_colors(t_cub3d *cub3d, char *str)
 		ft_skip_spaces(str, &i);
 		if (!ft_isdigit(str[i]) && str[i] != '+' && str[i] != '-')
 			return (ft_print_error(cub3d, INVALID_DESCRIPTOR));
-		if (ft_atoi(str + i) < 0 || ft_atoi(str + i) > 255 || nbr > 2)
+		if (ft_atoi(str + i) < 0 || ft_atoi(str + i) > 255 || nbr++ > 2)
 			return (ft_print_error(cub3d, WRONG_COLOR));
-		ft_fill_color(cub3d, *str, ft_atoi(str + i), nbr++);
+		ft_fill_color(cub3d, *str, ft_atoi(str + i), nbr);
 		while (ft_isdigit(str[i]))
 			i++;
 		ft_skip_spaces(str, &i);
@@ -120,8 +122,7 @@ t_error_code	ft_check_info(t_cub3d *cub3d)
 	{
 		if (ft_check_identifier(cub3d, s + i) != SUCCESS)
 			return (ft_skip_gnl(cub3d, &s), free(s), cub3d->exit_code);
-		if ((s[i] == 'N' || s[i] == 'S' || s[i] == 'E' || s[i] == 'W') && \
-		ft_check_path(cub3d, s + i) != SUCCESS)
+		if (ft_valid_char_info(s[i]) && ft_check_path(cub3d, s + i) != SUCCESS)
 			return (ft_skip_gnl(cub3d, &s), free(s), cub3d->exit_code);
 		else if ((s[i] == 'C' || s[i] == 'F') && \
 		ft_check_colors(cub3d, s + i) != SUCCESS)
@@ -132,5 +133,7 @@ t_error_code	ft_check_info(t_cub3d *cub3d)
 		ft_remove_newline(cub3d, &s);
 		ft_skip_spaces(s, &i);
 	}
+	if (cub3d->celling.nb != 3 || cub3d->floor.nb != 3)
+		return (ft_print_error(cub3d, WRONG_COLOR));
 	return (ft_skip_gnl(cub3d, &s), free(s), SUCCESS);
 }

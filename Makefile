@@ -15,7 +15,8 @@ CC			= gcc
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILE))
 SRC_DIR		=	srcs/
 SRC_FILE	=	cub3d.c							\
-				struct_handler.c				\
+				struct_init.c	\
+				struct_free.c				\
 				parsing_utils.c					\
 				checker_info.c					\
 				checker_map.c					\
