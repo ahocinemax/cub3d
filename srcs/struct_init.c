@@ -39,6 +39,7 @@ static void	ft_init_map(t_map *map)
 
 t_error_code	ft_init_window(t_cub3d *cub3d)
 {
+	cub3d->step_of_game = 1;
 	cub3d->window.height = 800;
 	cub3d->window.width = 1200;
 	cub3d->mlx_ptr = mlx_init();
@@ -65,12 +66,11 @@ void	ft_init_img(t_img *img)
 	img->height = 0;
 }
 
-void    init_struct_pos(t_pos *pos)
+void	init_struct_pos(t_pos *pos)
 {
-    pos->check_pos = 0;
-    pos->pos_x = 0;
-    pos->pos_y = 0;
-
+	pos->check_pos = 0;
+	pos->pos_x = 0;
+	pos->pos_y = 0;
 }
 
 void	init_player(t_player *p1)
@@ -102,7 +102,7 @@ t_error_code	ft_init_struct(t_cub3d *cub3d)
 	init_struct_pos(&(cub3d->pos));
 	cub3d->mlx_ptr = NULL;
 	cub3d->level_name = NULL;
-	cub3d->step_of_game = 1;
+	cub3d->step_of_game = 0;
 	cub3d->nb_player = 0;
 	cub3d->exit_code = SUCCESS;
 	cub3d->window.win_ptr = NULL;

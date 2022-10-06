@@ -80,15 +80,11 @@ t_error_code	ft_check_colors(t_cub3d *cub3d, char *str)
 			return (ft_print_error(cub3d, WRONG_SEPARATOR));
 		i++;
 	}
-	cub3d->floor.trgb = create_trgb(cub3d->floor.red, \
-		cub3d->floor.green, cub3d->floor.blue);
-	if (cub3d->floor.trgb == -1)
-		return (ft_print_error(cub3d, COLOR_ERROR));
-	cub3d->celling.trgb = create_trgb(cub3d->celling.red, \
-		cub3d->celling.green, cub3d->celling.blue);
-	if (cub3d->celling.trgb == -1)
-		return (ft_print_error(cub3d, COLOR_ERROR));
-	return (SUCCESS);
+	
+	return (cub3d->floor.trgb = 0 << 24 | cub3d->floor.red << 16 | \
+	cub3d->floor.green << 8 | cub3d->floor.blue, cub3d->celling.trgb = 0 << 24\
+	| cub3d->celling.red << 16 | \
+	cub3d->celling.green << 8 | cub3d->celling.blue, SUCCESS);
 }
 
 t_error_code	ft_check_identifier(t_cub3d *cub3d, char *s)

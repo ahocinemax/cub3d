@@ -22,11 +22,5 @@ int	check_color_val(int nbr)
 
 int	create_trgb(int r, int g, int b)
 {
-	int	trgb;
-
-	if (check_color_val(r) != 0 || check_color_val(g) != 0
-		|| check_color_val(b) != 0)
-		return (-1);
-	trgb = (0 << 24 | r << 16 | g << 8 | b);
-	return (trgb);
+	return ((0 << 24 | r << 16 | g << 8 | b));
 }

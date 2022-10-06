@@ -51,8 +51,6 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 	ft_fill_map(cub3d);
 	if (cub3d->exit_code != SUCCESS || ft_init_window(cub3d) != SUCCESS)
 		return ;
-	if (ft_init_window(cub3d) != SUCCESS)
-		return ;
 }
 
 int	running(t_cub3d *cub3d)
@@ -96,6 +94,7 @@ void	game_start(t_cub3d *cub3d)
 		ft_print_error(cub3d, ERROR_IMAGE);
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
 		cub3d->screen.mlx_img, 0, 0);*/
+	mlx_destroy_image(cub3d->mlx_ptr, cub3d->intro.img);
 	cub3d->screen.mlx_img = mlx_new_image(cub3d->mlx_ptr, \
 					cub3d->window.width, cub3d->window.height);
 	if (!cub3d->screen.mlx_img)
@@ -103,18 +102,17 @@ void	game_start(t_cub3d *cub3d)
 	cub3d->p1.pos_x = cub3d->pos.pos_x + 0.5;
 	cub3d->p1.pos_y = cub3d->pos.pos_y + 0.5;
 	set_player_view(cub3d, &(cub3d->p1));
-	mlx_loop_hook(cub3d->mlx_ptr, &running, (void *)cub3d);
 	//running : game is still running,continue ray_casting
 	//->check step, renew the values
 	mlx_hook(cub3d->window.win_ptr, 0, 1L << 0, &key_press, cub3d);
-	mlx_hook(cub3d->window.win_ptr, 17, 1L << 0, &free_all_exit, cub3d);
+	mlx_loop_hook(cub3d->mlx_ptr, &running, (void *)cub3d);
+	mlx_hook(cub3d->window.win_ptr, 17, 1L << 0, &ft_free_struct, cub3d);
 	mlx_loop(cub3d->mlx_ptr);
 }
 
 int	main(int argc, char *argv[], char **envp)
 {
 	t_cub3d			cub3d;
-	t_error_code	code;
 
 	if (!*envp)
 		return (ft_print_error(NULL, NO_ENV));
@@ -124,7 +122,7 @@ int	main(int argc, char *argv[], char **envp)
 	ft_init_struct(&cub3d);
 	ft_parsing(*argv, &cub3d);
 	if (cub3d.exit_code != SUCCESS)
-		return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
+		return (ft_free_struct(&cub3d));
 	printf("%s\n%s\n%s\n%s\n\n\n\n", cub3d.no.path, cub3d.so.path, \
 		cub3d.ea.path, cub3d.we.path);
 	printf("floor: [%d], [%d], [%d]\ncelling: : [%d], [%d], [%d]\n\n", \
@@ -136,6 +134,5 @@ int	main(int argc, char *argv[], char **envp)
 		printf("%s\n", cub3d.map.map[i++]);
 	introduction_of_game(&cub3d);
 	game_start(&cub3d);
-	free_all_exit(&cub3d);
-	return (code = cub3d.exit_code, ft_free_struct(&cub3d), code);
+	return (ft_free_struct(&cub3d));
 }

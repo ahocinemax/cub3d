@@ -224,7 +224,7 @@ t_error_code	ft_init_struct(t_cub3d *cub3d);
 t_error_code	ft_init_window(t_cub3d *cub3d);
 
 // struct free
-void			ft_free_struct(t_cub3d *cub3d);
+int				ft_free_struct(t_cub3d *cub3d);
 
 // errors
 t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code);
@@ -260,12 +260,10 @@ int				create_trgb(int r, int g, int b);
 int				check_color_val(int nbr);
 //game
 //free game structure
-void			free_texture(t_cub3d *cub3d);
 void			free_img(t_cub3d *cub3d, t_img *img);
 void			free_pics(t_cub3d *cub3d, t_pic *pic);
 void			free_game_and_mlx(t_cub3d *cub3d);
 int				free_all(t_cub3d *cub3d);
-int				free_all_exit(t_cub3d *cub3d);
 
 //init_game
 void			renew_player_value(t_cub3d *cub3d, t_player *p1, int x);
