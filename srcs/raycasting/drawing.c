@@ -12,45 +12,31 @@
 
 #include "../../includes/cub3d.h"
 
-t_img	put_img_wall_to_mlx(t_cub3d *cub3d, char *path, t_img img)
+void	put_img_wall_to_mlx(t_cub3d *cub3d, char *path, t_img *img)
 {
-	img.mlx_img = mlx_xpm_file_to_image(cub3d->mlx_ptr, path, \
-	&img.width, &img.height);
-	if (!img.mlx_img)
+	img->width = 150;
+	img->height = 150;
+	img->mlx_img = mlx_xpm_file_to_image(cub3d->mlx_ptr, path, \
+	&(img->width), &(img->height));
+	if (!img->mlx_img)
 		ft_print_error(cub3d, ERROR_IMAGE);
-	img.addr = mlx_get_data_addr(img.mlx_img, &img.bpp,
-			&img.line_len, &img.endian);
-	if (img.mlx_img == NULL || img.addr == NULL)
+	img->addr = mlx_get_data_addr(img->mlx_img, &(img->bpp), \
+	&(img->line_len), &(img->endian));
+	if (img->mlx_img == NULL || img->addr == NULL)
 		ft_print_error(cub3d, ERROR_MLX);
-	return (img);
 }
 
 t_error_code	wall_tex_init(t_cub3d *cub3d)
-{	
+{
+	printf("no: %s\nso: %s\nea: %s\nwe: %s\n", cub3d->no.path, cub3d->so.path, cub3d->ea.path, cub3d->we.path);
 	if (cub3d->no.path)
-	{
-		cub3d->no.img.width = 150;
-		cub3d->no.img.height = 150;
-		cub3d->no.img = put_img_wall_to_mlx(cub3d, cub3d->no.path, cub3d->no.img);
-	}
+		put_img_wall_to_mlx(cub3d, cub3d->no.path, &(cub3d->no.img));
 	if (cub3d->so.path)
-	{
-		cub3d->so.img.width = 150;
-		cub3d->so.img.height = 150;
-		cub3d->so.img = put_img_wall_to_mlx(cub3d, cub3d->so.path, cub3d->so.img);
-	}
+		put_img_wall_to_mlx(cub3d, cub3d->so.path, &(cub3d->so.img));
 	if (cub3d->ea.path)
-	{
-		cub3d->ea.img.width = 150;
-		cub3d->ea.img.height = 150;
-		cub3d->ea.img = put_img_wall_to_mlx(cub3d, cub3d->ea.path, cub3d->ea.img);
-	}
+		put_img_wall_to_mlx(cub3d, cub3d->ea.path, &(cub3d->ea.img));
 	if (cub3d->we.path)
-	{
-		cub3d->we.img.width = 150;
-		cub3d->we.img.height = 150;
-		cub3d->we.img = put_img_wall_to_mlx(cub3d, cub3d->we.path, cub3d->ea.img);
-	}
+		put_img_wall_to_mlx(cub3d, cub3d->we.path, &(cub3d->ea.img));
 	else
 		return (ft_print_error(cub3d, ERROR_IMAGE));
 	return (SUCCESS);

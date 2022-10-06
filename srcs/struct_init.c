@@ -59,12 +59,12 @@ t_error_code	ft_init_window(t_cub3d *cub3d)
 void	ft_init_img(t_img *img)
 {
 	img->mlx_img = NULL;
-	img->bpp = 0;
-	img->addr = NULL;
 	img->line_len = 0;
+	img->addr = NULL;
 	img->endian = 0;
-	img->width = 0;
 	img->height = 0;
+	img->width = 0;
+	img->bpp = 0;
 }
 
 t_error_code	ft_init_struct(t_cub3d *cub3d)

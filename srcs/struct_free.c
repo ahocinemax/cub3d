@@ -16,7 +16,7 @@ static void	ft_free_mlx(t_cub3d *cub3d)
 {
 	if (cub3d->step_of_game == 1)
 		mlx_destroy_image(cub3d->mlx_ptr, cub3d->intro.img);
-	if (cub3d->window.win_ptr)
+	if (cub3d->step_of_game && cub3d->window.win_ptr)
 		mlx_destroy_window(cub3d->mlx_ptr, cub3d->window.win_ptr);
 	if (cub3d->mlx_ptr)
 	{
