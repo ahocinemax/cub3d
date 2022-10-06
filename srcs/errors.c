@@ -32,7 +32,6 @@ void	ft_print_error2(t_error_code error_code)
 		ft_putstr_fd("mlx: Cannot load image.\n", _STD_ERR);
 	else if (error_code == COLOR_ERROR)
 		ft_putstr_fd("mlx: RGB color value range is not good.\n", _STD_ERR);
-		ft_putstr_fd("mlx: cannot find image.\n", _STD_ERR);
 	else if (error_code == NOT_SURROUNDED)
 		ft_putstr_fd("parsing: unclosed map is not allowed.\n", _STD_ERR);
 	else if (error_code == INVALID_PLAYER_NB)

@@ -275,15 +275,10 @@ void			step_player(t_player *p1);
 int				ft_error_and_exit(char *error, t_cub3d *cub3d);
 int				init_mlx_and_window(t_cub3d *cub3d, t_window *window);
 void			init_struct_malloc(t_cub3d *cub3d);
-t_error_code	ft_init_window(t_cub3d *cub3d);
-int				init_img(t_img *img);
+void			ft_init_img(t_img *img);
 void			init_struct_pos(t_pos *pos);
 void			init_player(t_player *p1);
-void			init_pic(t_pic *pic);
-void			init_picture(t_pic *picture);
-void			init_color(t_color *color);
-void			init_texture(t_cub3d *cub3d, t_texture *texture);
-void			init_struct_state(t_cub3d *cub3d);
+void			init_picture(t_pic *pic);
 
 //intro_image
 void			introduction_of_game(t_cub3d *cub3d);
