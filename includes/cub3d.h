@@ -107,9 +107,11 @@ struct s_player
 	double			pos_y;
 	double			dir_x;
 	double			dir_y;
-	double			old_dir_x;
 	double			plane_x;
 	double			plane_y;
+	double			time;
+	double			old_time;
+	double			old_dir_x;
 	double			old_plane_x;
 	double			raydir_x;
 	double			raydir_y;
@@ -119,8 +121,6 @@ struct s_player
 	int				step_x;
 	int				step_y;
 	int				check_pos;
-	double			time;
-	double			old_time;
 	double			side_dist_x;
 	double			side_dist_y;
 	double			delta_dist_x;

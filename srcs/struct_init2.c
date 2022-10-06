@@ -19,6 +19,14 @@ void	init_struct_pos(t_pos *pos)
 	pos->pos_y = 0;
 }
 
+static void	init_player2(t_player *p1)
+{
+	p1->side = 0;
+	p1->line_height = 0;
+	p1->rot_speed = 0;
+	p1->move_speed = 0;
+}
+
 void	init_player(t_player *p1)
 {
 	p1->pos_x = 0;
@@ -29,6 +37,23 @@ void	init_player(t_player *p1)
 	p1->plane_y = 0;
 	p1->time = 0;
 	p1->old_time = 0;
+	p1->old_dir_x = 0;
+	p1->old_plane_x = 0;
+	p1->raydir_x = 0;
+	p1->raydir_y = 0;
+	p1->camera_x = 0;
+	p1->map_x = 0;
+	p1->map_y = 0;
+	p1->step_x = 0;
+	p1->step_y = 0;
+	p1->check_pos = 0;
+	p1->side_dist_x = 0;
+	p1->side_dist_y = 0;
+	p1->delta_dist_x = 0;
+	p1->delta_dist_y = 0;
+	p1->perp_wall_dist = 0;
+	p1->hit = 0;
+	init_player2(p1);
 }
 
 void	init_picture(t_pic *pic)
