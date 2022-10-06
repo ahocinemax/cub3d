@@ -71,7 +71,8 @@ enum	e_error_code
 	NO_MAP,
 	ERROR_MLX,
 	DUPICATE_PATH,
-	MAP_ERROR
+	MAP_ERROR,
+	NOT_SURROUNDED
 };
 
 struct s_pic
@@ -144,6 +145,7 @@ struct s_color
 	int				red;
 	int				green;
 	int				blue;
+	int				nb;
 };
 
 struct s_map
@@ -165,6 +167,7 @@ struct s_cub3d
 	void			*mlx_ptr;
 	char			*level_name;
 	int				step_of_game;
+	int				nb_player;
 	t_pos			pos;
 	t_pic			intro;
 	t_player		p1;
@@ -199,13 +202,17 @@ void			ft_skip_gnl(t_cub3d *cub3d, char **line);
 t_error_code	ft_fill_info(t_cub3d *cub3d);
 
 // fill map
+t_error_code	ft_check_inside_map(t_cub3d *cub3d, char *prev, char *curr);
+t_error_code	ft_check_border_map(t_cub3d *cub3d, char **map);
 char			*ft_fill_line(t_cub3d *cub3d, int line_nb);
+void			ft_convert_space(t_cub3d *cub3d);
 void			ft_fill_map(t_cub3d *cub3d);
 
 // parsing utils
 void			ft_remove_newline(t_cub3d *cub3d, char **line);
 int				ft_size_line(char *line, t_cub3d *cub3d);
 char			*ft_skip_info(t_cub3d *cub3d);
+int				ft_valid_char_info(char c);
 int				ft_valid_char_map(char c);
 
 // struct init

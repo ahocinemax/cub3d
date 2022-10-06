@@ -72,3 +72,8 @@ char	*ft_skip_info(t_cub3d *cub3d)
 		return (ft_print_error(cub3d, NO_MAP), NULL);
 	return (line);
 }
+
+int	ft_valid_char_info(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}

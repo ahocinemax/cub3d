@@ -21,9 +21,11 @@ static void	ft_init_texture_color(t_cub3d *cub3d)
 	cub3d->celling.green = 0;
 	cub3d->celling.blue = 0;
 	cub3d->celling.red = 0;
+	cub3d->celling.nb = 0;
 	cub3d->floor.green = 0;
 	cub3d->floor.blue = 0;
 	cub3d->floor.red = 0;
+	cub3d->floor.nb = 0;
 }
 
 static void	ft_init_map(t_cub3d *cub3d)
@@ -58,6 +60,7 @@ t_error_code	ft_init_struct(t_cub3d *cub3d)
 	cub3d->pos.pos_x = 0;
 	cub3d->pos.pos_y = 0;
 	cub3d->pos.pos = 0;
+	cub3d->nb_player = 0;
 	cub3d->exit_code = SUCCESS;
 	cub3d->level_name = NULL;
 	cub3d->mlx_ptr = NULL;
