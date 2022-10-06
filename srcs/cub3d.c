@@ -84,9 +84,7 @@ void	game_start(t_cub3d *cub3d)
 int	main(int argc, char *argv[], char **envp)
 {
 	t_cub3d			cub3d;
-	int				i;
 
-	i = 0;
 	if (!*envp)
 		return (ft_print_error(NULL, NO_ENV));
 	if (argc != 2)
