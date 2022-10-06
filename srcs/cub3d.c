@@ -49,9 +49,7 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 	ft_reopen(cub3d) != SUCCESS)
 		return ;
 	ft_fill_map(cub3d);
-	if (cub3d->exit_code != SUCCESS)
-		return ;
-	if (ft_init_window(cub3d) != SUCCESS)
+	if (cub3d->exit_code != SUCCESS || ft_init_window(cub3d) != SUCCESS)
 		return ;
 }
 
