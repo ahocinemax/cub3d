@@ -34,5 +34,5 @@ void	prepare_wall(t_cub3d *cub3d, int x, int draw_start, int draw_end)
 	while (start < draw_start)
 	{
 	}
-	//preparetion_image floor + celling;
 }
+//preparetion_image floor + celling;

@@ -18,6 +18,11 @@ int	ft_valid_char_map(char c)
 	c == 'E' || c == 'W');
 }
 
+int	ft_valid_char_info(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
 int	ft_size_line(char *line, t_cub3d *cub3d)
 {
 	int	res;
@@ -71,9 +76,4 @@ char	*ft_skip_info(t_cub3d *cub3d)
 	if (!line)
 		return (ft_print_error(cub3d, NO_MAP), NULL);
 	return (line);
-}
-
-int	ft_valid_char_info(char c)
-{
-	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }

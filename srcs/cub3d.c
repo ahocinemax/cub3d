@@ -12,24 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-t_error_code	ft_check_file(char *argv, t_cub3d *cub3d)
-{
-	int	len;
-	int	fd;
-
-	len = ft_strlen(argv);
-	if (!len)
-		return (ft_print_error(cub3d, ARGC_ERROR));
-	if (len < 4 || ft_strncmp(argv + len - 4, ".cub", 4))
-		return (ft_print_error(cub3d, WRONG_EXTENTION));
-	fd = open(argv, O_RDONLY);
-	if (fd < 0)
-		return (ft_print_error(cub3d, BAD_FILE));
-	cub3d->level_name = ft_strdup(argv);
-	cub3d->fd = fd;
-	return (SUCCESS);
-}
-
 t_error_code	ft_reopen(t_cub3d *cub3d)
 {
 	if (cub3d->fd > 2)

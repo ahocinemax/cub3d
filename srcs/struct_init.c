@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-static void	ft_init_texture_color(t_cub3d *cub3d)
+void	ft_init_texture_color(t_cub3d *cub3d)
 {
 	cub3d->no.path = NULL;
 	cub3d->so.path = NULL;
@@ -30,7 +30,7 @@ static void	ft_init_texture_color(t_cub3d *cub3d)
 	cub3d->floor.trgb = 0;
 }
 
-static void	ft_init_map(t_map *map)
+void	ft_init_map(t_map *map)
 {
 	map->map = NULL;
 	map->large = 0;
