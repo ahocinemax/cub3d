@@ -57,6 +57,7 @@ int	running(t_cub3d *cub3d)
 		draw_end = line_height / 2 + cub3d->window.height / 2;
 		if (draw_end >= cub3d->window.height)
 			draw_end = cub3d->window.height - 1;
+		prepare_wall(cub3d, x, draw_start, draw_end);
 		x++;
 	}
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \

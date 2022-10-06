@@ -21,6 +21,8 @@
 # include <float.h>
 # include <stdbool.h>
 
+# define TEX_W			150
+# define TEX_H			150
 # define KEY_ESC		65307
 # define KEY_W			119
 # define KEY_A			97
@@ -132,6 +134,7 @@ struct s_player
 	double			rot_speed;
 	double			move_speed;
 	double			wall_x;
+	int				tex_start;
 };
 
 struct s_pos
@@ -253,7 +256,7 @@ void			dda_perform2(t_player *p1);
 
 // drawing
 void			wall_x(t_player *p1);
-void			prepare_wall(t_cub3d *cub3d, int x, int start, int end);
+t_img			*prepare_wall(t_cub3d *cub3d, int x, int start, int end);
 
 // init_game
 void			renew_player_value(t_cub3d *cub3d, t_player *p1, int x);
