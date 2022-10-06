@@ -2,7 +2,7 @@
 #             COMPILATION            #
 #------------------------------------#
 
-NAME		= cub3d
+NAME		= cub3D
 
 FLAGS		= -Wall -Wextra -Werror -g3
 INCLUDE		= -I $(HEAD_DIR) -lXext -lX11 -lm
