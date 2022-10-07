@@ -18,7 +18,7 @@ void	perpwall_dist(t_cub3d *cub3d, t_player *p1)
 		p1->perp_wall_dist = (p1->side_dist_x - p1->delta_dist_x);
 	else
 		p1->perp_wall_dist = (p1->side_dist_y - p1->delta_dist_y);
-	p1->line_height = (int)(cub3d->window.width / p1->perp_wall_dist);
+	p1->line_height = (int)(cub3d->window.height / p1->perp_wall_dist);
 }
 
 void	dda_perform2(t_player *p1)
@@ -38,7 +38,7 @@ void	dda_perform(t_cub3d *cub3d, t_player *p1)
 	{
 		if (p1->side_dist_x < p1->side_dist_y)
 		{
-			p1->side_dist_x += p1->delta_dist_y;
+			p1->side_dist_x += p1->delta_dist_x;
 			if (p1->map_x > 0)
 				p1->map_x += p1->step_x;
 			if (p1->raydir_x > 0)

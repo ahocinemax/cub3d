@@ -73,7 +73,7 @@ void	game_start(t_cub3d *cub3d)
 	cub3d->window.height);
 	if (!cub3d->screen.mlx_img)
 		ft_print_error(cub3d, ERROR_IMAGE);
-	cub3d->screen.addr = mlx_get_data_addr(cub3d->mlx_ptr, &cub3d->screen.bpp, \
+	cub3d->screen.addr = mlx_get_data_addr(cub3d->screen.mlx_img, &cub3d->screen.bpp, \
 	&cub3d->screen.line_len, &cub3d->screen.endian);
 	cub3d->p1.pos_x = cub3d->pos.pos_x + 0.5;
 	cub3d->p1.pos_y = cub3d->pos.pos_y + 0.5;
