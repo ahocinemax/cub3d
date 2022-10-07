@@ -108,7 +108,7 @@ void	prepare_wall(t_cub3d *cub3d, int x, int draw_start, int draw_end)
 	wall_x(&(cub3d->p1));
 	if (cub3d->p1.check_pos == 'N' || cub3d->p1.check_pos == 'E')
 		x = cub3d->window.width - x - 1;
-	while (y < 820)
+	while (y < draw_end)
 	{
 		draw_pixel(&(cub3d->screen), x, y, cub3d->celling.trgb);
 		y++;

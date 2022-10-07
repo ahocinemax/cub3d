@@ -50,10 +50,8 @@ int	running(t_cub3d *cub3d)
 		while (cub3d->p1.hit == 0)
 			dda_perform(cub3d, &(cub3d->p1));
 		perpwall_dist(cub3d, &(cub3d->p1));
-		line_height = (int)(cub3d->window.width / cub3d->p1.perp_wall_dist);
+		line_height = (int)(cub3d->window.height / cub3d->p1.perp_wall_dist);
 		draw_start = -line_height / 2 + cub3d->window.height / 2;
-		if (draw_start < 0)
-			draw_start = 0;
 		draw_end = line_height / 2 + cub3d->window.height / 2;
 		if (draw_end >= cub3d->window.height)
 			draw_end = cub3d->window.height - 1;
