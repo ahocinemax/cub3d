@@ -62,7 +62,6 @@ int	key_press(int key, t_cub3d *cub3d)
 		a_key(cub3d);
 	else if (key == KEY_D && cub3d->step_of_game >= 2)
 		d_key(cub3d);
-	printf("counter: %d, value: %d\n", counter, key);
 	return (counter++, key_press_other(key, cub3d));
 }
 
