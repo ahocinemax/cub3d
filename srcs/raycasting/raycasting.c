@@ -15,9 +15,9 @@
 void	perpwall_dist(t_cub3d *cub3d, t_player *p1)
 {
 	if (p1->side == NORTH || p1->side == SOUTH)
-		p1->perp_wall_dist = (p1->side_dist_x - p1->delta_dist_x);
-	else
 		p1->perp_wall_dist = (p1->side_dist_y - p1->delta_dist_y);
+	else
+		p1->perp_wall_dist = (p1->side_dist_x - p1->delta_dist_x);
 	p1->line_height = (int)(cub3d->window.height / p1->perp_wall_dist);
 }
 

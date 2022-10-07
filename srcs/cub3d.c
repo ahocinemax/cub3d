@@ -67,7 +67,6 @@ void	game_start(t_cub3d *cub3d)
 {
 	mlx_destroy_image(cub3d->mlx_ptr, cub3d->intro.img);
 	cub3d->step_of_game = 2;
-	wall_tex_init(cub3d);
 	cub3d->screen.mlx_img = mlx_new_image(cub3d->mlx_ptr, \
 	cub3d->window.width, cub3d->window.height);
 	if (!cub3d->screen.mlx_img)
@@ -79,6 +78,7 @@ void	game_start(t_cub3d *cub3d)
 	cub3d->p1.pos_x = cub3d->pos.pos_x + 0.5;
 	cub3d->p1.pos_y = cub3d->pos.pos_y + 0.5;
 	set_player_view(cub3d, &(cub3d->p1));
+	wall_tex_init(cub3d);
 	mlx_loop_hook(cub3d->mlx_ptr, &running, cub3d);
 	mlx_hook(cub3d->window.win_ptr, 17, 1L << 0, &ft_free_struct, cub3d);
 	mlx_loop(cub3d->mlx_ptr);

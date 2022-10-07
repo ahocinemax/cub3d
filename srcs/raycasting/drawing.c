@@ -118,7 +118,7 @@ void	prepare_wall(t_cub3d *cub3d, int x, int draw_start, int draw_end)
 	visual_wall(cub3d, x, &y, draw_end);
 	while (y < cub3d->window.height)
 	{
-		draw_pixel(&(cub3d->screen), x, y, cub3d->celling.trgb);
+		draw_pixel(&(cub3d->screen), x, y, cub3d->floor.trgb);
 		y++;
 	}
 }
