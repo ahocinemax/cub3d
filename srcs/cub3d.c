@@ -71,13 +71,10 @@ void	game_start(t_cub3d *cub3d)
 	cub3d->step_of_game = 2;
 	cub3d->screen.mlx_img = mlx_new_image(cub3d->mlx_ptr, cub3d->window.width, \
 	cub3d->window.height);
-	cub3d->screen.addr = mlx_get_data_addr(cub3d->screen.mlx_img, &cub3d->screen.bpp, &cub3d->screen.line_len, &cub3d->screen.endian);
-	cub3d->no.img.addr = mlx_get_data_addr(cub3d->no.img.mlx_img, &cub3d->no.img.bpp, &cub3d->no.img.line_len, &cub3d->no.img.endian);
-	cub3d->so.img.addr = mlx_get_data_addr(cub3d->so.img.mlx_img, &cub3d->so.img.bpp, &cub3d->so.img.line_len, &cub3d->so.img.endian);
-	cub3d->ea.img.addr = mlx_get_data_addr(cub3d->ea.img.mlx_img, &cub3d->ea.img.bpp, &cub3d->ea.img.line_len, &cub3d->ea.img.endian);
-	cub3d->we.img.addr = mlx_get_data_addr(cub3d->we.img.mlx_img, &cub3d->we.img.bpp, &cub3d->we.img.line_len, &cub3d->we.img.endian);
 	if (!cub3d->screen.mlx_img)
 		ft_print_error(cub3d, ERROR_IMAGE);
+	cub3d->screen.addr = mlx_get_data_addr(cub3d->mlx_ptr, &cub3d->screen.bpp, \
+	&cub3d->screen.line_len, &cub3d->screen.endian);
 	cub3d->p1.pos_x = cub3d->pos.pos_x + 0.5;
 	cub3d->p1.pos_y = cub3d->pos.pos_y + 0.5;
 	set_player_view(cub3d, &(cub3d->p1));
@@ -102,6 +99,5 @@ int	main(int argc, char *argv[], char **envp)
 		return (ft_free_struct(&cub3d));
 	wall_tex_init(&cub3d);
 	introduction_of_game(&cub3d);
-	game_start(&cub3d);
 	return (ft_free_struct(&cub3d));
 }

@@ -66,5 +66,5 @@ t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code)
 	else
 		ft_print_error2(error_code);
 	cub3d->exit_code = error_code;
-	return (ft_putstr_fd("exiting...\n", _STD_ERR), error_code);
+	return (ft_putstr_fd("exiting...\n", _STD_ERR), ft_free_struct(cub3d), error_code);
 }

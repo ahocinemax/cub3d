@@ -62,8 +62,6 @@ t_error_code	ft_fill_info(t_cub3d *cub3d)
 	while (line && !ft_isdigit(*line))
 	{
 		i = 0;
-		if (!line || !*line)
-			continue ;
 		ft_skip_spaces(line, &i);
 		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' \
 		|| line[i] == 'W' || line[i] == 'F' || line[i] == 'C' || line[i] == 0)
