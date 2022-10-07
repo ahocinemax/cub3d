@@ -95,6 +95,7 @@ void	visual_wall(t_cub3d *cub3d, int x, int *y, int draw_end)
 		rgb[1] = get_tex_rgb(addr, cub3d, 1, *y);
 		rgb[2] = get_tex_rgb(addr, cub3d, 0, *y);
 		color = get_trgb(rgb[0], rgb[1], rgb[2]);
+		printf("color: %d\n", cub3d->celling.trgb);
 		draw_pixel((&cub3d->screen), x, *y, color);
 		(*y)++;
 	}
