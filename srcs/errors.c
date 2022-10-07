@@ -12,6 +12,16 @@
 
 #include "../includes/cub3d.h"
 
+void	ft_print_error3(t_error_code error_code)
+{
+	if (error_code == INVALID_PLAYER_NB)
+		ft_putstr_fd("parsing: you need to set only player.\n", _STD_ERR);
+	else if (error_code == ERROR_MLX)
+		ft_putstr_fd("mlx: mlx not configured properly.\n", _STD_ERR);
+	else
+		ft_putstr_fd("Unexpected error, well done.\n", _STD_ERR);
+}
+
 void	ft_print_error2(t_error_code error_code)
 {
 	if (error_code == INVALID_DESCRIPTOR)
@@ -36,12 +46,8 @@ void	ft_print_error2(t_error_code error_code)
 		ft_putstr_fd("mlx: RGB color value range is not good.\n", _STD_ERR);
 	else if (error_code == NOT_SURROUNDED)
 		ft_putstr_fd("parsing: unclosed map is not allowed.\n", _STD_ERR);
-	else if (error_code == INVALID_PLAYER_NB)
-		ft_putstr_fd("parsing: you need to set only player.\n", _STD_ERR);
-	else if (error_code == ERROR_MLX)
-		ft_putstr_fd("mlx: mlx not configured properly.\n", _STD_ERR);
 	else
-		ft_putstr_fd("Unexpected error, well done.\n", _STD_ERR);
+		ft_print_error3(error_code);
 }
 
 t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code)
