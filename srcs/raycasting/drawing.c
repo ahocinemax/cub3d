@@ -19,14 +19,14 @@ void	put_img_wall_to_mlx(t_cub3d *cub3d, char *path, t_img *img)
 	img->mlx_img = mlx_xpm_file_to_image(cub3d->mlx_ptr, path, \
 	&(img->width), &(img->height));
 	if (!img->mlx_img)
-		ft_print_error(cub3d, ERROR_IMAGE);
+		ft_print_error_exit(cub3d, ERROR_IMAGE);
 	img->addr = mlx_get_data_addr(img->mlx_img, &(img->bpp), \
 	&(img->line_len), &(img->endian));
 	if (img->mlx_img == NULL || img->addr == NULL)
-		ft_print_error(cub3d, ERROR_MLX);
+		ft_print_error_exit(cub3d, ERROR_MLX);
 }
 
-t_error_code	wall_tex_init(t_cub3d *cub3d)
+void	wall_tex_init(t_cub3d *cub3d)
 {
 	if (cub3d->no.path)
 		put_img_wall_to_mlx(cub3d, cub3d->no.path, &(cub3d->no.img));
@@ -37,8 +37,7 @@ t_error_code	wall_tex_init(t_cub3d *cub3d)
 	if (cub3d->we.path)
 		put_img_wall_to_mlx(cub3d, cub3d->we.path, &(cub3d->we.img));
 	else
-		return (ft_print_error(cub3d, ERROR_IMAGE));
-	return (SUCCESS);
+		ft_print_error_exit(cub3d, ERROR_IMAGE);
 }
 
 void	wall_x(t_player *p1)

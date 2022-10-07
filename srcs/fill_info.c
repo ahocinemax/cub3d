@@ -50,6 +50,13 @@ t_error_code	ft_texture_handler(char *str, t_cub3d *cub3d)
 	return (SUCCESS);
 }
 
+t_error_code ft_check_texture(t_cub3d *cub3d)
+{
+	if (!cub3d->no.path || !cub3d->so.path || !cub3d->ea.path || !cub3d->we.path)
+		return (ft_print_error(cub3d, MISSING_PATH));
+	return (SUCCESS);
+}
+
 t_error_code	ft_fill_info(t_cub3d *cub3d)
 {
 	char	*line;
@@ -74,5 +81,7 @@ t_error_code	ft_fill_info(t_cub3d *cub3d)
 		line = get_next_line(cub3d->fd);
 		ft_remove_newline(cub3d, &line);
 	}
+	if (!ft_check_texture(cub3d))
+		return (ft_skip_gnl(cub3d, &line), free(line), cub3d->exit_code);
 	return (ft_skip_gnl(cub3d, &line), free(line), SUCCESS);
 }

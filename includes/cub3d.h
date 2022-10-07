@@ -60,6 +60,7 @@ enum	e_error_code
 	ARGC_ERROR,
 	WRONG_EXTENTION,
 	WRONG_EXTENTION2,
+	MISSING_PATH,
 	WRONG_COLOR,
 	WRONG_SEPARATOR,
 	INVALID_MAP_SIZE,
@@ -238,6 +239,7 @@ void			init_picture(t_pic *pic);
 int				ft_free_struct(t_cub3d *cub3d);
 
 // errors
+void			ft_print_error_exit(t_cub3d *cub3d, t_error_code error_code);
 t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code);
 
 // main
@@ -257,7 +259,7 @@ void			dda_perform2(t_player *p1);
 // drawing
 void			wall_x(t_player *p1);
 void			prepare_wall(t_cub3d *cub3d, int x, int start, int end);
-t_error_code	wall_tex_init(t_cub3d *cub3d);
+void			wall_tex_init(t_cub3d *cub3d);
 
 // init_game
 void			renew_player_value(t_cub3d *cub3d, t_player *p1, int x);

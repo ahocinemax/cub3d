@@ -23,7 +23,9 @@ void	ft_print_error2(t_error_code error_code)
 	else if (error_code == EMPTY_FILE)
 		ft_putstr_fd("file: file is empty.\n", _STD_ERR);
 	else if (error_code == WRONG_COLOR)
-		ft_putstr_fd("parsing: 3 colors must be between 0-255.\n", _STD_ERR);
+		ft_putstr_fd("parsing: must be 3 colors between 0-255.\n", _STD_ERR);
+	else if (error_code == MISSING_PATH)
+		ft_putstr_fd("parsing: four texture paths are required.\n", _STD_ERR);
 	else if (error_code == WRONG_SEPARATOR)
 		ft_putstr_fd("parsing: separate colors with comma ','.\n", _STD_ERR);
 	else if (error_code == WRONG_EXTENTION2)
@@ -66,6 +68,11 @@ t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code)
 	else
 		ft_print_error2(error_code);
 	cub3d->exit_code = error_code;
-	return (ft_putstr_fd("exiting...\n", _STD_ERR), ft_free_struct(cub3d), \
-	error_code);
+	return (ft_putstr_fd("exiting...\n", _STD_ERR), error_code);
+}
+
+void	ft_print_error_exit(t_cub3d *cub3d, t_error_code error_code)
+{
+	ft_print_error(cub3d, error_code);
+	exit(cub3d->exit_code);
 }

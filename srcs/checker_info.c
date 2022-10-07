@@ -128,6 +128,6 @@ t_error_code	ft_check_info(t_cub3d *cub3d)
 		ft_skip_spaces(s, &i);
 	}
 	if (cub3d->celling.nb != 3 || cub3d->floor.nb != 3)
-		return (ft_print_error(cub3d, WRONG_COLOR));
-	return (ft_skip_gnl(cub3d, &s), free(s), SUCCESS);
+		return (ft_skip_gnl(cub3d, &s), ft_print_error(cub3d, WRONG_COLOR));
+	return (ft_skip_gnl(cub3d, &s), SUCCESS);
 }
