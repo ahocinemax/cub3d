@@ -36,6 +36,8 @@ void	ft_print_error2(t_error_code error_code)
 		ft_putstr_fd("parsing: unclosed map is not allowed.\n", _STD_ERR);
 	else if (error_code == INVALID_PLAYER_NB)
 		ft_putstr_fd("parsing: you need to set only player.\n", _STD_ERR);
+	else if (error_code == ERROR_MLX)
+		ft_putstr_fd("mlx: mlx not configured properly.\n", _STD_ERR);
 	else
 		ft_putstr_fd("Unexpected error, well done.\n", _STD_ERR);
 }
@@ -61,10 +63,9 @@ t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code)
 		ft_putstr_fd("file: file empty.\n", _STD_ERR);
 	else if (error_code == MALLOC_FAILURE)
 		ft_putstr_fd("system: no enought memory.\n", _STD_ERR);
-	else if (error_code == ERROR_MLX)
-		ft_putstr_fd("mlx: mlx not configured properly.\n", _STD_ERR);
 	else
 		ft_print_error2(error_code);
 	cub3d->exit_code = error_code;
-	return (ft_putstr_fd("exiting...\n", _STD_ERR), ft_free_struct(cub3d), error_code);
+	return (ft_putstr_fd("exiting...\n", _STD_ERR), ft_free_struct(cub3d), \
+	error_code);
 }

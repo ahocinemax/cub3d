@@ -41,7 +41,6 @@ t_error_code	wall_tex_init(t_cub3d *cub3d)
 	return (SUCCESS);
 }
 
-
 void	wall_x(t_player *p1)
 {
 	if (p1->side == EAST || p1->side == WEST)
@@ -51,7 +50,7 @@ void	wall_x(t_player *p1)
 	p1->wall_x = floor(p1->wall_x);
 }
 
-char *set_direction_wall(t_cub3d *cub3d, t_player *p1)
+char	*set_direction_wall(t_cub3d *cub3d, t_player *p1)
 {
 	if (p1->side == NORTH)
 		return (cub3d->no.img.addr);
@@ -66,7 +65,7 @@ char *set_direction_wall(t_cub3d *cub3d, t_player *p1)
 int	get_tex_rgb(char *addr, t_cub3d *cub3d, int add, int y)
 {
 	return (addr[(int)(cub3d->p1.wall_x * TEX_W) * (cub3d->no.img.bpp >> 3) + \
-	add + (int)((y - cub3d->p1.tex_start * 1.0)  / cub3d->p1.line_height * \
+	add + (int)((y - cub3d->p1.tex_start * 1.0) / cub3d->p1.line_height * \
 	TEX_H) *cub3d->no.img.line_len]);
 }
 
@@ -80,17 +79,15 @@ void	draw_pixel(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
 
-	// printf("len addr: %d\n", ft_strlen(img->addr));
 	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	// printf("size_line: %d, x: %d, y: %d\n", img->line_len, x, y);
 	*((unsigned int *)pixel) = color;
 }
 
 void	visual_wall(t_cub3d *cub3d, int x, int *y, int draw_end)
 {
-	int color;
-	int rgb[3];
-	char *addr;
+	int		color;
+	int		rgb[3];
+	char	*addr;
 
 	addr = set_direction_wall(cub3d, &(cub3d->p1));
 	while (*y < draw_end)
@@ -118,7 +115,7 @@ void	prepare_wall(t_cub3d *cub3d, int x, int draw_start, int draw_end)
 		y++;
 	}
 	cub3d->p1.tex_start = draw_start;
-	visual_wall(cub3d,x, &y, draw_end);
+	visual_wall(cub3d, x, &y, draw_end);
 	while (y < cub3d->window.height)
 	{
 		draw_pixel(&(cub3d->screen), x, y, cub3d->celling.trgb);

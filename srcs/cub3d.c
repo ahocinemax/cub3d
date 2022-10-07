@@ -24,9 +24,11 @@ t_error_code	ft_reopen(t_cub3d *cub3d)
 
 void	ft_parsing(char *argv, t_cub3d *cub3d)
 {
-	if (ft_check_file(argv, cub3d) != SUCCESS || ft_check_info(cub3d) != SUCCESS || ft_reopen(cub3d) != SUCCESS || ft_fill_info(cub3d) != SUCCESS)
+	if (ft_check_file(argv, cub3d) != SUCCESS || ft_check_info(cub3d) != \
+	SUCCESS || ft_reopen(cub3d) != SUCCESS || ft_fill_info(cub3d) != SUCCESS)
 		return ;
-	if (ft_reopen(cub3d) != SUCCESS || ft_check_map(cub3d) != SUCCESS || ft_reopen(cub3d) != SUCCESS)
+	if (ft_reopen(cub3d) != SUCCESS || ft_check_map(cub3d) != SUCCESS || \
+	ft_reopen(cub3d) != SUCCESS)
 		return ;
 	ft_fill_map(cub3d);
 	if (cub3d->exit_code != SUCCESS || ft_init_window(cub3d) != SUCCESS)
@@ -40,8 +42,8 @@ int	running(t_cub3d *cub3d)
 	int	draw_start;
 	int	draw_end;
 
-	x = 0;
-	while (x < cub3d->window.width)
+	x = -1;
+	while (++x < cub3d->window.width)
 	{
 		renew_player_value(cub3d, &(cub3d->p1), x);
 		step_player(&(cub3d->p1));
@@ -56,10 +58,9 @@ int	running(t_cub3d *cub3d)
 		if (draw_end >= cub3d->window.height)
 			draw_end = cub3d->window.height - 1;
 		prepare_wall(cub3d, x, draw_start, draw_end);
-		x++;
 	}
-	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, cub3d->screen.mlx_img, 0, 0);
-	return (0);
+	return (mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
+	cub3d->screen.mlx_img, 0, 0));
 }
 
 void	game_start(t_cub3d *cub3d)
@@ -67,10 +68,12 @@ void	game_start(t_cub3d *cub3d)
 	mlx_destroy_image(cub3d->mlx_ptr, cub3d->intro.img);
 	cub3d->step_of_game = 2;
 	wall_tex_init(cub3d);
-	cub3d->screen.mlx_img = mlx_new_image(cub3d->mlx_ptr, cub3d->window.width, cub3d->window.height);
+	cub3d->screen.mlx_img = mlx_new_image(cub3d->mlx_ptr, \
+	cub3d->window.width, cub3d->window.height);
 	if (!cub3d->screen.mlx_img)
 		ft_print_error(cub3d, ERROR_IMAGE);
-	cub3d->screen.addr = mlx_get_data_addr(cub3d->screen.mlx_img, &cub3d->screen.bpp, &cub3d->screen.line_len, &cub3d->screen.endian);
+	cub3d->screen.addr = mlx_get_data_addr(cub3d->screen.mlx_img, \
+	&cub3d->screen.bpp, &cub3d->screen.line_len, &cub3d->screen.endian);
 	if (!cub3d->screen.addr)
 		ft_print_error(cub3d, ERROR_IMAGE);
 	cub3d->p1.pos_x = cub3d->pos.pos_x + 0.5;
