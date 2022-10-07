@@ -35,6 +35,25 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 		return ;
 }
 
+void	ft_draw_colors(t_cub3d *cub3d, t_img *img)
+{
+	int	i = 0;
+	while (i < cub3d->window.height / 2)
+	{
+		int j = 0;
+		while (j < cub3d->window.width)
+			draw_pixel(img, j++, i, cub3d->celling.trgb);
+		i++;
+	}
+	while (i < cub3d->window.height)
+	{
+		int j = 0;
+		while (j < cub3d->window.width)
+			draw_pixel(img, j++, i, cub3d->floor.trgb);
+		i++;
+	}
+}
+
 int	running(t_cub3d *cub3d)
 {
 	int	x;
@@ -43,6 +62,7 @@ int	running(t_cub3d *cub3d)
 	int	draw_end;
 
 	x = -1;
+	ft_draw_colors(cub3d, &(cub3d->screen));
 	while (++x < cub3d->window.width)
 	{
 		renew_player_value(cub3d, &(cub3d->p1), x);

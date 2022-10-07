@@ -3,8 +3,8 @@ EA ./image/wall.xpm
 SO          ./image/wall.xpm
         
 WE ./image/wall.xpm
-F  30       ,  100,20
-C 220, 100     , 30
+F  43       ,  143,29
+C  	231,        181,   233
 
 
 1111111111111111111111111111

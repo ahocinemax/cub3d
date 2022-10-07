@@ -78,11 +78,10 @@ t_error_code	ft_check_colors(t_cub3d *cub3d, char *str)
 		ft_skip_spaces(str, &i);
 		if (str[i] && str[i] != ',')
 			return (ft_print_error(cub3d, WRONG_SEPARATOR));
-	}	
-	return (cub3d->floor.trgb = 0 << 24 | cub3d->floor.red << 16 | \
-	cub3d->floor.green << 8 | cub3d->floor.blue, cub3d->celling.trgb = 0 << \
-	24 | cub3d->celling.red << 16 | \
-	cub3d->celling.green << 8 | cub3d->celling.blue, SUCCESS);
+	}
+	return (cub3d->floor.trgb = get_trgb(cub3d->floor.red, cub3d->floor.green, cub3d->floor.blue),
+	cub3d->celling.trgb = get_trgb(cub3d->celling.red, cub3d->celling.green, cub3d->celling.blue),
+	SUCCESS);
 }
 
 t_error_code	ft_check_identifier(t_cub3d *cub3d, char *s)

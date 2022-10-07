@@ -70,8 +70,8 @@ int	get_tex_rgb(char *addr, t_cub3d *cub3d, int add, int y)
 
 int	get_trgb(int r, int g, int b)
 {
-	return (((int)(r & 0xff) << 16) + ((int)(g & 0xff) << 8)
-		+ (int)(b & 0xff));
+	return (((int)(r & 0xff) << 16) + ((int)(g & 0xff) << 8) + \
+	(int)(b & 0xff));
 }
 
 void	draw_pixel(t_img *img, int x, int y, int color)
@@ -95,7 +95,6 @@ void	visual_wall(t_cub3d *cub3d, int x, int *y, int draw_end)
 		rgb[1] = get_tex_rgb(addr, cub3d, 1, *y);
 		rgb[2] = get_tex_rgb(addr, cub3d, 0, *y);
 		color = get_trgb(rgb[0], rgb[1], rgb[2]);
-		printf("color: %d\n", cub3d->celling.trgb);
 		draw_pixel((&cub3d->screen), x, *y, color);
 		(*y)++;
 	}
@@ -109,17 +108,7 @@ void	prepare_wall(t_cub3d *cub3d, int x, int draw_start, int draw_end)
 	wall_x(&(cub3d->p1));
 	if (cub3d->p1.check_pos == 'N' || cub3d->p1.check_pos == 'E')
 		x = cub3d->window.width - x - 1;
-	while (y < draw_end)
-	{
-		draw_pixel(&(cub3d->screen), x, y, cub3d->celling.trgb);
-		y++;
-	}
 	cub3d->p1.tex_start = draw_start;
 	visual_wall(cub3d, x, &y, draw_end);
-	while (y < cub3d->window.height)
-	{
-		draw_pixel(&(cub3d->screen), x, y, cub3d->floor.trgb);
-		y++;
-	}
 }
 //preparation_image floor + celling;
