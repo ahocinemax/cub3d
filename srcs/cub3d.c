@@ -24,11 +24,9 @@ t_error_code	ft_reopen(t_cub3d *cub3d)
 
 void	ft_parsing(char *argv, t_cub3d *cub3d)
 {
-	if (ft_check_file(argv, cub3d) != SUCCESS || ft_check_info(cub3d) != \
-	SUCCESS || ft_reopen(cub3d) != SUCCESS || ft_fill_info(cub3d) != SUCCESS)
+	if (ft_check_file(argv, cub3d) != SUCCESS || ft_check_info(cub3d) != SUCCESS || ft_reopen(cub3d) != SUCCESS || ft_fill_info(cub3d) != SUCCESS)
 		return ;
-	if (ft_reopen(cub3d) != SUCCESS || ft_check_map(cub3d) != SUCCESS || \
-	ft_reopen(cub3d) != SUCCESS)
+	if (ft_reopen(cub3d) != SUCCESS || ft_check_map(cub3d) != SUCCESS || ft_reopen(cub3d) != SUCCESS)
 		return ;
 	ft_fill_map(cub3d);
 	if (cub3d->exit_code != SUCCESS || ft_init_window(cub3d) != SUCCESS)
@@ -60,8 +58,7 @@ int	running(t_cub3d *cub3d)
 		prepare_wall(cub3d, x, draw_start, draw_end);
 		x++;
 	}
-	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
-	cub3d->screen.mlx_img, 0, 0);
+	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, cub3d->screen.mlx_img, 0, 0);
 	return (0);
 }
 
@@ -69,16 +66,16 @@ void	game_start(t_cub3d *cub3d)
 {
 	mlx_destroy_image(cub3d->mlx_ptr, cub3d->intro.img);
 	cub3d->step_of_game = 2;
-	cub3d->screen.mlx_img = mlx_new_image(cub3d->mlx_ptr, cub3d->window.width, \
-	cub3d->window.height);
+	wall_tex_init(cub3d);
+	cub3d->screen.mlx_img = mlx_new_image(cub3d->mlx_ptr, cub3d->window.width, cub3d->window.height);
 	if (!cub3d->screen.mlx_img)
 		ft_print_error(cub3d, ERROR_IMAGE);
-	cub3d->screen.addr = mlx_get_data_addr(cub3d->mlx_ptr, &cub3d->screen.bpp, \
-	&cub3d->screen.line_len, &cub3d->screen.endian);
+	cub3d->screen.addr = mlx_get_data_addr(cub3d->screen.mlx_img, &cub3d->screen.bpp, &cub3d->screen.line_len, &cub3d->screen.endian);
+	if (!cub3d->screen.addr)
+		ft_print_error(cub3d, ERROR_IMAGE);
 	cub3d->p1.pos_x = cub3d->pos.pos_x + 0.5;
 	cub3d->p1.pos_y = cub3d->pos.pos_y + 0.5;
 	set_player_view(cub3d, &(cub3d->p1));
-	mlx_hook(cub3d->window.win_ptr, 0, 1L << 0, &key_press, cub3d);
 	mlx_loop_hook(cub3d->mlx_ptr, &running, cub3d);
 	mlx_hook(cub3d->window.win_ptr, 17, 1L << 0, &ft_free_struct, cub3d);
 	mlx_loop(cub3d->mlx_ptr);
@@ -97,7 +94,6 @@ int	main(int argc, char *argv[], char **envp)
 	ft_parsing(*argv, &cub3d);
 	if (cub3d.exit_code != SUCCESS)
 		return (ft_free_struct(&cub3d));
-	wall_tex_init(&cub3d);
 	introduction_of_game(&cub3d);
 	return (ft_free_struct(&cub3d));
 }

@@ -15,6 +15,10 @@
 void	ft_init_texture_color(t_cub3d *cub3d)
 {
 	cub3d->no.path = NULL;
+	ft_init_img(&(cub3d->no.img));
+	ft_init_img(&(cub3d->so.img));
+	ft_init_img(&(cub3d->we.img));
+	ft_init_img(&(cub3d->ea.img));
 	cub3d->so.path = NULL;
 	cub3d->ea.path = NULL;
 	cub3d->we.path = NULL;

@@ -256,7 +256,7 @@ void			dda_perform2(t_player *p1);
 
 // drawing
 void			wall_x(t_player *p1);
-t_img			*prepare_wall(t_cub3d *cub3d, int x, int start, int end);
+void			prepare_wall(t_cub3d *cub3d, int x, int start, int end);
 t_error_code	wall_tex_init(t_cub3d *cub3d);
 
 // init_game

@@ -31,7 +31,7 @@ static void	ft_free_texture(t_cub3d *cub3d)
 	free(cub3d->so.path);
 	free(cub3d->ea.path);
 	free(cub3d->we.path);
-	if (cub3d->step_of_game >= 3)
+	if (cub3d->step_of_game >= 2)
 	{
 		if (cub3d->no.img.mlx_img)
 			mlx_destroy_image(cub3d->mlx_ptr, cub3d->no.img.mlx_img);
@@ -41,9 +41,8 @@ static void	ft_free_texture(t_cub3d *cub3d)
 			mlx_destroy_image(cub3d->mlx_ptr, cub3d->we.img.mlx_img);
 		if (cub3d->ea.img.mlx_img)
 			mlx_destroy_image(cub3d->mlx_ptr, cub3d->ea.img.mlx_img);
-	}
-	else if (cub3d->step_of_game >= 2 && cub3d->screen.mlx_img)
 		mlx_destroy_image(cub3d->mlx_ptr, cub3d->screen.mlx_img);
+	}
 }
 
 int	ft_free_struct(t_cub3d *cub3d)

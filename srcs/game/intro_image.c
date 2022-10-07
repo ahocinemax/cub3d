@@ -69,7 +69,7 @@ int	key_press(int key, t_cub3d *cub3d)
 void	introduction_of_game(t_cub3d *cub3d)
 {
 	mlx_key_hook(cub3d->window.win_ptr, &key_press, cub3d);
-	mlx_hook(cub3d->window.win_ptr, 17, 1L << 0, &ft_free_struct, cub3d);
+	mlx_hook(cub3d->window.win_ptr, 17, 1L << 2, &ft_free_struct, cub3d);
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
 	cub3d->intro.img, 0, 0);
 	mlx_loop(cub3d->mlx_ptr);

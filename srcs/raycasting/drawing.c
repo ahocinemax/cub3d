@@ -35,7 +35,7 @@ t_error_code	wall_tex_init(t_cub3d *cub3d)
 	if (cub3d->ea.path)
 		put_img_wall_to_mlx(cub3d, cub3d->ea.path, &(cub3d->ea.img));
 	if (cub3d->we.path)
-		put_img_wall_to_mlx(cub3d, cub3d->we.path, &(cub3d->ea.img));
+		put_img_wall_to_mlx(cub3d, cub3d->we.path, &(cub3d->we.img));
 	else
 		return (ft_print_error(cub3d, ERROR_IMAGE));
 	return (SUCCESS);
@@ -78,10 +78,12 @@ int	get_trgb(int r, int g, int b)
 
 void	draw_pixel(t_img *img, int x, int y, int color)
 {
-	void	*pixel;
+	char	*pixel;
 
+	// printf("len addr: %d\n", ft_strlen(img->addr));
 	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	*(unsigned int *)pixel = color;
+	// printf("size_line: %d, x: %d, y: %d\n", img->line_len, x, y);
+	*((unsigned int *)pixel) = color;
 }
 
 void	visual_wall(t_cub3d *cub3d, int x, int *y, int draw_end)
@@ -89,7 +91,6 @@ void	visual_wall(t_cub3d *cub3d, int x, int *y, int draw_end)
 	int color;
 	int rgb[3];
 	char *addr;
-	(void)x;
 
 	addr = set_direction_wall(cub3d, &(cub3d->p1));
 	while (*y < draw_end)
@@ -103,28 +104,25 @@ void	visual_wall(t_cub3d *cub3d, int x, int *y, int draw_end)
 	}
 }
 
-t_img	*prepare_wall(t_cub3d *cub3d, int x, int draw_start, int draw_end)
+void	prepare_wall(t_cub3d *cub3d, int x, int draw_start, int draw_end)
 {
 	int	y;
-	t_img *img;
 
-	img = NULL;
 	y = 0;
 	wall_x(&(cub3d->p1));
 	if (cub3d->p1.check_pos == 'N' || cub3d->p1.check_pos == 'E')
 		x = cub3d->window.width - x - 1;
-	while (y < draw_start)
+	while (y < 820)
 	{
-		draw_pixel(&cub3d->screen, x, y, cub3d->celling.trgb);
+		draw_pixel(&(cub3d->screen), x, y, cub3d->celling.trgb);
 		y++;
 	}
 	cub3d->p1.tex_start = draw_start;
 	visual_wall(cub3d,x, &y, draw_end);
 	while (y < cub3d->window.height)
 	{
-		draw_pixel((&cub3d->screen), x, y, cub3d->celling.trgb);
+		draw_pixel(&(cub3d->screen), x, y, cub3d->celling.trgb);
 		y++;
 	}
-	return (img);
 }
-//preparetion_image floor + celling;
+//preparation_image floor + celling;

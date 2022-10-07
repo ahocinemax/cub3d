@@ -1,8 +1,8 @@
-NO ./image/Wall1.xpm
-EA ./image/Wall1.xpm
-SO          ./image/Wall1.xpm
+NO ./image/wall.xpm
+EA ./image/wall.xpm
+SO          ./image/wall.xpm
         
-WE ./image/Wall1.xpm
+WE ./image/wall.xpm
 F  30       ,  100,20
 C 220, 100     , 30
 
