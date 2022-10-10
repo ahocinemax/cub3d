@@ -73,7 +73,8 @@ t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code)
 		ft_putstr_fd("system: no enought memory.\n", _STD_ERR);
 	else
 		ft_print_error2(error_code);
-	cub3d->exit_code = error_code;
+	if (cub3d)
+		cub3d->exit_code = error_code;
 	return (ft_putstr_fd("exiting...\n", _STD_ERR), error_code);
 }
 
