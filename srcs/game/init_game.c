@@ -22,6 +22,8 @@ void	renew_player_value(t_cub3d *cub3d, t_player *p1, int x)
 	p1->delta_dist_x = fabs(1 / p1->raydir_x);
 	p1->delta_dist_y = fabs(1 / p1->raydir_y);
 	p1->hit = 0;
+	p1->tex_start = 0;
+	p1->wall_x = 0;
 	p1->line_height = 0;
 }
 

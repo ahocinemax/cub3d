@@ -14,8 +14,8 @@
 
 void	put_img_wall_to_mlx(t_cub3d *cub3d, char *path, t_img *img)
 {
-	img->width = 150;
-	img->height = 150;
+	//img->width = 150;
+	//img->height = 150;
 	img->mlx_img = mlx_xpm_file_to_image(cub3d->mlx_ptr, path, \
 	&(img->width), &(img->height));
 	if (!img->mlx_img)
@@ -105,10 +105,22 @@ void	prepare_wall(t_cub3d *cub3d, int x, int draw_start, int draw_end)
 	int	y;
 
 	y = 0;
-	wall_x(&(cub3d->p1));
-	if (cub3d->p1.check_pos == 'N' || cub3d->p1.check_pos == 'E')
+	if (cub3d->pos.pos == 'N' || \
+	cub3d->pos.pos == 'E')
 		x = cub3d->window.width - x - 1;
+	while (y < draw_start)
+	{
+		draw_pixel(&(cub3d->screen), x, y, \
+		cub3d->celling.trgb);
+		y++;
+	}
 	cub3d->p1.tex_start = draw_start;
 	visual_wall(cub3d, x, &y, draw_end);
+	while (y < cub3d->window.height)
+	{
+		draw_pixel(&(cub3d->screen), x, y, \
+		cub3d->floor.trgb);
+		y++;
+	}
 }
 //preparation_image floor + celling;

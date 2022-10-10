@@ -62,7 +62,7 @@ int	running(t_cub3d *cub3d)
 	int	draw_end;
 
 	x = -1;
-	ft_draw_colors(cub3d, &(cub3d->screen));
+	//ft_draw_colors(cub3d, &(cub3d->screen));
 	while (++x < cub3d->window.width)
 	{
 		renew_player_value(cub3d, &(cub3d->p1), x);
