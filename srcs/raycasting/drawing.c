@@ -46,7 +46,7 @@ void	wall_x(t_player *p1)
 		p1->wall_x = p1->pos_y + p1->perp_wall_dist * p1->raydir_y;
 	else
 		p1->wall_x = p1->pos_x + p1->perp_wall_dist * p1->raydir_x;
-	p1->wall_x = floor(p1->wall_x);
+	p1->wall_x -= floor(p1->wall_x);
 }
 
 char	*set_direction_wall(t_cub3d *cub3d, t_player *p1)
@@ -105,6 +105,7 @@ void	prepare_wall(t_cub3d *cub3d, int x, int draw_start, int draw_end)
 	int	y;
 
 	y = 0;
+	wall_x((&cub3d->p1));
 	if (cub3d->pos.pos == 'N' || \
 	cub3d->pos.pos == 'E')
 		x = cub3d->window.width - x - 1;
