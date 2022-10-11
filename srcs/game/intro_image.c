@@ -53,7 +53,6 @@ int	key_press_other(int key, t_cub3d *cub3d)
 
 int	key_press(int key, t_cub3d *cub3d)
 {
-	static int counter = 1;
 	if (key == KEY_W && cub3d->step_of_game >= 2)
 		w_key(cub3d);
 	else if (key == KEY_S && cub3d->step_of_game >= 2)
@@ -62,13 +61,13 @@ int	key_press(int key, t_cub3d *cub3d)
 		a_key(cub3d);
 	else if (key == KEY_D && cub3d->step_of_game >= 2)
 		d_key(cub3d);
-	return (counter++, key_press_other(key, cub3d));
+	return (key_press_other(key, cub3d));
 }
 
 void	introduction_of_game(t_cub3d *cub3d)
 {
 	mlx_hook(cub3d->window.win_ptr, 2, 1L << 0, &key_press, cub3d);
-	// mlx_hook(cub3d->window.win_ptr, 3, 1L << 0, &key_release, cub3d);
+	mlx_hook(cub3d->window.win_ptr, 3, 1L << 0, &key_release, cub3d);
 	mlx_hook(cub3d->window.win_ptr, 17, 1L << 2, &ft_free_struct, cub3d);
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
 	cub3d->intro.img, 0, 0);

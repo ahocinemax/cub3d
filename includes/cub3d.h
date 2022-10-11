@@ -258,11 +258,16 @@ void			dda_perform2(t_player *p1);
 
 // drawing
 void			prepare_wall(t_cub3d *cub3d, int x, int start, int end);
-void			draw_pixel(t_img *img, int x, int y, int color);
 void			wall_tex_init(t_cub3d *cub3d);
-int				get_trgb(int r, int g, int b);
 void			wall_x(t_player *p1);
+char			*set_direction_wall(t_cub3d *cub3d, t_player *p1);
+void			visual_wall(t_cub3d *cub3d, int x, int *y, int draw_end);
 
+//colors_and_images
+int				get_tex_rgb(char *addr, t_cub3d *cub3d, int add, int y);
+int				get_trgb(int r, int g, int b);
+void			draw_pixel(t_img *img, int x, int y, int color);
+void			put_img_wall_to_mlx(t_cub3d *cub3d, char *path, t_img *img);
 // init_game
 void			renew_player_value(t_cub3d *cub3d, t_player *p1, int x);
 void			step_player(t_player *p1);

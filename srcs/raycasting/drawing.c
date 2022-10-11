@@ -12,20 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-void	put_img_wall_to_mlx(t_cub3d *cub3d, char *path, t_img *img)
-{
-	//img->width = 150;
-	//img->height = 150;
-	img->mlx_img = mlx_xpm_file_to_image(cub3d->mlx_ptr, path, \
-	&(img->width), &(img->height));
-	if (!img->mlx_img)
-		ft_print_error_exit(cub3d, ERROR_IMAGE);
-	img->addr = mlx_get_data_addr(img->mlx_img, &(img->bpp), \
-	&(img->line_len), &(img->endian));
-	if (img->mlx_img == NULL || img->addr == NULL)
-		ft_print_error_exit(cub3d, ERROR_MLX);
-}
-
 void	wall_tex_init(t_cub3d *cub3d)
 {
 	if (cub3d->no.path)
@@ -59,27 +45,6 @@ char	*set_direction_wall(t_cub3d *cub3d, t_player *p1)
 		return (cub3d->we.img.addr);
 	else
 		return (cub3d->ea.img.addr);
-}
-
-int	get_tex_rgb(char *addr, t_cub3d *cub3d, int add, int y)
-{
-	return (addr[(int)(cub3d->p1.wall_x * TEX_W) * (cub3d->no.img.bpp >> 3) + \
-	add + (int)((y - cub3d->p1.tex_start * 1.0) / cub3d->p1.line_height * \
-	TEX_H) *cub3d->no.img.line_len]);
-}
-
-int	get_trgb(int r, int g, int b)
-{
-	return (((int)(r & 0xff) << 16) + ((int)(g & 0xff) << 8) + \
-	(int)(b & 0xff));
-}
-
-void	draw_pixel(t_img *img, int x, int y, int color)
-{
-	char	*pixel;
-
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	*((unsigned int *)pixel) = color;
 }
 
 void	visual_wall(t_cub3d *cub3d, int x, int *y, int draw_end)
@@ -124,4 +89,3 @@ void	prepare_wall(t_cub3d *cub3d, int x, int draw_start, int draw_end)
 		y++;
 	}
 }
-//preparation_image floor + celling;

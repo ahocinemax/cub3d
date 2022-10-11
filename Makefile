@@ -27,6 +27,7 @@ SRC_FILE	=	cub3d.c							\
 				raycasting/init_ray.c			\
 				raycasting/raycasting.c			\
 				raycasting/drawing.c			\
+				raycasting/color_and_image.c	\
 				game/init_game.c				\
 				game/intro_image.c				\
 				game/key_press_adsw.c			\
