@@ -14,21 +14,24 @@
 
 t_error_code	ft_check_path(t_cub3d *cub3d, char *str)
 {
-	int	i;
+	char	*tmp;
+	int		i;
 
 	if (!str)
 		return (SUCCESS);
 	i = 1;
-	if (ft_isalpha(str[i]))
+	tmp = ft_strtrim(str, " \t");
+	if (ft_isalpha(tmp[i]))
 		i++;
-	ft_skip_spaces(str, &i);
-	while (str[i] && str[i] != ' ')
+	ft_skip_spaces(tmp, &i);
+	while (tmp[i] && tmp[i] != ' ')
 		i++;
-	if (ft_strncmp(str + i - 4, ".xpm", 4))
+	if (ft_strncmp(tmp + i - 4, ".xpm", 4))
 		return (ft_print_error(cub3d, WRONG_EXTENTION2));
-	ft_skip_spaces(str, &i);
-	if (str[i] != 0)
+	ft_skip_spaces(tmp, &i);
+	if (tmp[i] != 0)
 		return (ft_print_error(cub3d, INVALID_DESCRIPTOR));
+	free(tmp);
 	return (SUCCESS);
 }
 

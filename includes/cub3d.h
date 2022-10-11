@@ -36,6 +36,7 @@ typedef enum e_error_code	t_error_code;
 typedef enum e_direction	t_direction;
 typedef struct s_texture	t_texture;
 typedef struct s_window		t_window;
+typedef struct s_minimap	t_minimap;
 typedef struct s_player		t_player;
 typedef struct s_cub3d		t_cub3d;
 typedef struct s_color		t_color;
@@ -155,11 +156,23 @@ struct s_color
 	int				nb;
 };
 
+struct s_minimap
+{
+	int				size_case_x;
+	int				size_case_y;
+	int				pixel_x;
+	int				pixel_y;
+	int				map_x;
+	int				map_y;
+	int				color;
+	t_img			img;
+};
+
 struct s_map
 {
+	char			**map;
 	int				large;
 	int				longu;
-	char			**map;
 };
 
 struct s_texture
@@ -188,6 +201,7 @@ struct s_cub3d
 	int				exit_code;
 	t_map			map;
 	t_img			screen;
+	t_minimap		minimap;
 	int				fd;
 };
 
@@ -284,5 +298,8 @@ void			d_key(t_cub3d *cub3d);
 void			a_key(t_cub3d *cub3d);
 void			w_key(t_cub3d *cub3d);
 void			s_key(t_cub3d *cub3d);
+
+// minimap
+void			ft_minimap(t_cub3d *cub3d, t_minimap *minimap);
 
 #endif

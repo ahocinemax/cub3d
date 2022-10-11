@@ -57,8 +57,10 @@ int	running(t_cub3d *cub3d)
 			draw_end = cub3d->window.height - 1;
 		prepare_wall(cub3d, x, draw_start, draw_end);
 	}
-	return (mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
-	cub3d->screen.mlx_img, 0, 0));
+	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
+	cub3d->screen.mlx_img, 0, 0);
+	ft_minimap(cub3d, &(cub3d->minimap));
+	return (0);
 }
 
 void	game_start(t_cub3d *cub3d)
@@ -73,6 +75,15 @@ void	game_start(t_cub3d *cub3d)
 	&cub3d->screen.bpp, &cub3d->screen.line_len, &cub3d->screen.endian);
 	if (!cub3d->screen.addr)
 		ft_print_error_exit(cub3d, ERROR_IMAGE);
+	cub3d->minimap.img.width = cub3d->window.width / 5;
+	cub3d->minimap.img.height = cub3d->window.height / 5;
+	cub3d->minimap.img.mlx_img = mlx_new_image(cub3d->mlx_ptr, \
+	cub3d->minimap.img.width, cub3d->minimap.img.height);
+	if (!cub3d->minimap.img.mlx_img)
+		return (ft_print_error_exit(cub3d, ERROR_IMAGE));
+	cub3d->minimap.img.addr = mlx_get_data_addr(cub3d->minimap.img.mlx_img, \
+	&(cub3d->minimap.img.bpp), &(cub3d->minimap.img.line_len), \
+	&(cub3d->minimap.img.endian));
 	cub3d->p1.pos_x = cub3d->pos.pos_x + 0.5;
 	cub3d->p1.pos_y = cub3d->pos.pos_y + 0.5;
 	set_player_view(cub3d, &(cub3d->p1));

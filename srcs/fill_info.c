@@ -33,7 +33,7 @@ t_error_code	parse_txt(t_cub3d *cub3d, t_texture *txt, char *line)
 	if (line[i] && ft_isalpha(*line))
 		i++;
 	ft_skip_spaces(line, &i);
-	txt->path = ft_strdup(line + i);
+	txt->path = ft_strtrim(line + i, " \t");
 	return (SUCCESS);
 }
 
