@@ -123,7 +123,7 @@ struct s_player
 	double			old_plane_x;
 	double			plane_y;		// vecteur du plan (commence à 0.66 pour N, -0.66 pour S, 0 sinon)
 	double			side_dist_x;	// distance que le rayon parcours jusqu'au premier point d'intersection vertical (=un coté x)
-	double			side_dist_y;	// distance que le rayon parcours jusqu'au premier point d'intersection horizontal (= un coté y)
+	double			side_dist_y;	// distance que le rayon parcours jusqu'au premier point d'intersection horizontal (=un coté y)
 	double			delta_dist_x;	// distance que rayon parcours entre chaque point d'intersection vertical
 	double			delta_dist_y;	// distance que le rayon parcours entre chaque point d'intersection horizontal
 	double			perp_wall_dist;	// distance du joueur au mur
