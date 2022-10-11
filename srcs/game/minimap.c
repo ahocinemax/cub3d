@@ -17,10 +17,10 @@ char ***map)
 {
 	minimap->pixel_y = 0;
 	minimap->map_y = 0;
-	minimap->pixel_x = 0;
+	minimap->pxl_x = 0;
 	minimap->map_x = 0;
-	minimap->size_case_x = img.width / (cub3d->map.large);
-	minimap->size_case_y = img.height / (cub3d->map.longu);
+	minimap->size_case_x = img.width / cub3d->map.large;
+	minimap->size_case_y = img.height / cub3d->map.longu;
 	minimap->color = get_trgb(25, 155, 60);
 	*map = cub3d->map.map;
 }
@@ -32,8 +32,8 @@ void	ft_put_player(t_cub3d *cub3d, t_minimap *minimap)
 	int	i;
 	int	j;
 
-	pixel_x = cub3d->p1.pos_x * minimap->size_case_x;
-	pixel_y = cub3d->p1.pos_y * minimap->size_case_y;
+	pixel_x = (int)cub3d->p1.pos_x * minimap->size_case_x;
+	pixel_y = (int)cub3d->p1.pos_y * minimap->size_case_y;
 	i = minimap->size_case_x / 4;
 	while (i < (minimap->size_case_x * 3) / 4)
 	{
@@ -48,31 +48,31 @@ void	ft_put_player(t_cub3d *cub3d, t_minimap *minimap)
 	}
 }
 
-void	ft_minimap(t_cub3d *cub3d, t_minimap *minimap)
+void	ft_minimap(t_cub3d *cub3d, t_minimap *mini)
 {
 	char	**map;
 
-	ft_init_minimap(cub3d, minimap, minimap->img, &map);
-	while (minimap->pixel_y < minimap->img.height && minimap->map_y < cub3d->map.longu)
+	ft_init_minimap(cub3d, mini, mini->img, &map);
+	while (mini->pixel_y < mini->img.height && mini->map_y < cub3d->map.longu)
 	{
-		minimap->pixel_x = 0;
-		minimap->map_x = 0;
-		while (minimap->pixel_x < minimap->img.width && minimap->map_x < cub3d->map.large)
+		mini->pxl_x = 0;
+		mini->map_x = 0;
+		while (mini->pxl_x < mini->img.width && mini->map_x < cub3d->map.large)
 		{
-			if (map[minimap->map_y][minimap->map_x] != '1')
+			if (map[mini->map_y][mini->map_x] != '1')
 			{
-				draw_pixel(&(minimap->img), minimap->pixel_x, \
-				minimap->pixel_y, minimap->color);
+				draw_pixel(&(mini->img), mini->pxl_x, \
+				mini->pixel_y, mini->color);
 			}
-			minimap->pixel_x++;
-			if (minimap->pixel_x % minimap->size_case_x == 0)
-				minimap->map_x++;
+			mini->pxl_x++;
+			if (mini->pxl_x % mini->size_case_x == 0)
+				mini->map_x++;
 		}
-		minimap->pixel_y++;
-		if (minimap->pixel_y % minimap->size_case_y == 0)
-			minimap->map_y++;
+		mini->pixel_y++;
+		if (mini->pixel_y % mini->size_case_y == 0)
+			mini->map_y++;
 	}
-	ft_put_player(cub3d, minimap);
+	ft_put_player(cub3d, mini);
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
-	minimap->img.mlx_img, 0, 0);
+	mini->img.mlx_img, 0, 0);
 }

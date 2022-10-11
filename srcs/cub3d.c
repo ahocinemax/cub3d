@@ -33,6 +33,8 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 	ft_fill_map(cub3d);
 	if (cub3d->exit_code != SUCCESS || ft_init_window(cub3d) != SUCCESS)
 		return ;
+	cub3d->minimap.img.height = cub3d->window.height / 5;
+	cub3d->minimap.img.width = cub3d->window.width / 5;
 }
 
 int	running(t_cub3d *cub3d)
@@ -75,8 +77,6 @@ void	game_start(t_cub3d *cub3d)
 	&cub3d->screen.bpp, &cub3d->screen.line_len, &cub3d->screen.endian);
 	if (!cub3d->screen.addr)
 		ft_print_error_exit(cub3d, ERROR_IMAGE);
-	cub3d->minimap.img.width = cub3d->window.width / 5;
-	cub3d->minimap.img.height = cub3d->window.height / 5;
 	cub3d->minimap.img.mlx_img = mlx_new_image(cub3d->mlx_ptr, \
 	cub3d->minimap.img.width, cub3d->minimap.img.height);
 	if (!cub3d->minimap.img.mlx_img)

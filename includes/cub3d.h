@@ -107,31 +107,31 @@ struct s_window
 
 struct s_player
 {
-	double			pos_x;			// position x du joueur
-	double			pos_y;			// position y du joueur
-	double			dir_x;			// vecteur de direction (commence à -1 pour N, 1 pour S, 0 sinon)
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
 	double			old_dir_x;
-	double			dir_y;			// vecteur de direction (commence à -1 pour W, 1 pour E, 0 sinon)
-	double			raydir_x;		// calcul de direction x du rayon
-	double			raydir_y;		// calcul de direction y du rayon
-	double			camera_x;		// point x sur la plan camera : Gauche ecran = -1, milieu = 0, droite = 1
-	int				map_x;			// coordonée x du carré dans lequel est pos
-	int				map_y;			// coordonnée y du carré dans lequel est pos
-	int				step_x;			// -1 si doit sauter un carre dans direction x negative, 1 dans la direction x positive
-	int				step_y;			// -1 si doit sauter un carre dans la direction y negative, 1 dans la direction y positive
-	double			plane_x;		// vecteur du plan (commence à 0.66 pour E, -0.66 pour W, 0 sinon)
+	double			dir_y;
+	double			raydir_x;
+	double			raydir_y;
+	double			camera_x;
+	int				map_x;
+	int				map_y;
+	int				step_x;
+	int				step_y;
+	double			plane_x;
 	double			old_plane_x;
-	double			plane_y;		// vecteur du plan (commence à 0.66 pour N, -0.66 pour S, 0 sinon)
-	double			side_dist_x;	// distance que le rayon parcours jusqu'au premier point d'intersection vertical (=un coté x)
-	double			side_dist_y;	// distance que le rayon parcours jusqu'au premier point d'intersection horizontal (=un coté y)
-	double			delta_dist_x;	// distance que rayon parcours entre chaque point d'intersection vertical
-	double			delta_dist_y;	// distance que le rayon parcours entre chaque point d'intersection horizontal
-	double			perp_wall_dist;	// distance du joueur au mur
-	int				hit;			// 1 si un mur a ete touche, 0 sinon
-	int				side;			// 0 si c'est un cote x qui est touche (vertical), 1 si un cote y (horizontal)
-	int				line_height;	// hauteur de la ligne a dessiner
-	double			wall_x;			// valeur où le mur a été touché : coordonnée y si side == 0, coordonnée x si side == 1
-	int				tex_start;		// coordonnée de départ
+	double			plane_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				hit;
+	int				side;
+	int				line_height;
+	double			wall_x;
+	int				tex_start;
 	double			time;
 	double			old_time;
 	int				check_pos;
@@ -160,7 +160,7 @@ struct s_minimap
 {
 	int				size_case_x;
 	int				size_case_y;
-	int				pixel_x;
+	int				pxl_x;
 	int				pixel_y;
 	int				map_x;
 	int				map_y;
@@ -300,6 +300,9 @@ void			w_key(t_cub3d *cub3d);
 void			s_key(t_cub3d *cub3d);
 
 // minimap
+void			ft_init_minimap(t_cub3d *cub3, t_minimap *minimap, t_img img, \
+								char ***map);
+void			ft_put_player(t_cub3d *cub3d, t_minimap *minimap);
 void			ft_minimap(t_cub3d *cub3d, t_minimap *minimap);
 
 #endif
