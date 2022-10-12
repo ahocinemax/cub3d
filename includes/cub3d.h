@@ -249,6 +249,7 @@ void			ft_init_img(t_img *img);
 void			ft_init_map(t_map *map);
 
 // struct init2
+void			ft_init_image(t_cub3d *cub3d, t_img *img);
 void			init_struct_pos(t_pos *pos);
 void			init_player(t_player *p1);
 void			init_picture(t_pic *pic);

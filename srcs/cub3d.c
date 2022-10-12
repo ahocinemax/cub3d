@@ -73,24 +73,9 @@ void	game_start(t_cub3d *cub3d)
 {
 	mlx_destroy_image(cub3d->mlx_ptr, cub3d->intro.img);
 	cub3d->step_of_game = 2;
-	cub3d->screen.mlx_img = mlx_new_image(cub3d->mlx_ptr, \
-	cub3d->window.width, cub3d->window.height);
-	if (!cub3d->screen.mlx_img)
-		ft_print_error_exit(cub3d, ERROR_IMAGE);
-	cub3d->screen.addr = mlx_get_data_addr(cub3d->screen.mlx_img, \
-	&cub3d->screen.bpp, &cub3d->screen.line_len, &cub3d->screen.endian);
-	if (!cub3d->screen.addr)
-		ft_print_error_exit(cub3d, ERROR_IMAGE);
+	ft_init_image(cub3d, &(cub3d->screen));
 	if (BONUS != 0)
-	{
-		cub3d->minimap.img.mlx_img = mlx_new_image(cub3d->mlx_ptr, \
-		cub3d->minimap.img.width, cub3d->minimap.img.height);
-		if (!cub3d->minimap.img.mlx_img)
-			return (ft_print_error_exit(cub3d, ERROR_IMAGE));
-		cub3d->minimap.img.addr = mlx_get_data_addr(cub3d->minimap.img.mlx_img, \
-		&(cub3d->minimap.img.bpp), &(cub3d->minimap.img.line_len), \
-		&(cub3d->minimap.img.endian));
-	}
+		ft_init_image(cub3d, &(cub3d->minimap.img));
 	cub3d->p1.pos_x = cub3d->pos.pos_x + 0.5;
 	cub3d->p1.pos_y = cub3d->pos.pos_y + 0.5;
 	set_player_view(cub3d, &(cub3d->p1));
