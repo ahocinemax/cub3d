@@ -1,7 +1,7 @@
-NO ./image/Wall1.xpm
-EA ./image/Wall2.xpm
+NO ./image/door.xpm
+EA ./image/door.xpm
 SO ./image/door.xpm
-WE ./image/kitchen.xpm
+WE ./image/door.xpm
 F  43, 143, 29
 C  231, 181, 233
 1111111111111111

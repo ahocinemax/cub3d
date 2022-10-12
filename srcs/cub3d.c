@@ -104,8 +104,6 @@ int	main(int argc, char *argv[], char **envp)
 {
 	t_cub3d			cub3d;
 
-	ft_print_tab(argv, _STD_OUT);
-	printf("BONUS: %d\n", BONUS);
 	if (!*envp)
 		return (ft_print_error(NULL, NO_ENV));
 	if (argc != 2)
