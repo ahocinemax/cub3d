@@ -33,20 +33,18 @@ SRC_FILE	=	cub3d.c							\
 				game/init_game.c				\
 				game/intro_image.c				\
 				game/key_press_adsw.c			\
-				game/key_press_rotate.c
-
-BONUS_FILE	=	game/minimap.c
+				game/key_press_rotate.c			\
+				game/minimap.c
 
 #------------------------------------#
 #               OBJECTS              #
 #------------------------------------#
 
-OBJS		=	$(addprefix $(OBJ_DIR), $(OBJ))
-OBJ			=	$(SRC_FILE:.c=.o)
 OBJ_DIR		=	obj/
 
-OBJS_BONUS	=	$(addprefix $(OBJ_DIR), $(OBJ_BONUS))
-OBJ_BONUS	=	$(BONUS_FILE:.c=.o)
+OBJS		=	$(addprefix $(OBJ_DIR), $(OBJ))
+OBJ			=	$(SRC_FILE:.c=.o)
+
 
 #------------------------------------#
 #              INCLUDES              #
@@ -68,7 +66,7 @@ LIBMLX_A	=	libmlx.a
 #               COLORS               #
 #------------------------------------#
 
-END		= "\033[0m"
+END			= "\033[0m"
 GREEN		= "\033[32m"
 YELLOW		= "\033[33m"
 GRAY		= "\033[2;37m"
@@ -87,27 +85,17 @@ $(NAME): $(OBJS)
 	make -C $(MLX_DIR)
 	@echo $(CURSIVE)$(GRAY) "     - Making object files..." $(END)
 	@echo $(CURSIVE)$(GRAY) "     - Compiling $(NAME)..." $(END)
-	$(CC) $(FLAGS) $(MDTORY_FLAG) $(OBJS) $(LIBFT) $(LIBMLX) $(INCLUDE)  -o $(NAME)
+	$(CC) $(BONUS_FLAG) $(FLAGS) $(OBJS) $(LIBFT) $(LIBMLX) $(INCLUDE)  -o $(NAME)
 	@echo $(GREEN)"- Project compiled -"$(END)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
-	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/raycasting/ $(OBJ_DIR)/game/
-	$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
-
-bonus: $(OBJS) $(OBJS_BONUS)
-	@echo $(CURSIVE)$(GREEN) "     ~ Making $(LIB_DIR)..." $(END)
-	make -C $(LIB_DIR)
-	@echo $(CURSIVE)$(GREEN) "     ~ Making $(MLX_DIR)..." $(END)
-	make -C $(MLX_DIR)
-	@echo $(CURSIVE)$(GRAY) "     - Making object files..." $(END)
-	@echo $(CURSIVE)$(GRAY) "     - Compiling $(NAME)..." $(END)
-	$(CC) $(FLAGS) $(BONUS_FLAG) $(OBJS) $(OBJS_BONUS) $(LIBFT) $(LIBMLX) $(INCLUDE)  -o $(NAME)
-	@echo $(GREEN)"- Project compiled -"$(END)
+	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)raycasting $(OBJ_DIR)game
+	$(CC) $(BONUS_FLAG) $(FLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
 	@echo $(CURSIVE)$(GRAY) "     - Removing object files..." $(END)
 	make -C $(LIB_DIR) clean
-	# make -C $(MLX_DIR) clean
+	make -C $(MLX_DIR) clean
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
