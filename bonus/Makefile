@@ -2,7 +2,7 @@
 #             COMPILATION            #
 #------------------------------------#
 
-NAME		= cub3D
+NAME		= cub3D_bonus
 
 FLAGS		= -Wall -Wextra -Werror -g3
 INCLUDE		= -I $(HEAD_DIR) -lXext -lX11 -lm
@@ -14,24 +14,25 @@ CC			= gcc
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILE))
 SRC_DIR		=	srcs/
-SRC_FILE	=	cub3d.c							\
-				parsing/struct_init.c			\
-				parsing/struct_init2.c			\
-				parsing/struct_free.c			\
-				parsing/parsing_utils.c			\
-				parsing/checker_info.c			\
-				parsing/checker_map.c			\
-				parsing/errors.c				\
-				parsing/fill_info.c				\
-				parsing/fill_map.c				\
-				raycasting/init_ray.c			\
-				raycasting/raycasting.c			\
-				raycasting/drawing.c			\
-				raycasting/color_and_image.c	\
-				game/init_game.c				\
-				game/intro_image.c				\
-				game/key_press_adsw.c			\
-				game/key_press_rotate.c
+SRC_FILE	=	cub3d_bonus.c						\
+				parsing/struct_init_bonus.c			\
+				parsing/struct_init2_bonus.c		\
+				parsing/struct_free_bonus.c			\
+				parsing/parsing_utils_bonus.c		\
+				parsing/checker_info_bonus.c		\
+				parsing/checker_map_bonus.c			\
+				parsing/errors_bonus.c				\
+				parsing/fill_info_bonus.c			\
+				parsing/fill_map_bonus.c			\
+				raycasting/init_ray_bonus.c			\
+				raycasting/raycasting_bonus.c		\
+				raycasting/drawing_bonus.c			\
+				raycasting/color_and_image_bonus.c	\
+				game/init_game_bonus.c				\
+				game/intro_image_bonus.c			\
+				game/key_press_adsw_bonus.c			\
+				game/key_press_rotate_bonus.c		\
+				game/minimap_bonus.c
 
 #------------------------------------#
 #               OBJECTS              #
@@ -48,7 +49,7 @@ OBJ_DIR		=	obj/
 
 HEADER		= $(addprefix $(HEAD_DIR), $(HEAD_FILE))
 HEAD_DIR	= includes/
-HEAD_FILE	= cub3d.h
+HEAD_FILE	= cub3d_bonus.h
 
 LIBFT		= $(addprefix $(LIB_DIR), $(LIBFT_A))
 LIB_DIR		= libft/
@@ -73,6 +74,8 @@ CURSIVE		= "\033[3m"
 #------------------------------------#
 
 all: $(NAME)
+
+bonus: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo $(CURSIVE)$(GREEN) "     ~ Making $(LIB_DIR)..." $(END)

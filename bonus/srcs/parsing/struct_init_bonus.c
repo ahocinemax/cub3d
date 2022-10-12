@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 void	ft_init_texture_color(t_cub3d *cub3d)
 {
@@ -76,8 +76,7 @@ t_error_code	ft_init_struct(t_cub3d *cub3d)
 	ft_init_texture_color(cub3d);
 	ft_init_map(&(cub3d->map));
 	ft_init_img(&(cub3d->screen));
-	if (BONUS != 0)
-		ft_init_img(&(cub3d->minimap.img));
+	ft_init_img(&(cub3d->minimap.img));
 	init_player(&(cub3d->p1));
 	init_picture(&(cub3d->intro));
 	init_struct_pos(&(cub3d->pos));

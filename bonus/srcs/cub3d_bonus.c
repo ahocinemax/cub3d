@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 t_error_code	ft_reopen(t_cub3d *cub3d)
 {
@@ -33,6 +33,8 @@ void	ft_parsing(char *argv, t_cub3d *cub3d)
 	ft_fill_map(cub3d);
 	if (cub3d->exit_code != SUCCESS || ft_init_window(cub3d) != SUCCESS)
 		return ;
+	cub3d->minimap.img.height = cub3d->window.height / 5;
+	cub3d->minimap.img.width = cub3d->window.width / 5;
 }
 
 int	running(t_cub3d *cub3d)
@@ -59,6 +61,7 @@ int	running(t_cub3d *cub3d)
 	}
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->window.win_ptr, \
 	cub3d->screen.mlx_img, 0, 0);
+	ft_minimap(cub3d, &(cub3d->minimap));
 	return (0);
 }
 
@@ -66,7 +69,8 @@ void	game_start(t_cub3d *cub3d)
 {
 	mlx_destroy_image(cub3d->mlx_ptr, cub3d->intro.img);
 	cub3d->step_of_game = 2;
-	ft_init_image(cub3d, &(cub3d->screen));
+	ft_init_image(cub3d, &(cub3d->screen), 1);
+	ft_init_image(cub3d, &(cub3d->minimap.img), 0);
 	cub3d->p1.pos_x = cub3d->pos.pos_x + 0.5;
 	cub3d->p1.pos_y = cub3d->pos.pos_y + 0.5;
 	set_player_view(cub3d, &(cub3d->p1));

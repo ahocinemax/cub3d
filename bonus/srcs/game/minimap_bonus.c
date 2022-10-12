@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	ft_init_minimap(t_cub3d *cub3d, t_minimap *minimap, t_img img, \
 char ***map)
