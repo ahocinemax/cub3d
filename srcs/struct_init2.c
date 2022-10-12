@@ -23,8 +23,8 @@ static void	init_player2(t_player *p1)
 {
 	p1->side = 0;
 	p1->line_height = 0;
-	p1->rot_speed = 0.15;
-	p1->move_speed = 0.2;
+	p1->rot_speed = 0.015;
+	p1->move_speed = 0.05;
 	p1->tex_start = 0;
 }
 
