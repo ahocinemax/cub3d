@@ -45,6 +45,10 @@ typedef struct s_pos		t_pos;
 typedef struct s_map		t_map;
 typedef struct s_pic		t_pic;
 
+# ifndef BONUS
+#  define BONUS			0
+# endif
+
 enum	e_direction
 {
 	NORTH,

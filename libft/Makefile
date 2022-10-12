@@ -14,7 +14,7 @@ SRCS		=   ft_atoi.c ft_itoa.c ft_putendl_fd.c ft_strlcpy.c ft_tolower.c \
 				ft_arrsize.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 				ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_isspace.c \
 				ft_skip_spaces.c ft_lstprint.c ft_issep.c ft_lstpush_back.c \
-				ft_free_array.c \
+				ft_free_array.c ft_print_tab.c\
 				get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJS		=	$(SRCS:.c=.o)

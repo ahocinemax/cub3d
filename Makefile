@@ -6,6 +6,8 @@ NAME		= cub3D
 
 FLAGS		= -Wall -Wextra -Werror -g3
 INCLUDE		= -I $(HEAD_DIR) -lXext -lX11 -lm
+BONUS_FLAG	= -D BONUS=1
+MDTORY_FLAG	= -D BONUS=0
 CC			= gcc
 
 #------------------------------------#
@@ -31,16 +33,20 @@ SRC_FILE	=	cub3d.c							\
 				game/init_game.c				\
 				game/intro_image.c				\
 				game/key_press_adsw.c			\
-				game/key_press_rotate.c			\
-				game/minimap.c
+				game/key_press_rotate.c
+
+BONUS_FILE	=	game/minimap.c
 
 #------------------------------------#
 #               OBJECTS              #
 #------------------------------------#
 
-OBJS	=	$(addprefix $(OBJ_DIR), $(OBJ))
-OBJ		=	$(SRC_FILE:.c=.o)
-OBJ_DIR	=	obj/
+OBJS		=	$(addprefix $(OBJ_DIR), $(OBJ))
+OBJ			=	$(SRC_FILE:.c=.o)
+OBJ_DIR		=	obj/
+
+OBJS_BONUS	=	$(addprefix $(OBJ_DIR), $(OBJ_BONUS))
+OBJ_BONUS	=	$(BONUS_FILE:.c=.o)
 
 #------------------------------------#
 #              INCLUDES              #
@@ -81,12 +87,22 @@ $(NAME): $(OBJS)
 	make -C $(MLX_DIR)
 	@echo $(CURSIVE)$(GRAY) "     - Making object files..." $(END)
 	@echo $(CURSIVE)$(GRAY) "     - Compiling $(NAME)..." $(END)
-	@$(CC) $(FLAGS) $(OBJS) $(LIBFT) $(LIBMLX) $(INCLUDE)  -o $(NAME)
+	$(CC) $(FLAGS) $(MDTORY_FLAG) $(OBJS) $(LIBFT) $(LIBMLX) $(INCLUDE)  -o $(NAME)
 	@echo $(GREEN)"- Project compiled -"$(END)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
 	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/raycasting/ $(OBJ_DIR)/game/
-	@$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
+	$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
+
+bonus: $(OBJS) $(OBJS_BONUS)
+	@echo $(CURSIVE)$(GREEN) "     ~ Making $(LIB_DIR)..." $(END)
+	make -C $(LIB_DIR)
+	@echo $(CURSIVE)$(GREEN) "     ~ Making $(MLX_DIR)..." $(END)
+	make -C $(MLX_DIR)
+	@echo $(CURSIVE)$(GRAY) "     - Making object files..." $(END)
+	@echo $(CURSIVE)$(GRAY) "     - Compiling $(NAME)..." $(END)
+	$(CC) $(FLAGS) $(BONUS_FLAG) $(OBJS) $(OBJS_BONUS) $(LIBFT) $(LIBMLX) $(INCLUDE)  -o $(NAME)
+	@echo $(GREEN)"- Project compiled -"$(END)
 
 clean:
 	@echo $(CURSIVE)$(GRAY) "     - Removing object files..." $(END)

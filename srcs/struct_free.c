@@ -42,7 +42,8 @@ static void	ft_free_texture(t_cub3d *cub3d)
 		if (cub3d->ea.img.mlx_img)
 			mlx_destroy_image(cub3d->mlx_ptr, cub3d->ea.img.mlx_img);
 		mlx_destroy_image(cub3d->mlx_ptr, cub3d->screen.mlx_img);
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->minimap.img.mlx_img);
+		if (BONUS != 0)
+			mlx_destroy_image(cub3d->mlx_ptr, cub3d->minimap.img.mlx_img);
 	}
 }
 
