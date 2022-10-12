@@ -3,6 +3,7 @@
 #------------------------------------#
 
 NAME		= cub3D
+NAME_BONUS	= cub3D_bonus
 
 FLAGS		= -Wall -Wextra -Werror -g3
 INCLUDE		= -I $(HEAD_DIR) -lXext -lX11 -lm
@@ -78,7 +79,19 @@ CURSIVE		= "\033[3m"
 
 all: $(NAME)
 
+bonus: $(NAME_BONUS)
+
 $(NAME): $(OBJS)
+	@echo $(CURSIVE)$(GREEN) "     ~ Making $(LIB_DIR)..." $(END)
+	make -C $(LIB_DIR)
+	@echo $(CURSIVE)$(GREEN) "     ~ Making $(MLX_DIR)..." $(END)
+	make -C $(MLX_DIR)
+	@echo $(CURSIVE)$(GRAY) "     - Making object files..." $(END)
+	@echo $(CURSIVE)$(GRAY) "     - Compiling $(NAME)..." $(END)
+	$(CC) $(MDTORY_FLAG) $(FLAGS) $(OBJS) $(LIBFT) $(LIBMLX) $(INCLUDE)  -o $(NAME)
+	@echo $(GREEN)"- Project compiled -"$(END)
+
+$(NAME_BONUS): $(OBJS) $(OBJS_BONUS)
 	@echo $(CURSIVE)$(GREEN) "     ~ Making $(LIB_DIR)..." $(END)
 	make -C $(LIB_DIR)
 	@echo $(CURSIVE)$(GREEN) "     ~ Making $(MLX_DIR)..." $(END)
@@ -100,7 +113,7 @@ clean:
 
 fclean: clean
 	@echo $(CURSIVE)$(GRAY) "     - Removing $(NAME)..." $(END)
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(NAME_BONUS)
 	make fclean -C $(LIB_DIR)
 	@echo $(YELLOW)"- Project removed -"$(END)
 
