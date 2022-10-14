@@ -81,5 +81,5 @@ t_error_code	ft_print_error(t_cub3d *cub3d, t_error_code error_code)
 void	ft_print_error_exit(t_cub3d *cub3d, t_error_code error_code)
 {
 	ft_print_error(cub3d, error_code);
-	exit(cub3d->exit_code);
+	ft_free_struct(cub3d);
 }

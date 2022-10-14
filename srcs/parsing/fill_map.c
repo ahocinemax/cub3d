@@ -24,7 +24,7 @@ char	*ft_fill_line(t_cub3d *cub3d, int line_nb)
 	i = 0;
 	line = (char *)ft_calloc(sizeof(char), cub3d->map.large + 1);
 	ft_strcpy(line, gnl);
-	while (i < cub3d->map.large)
+	while (i < cub3d->map.large && line)
 	{
 		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || \
 		line[i] == 'W')
