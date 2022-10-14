@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -36,6 +36,7 @@ typedef enum e_error_code	t_error_code;
 typedef enum e_direction	t_direction;
 typedef struct s_texture	t_texture;
 typedef struct s_window		t_window;
+typedef struct s_minimap	t_minimap;
 typedef struct s_player		t_player;
 typedef struct s_cub3d		t_cub3d;
 typedef struct s_color		t_color;
@@ -155,6 +156,18 @@ struct s_color
 	int				nb;
 };
 
+struct s_minimap
+{
+	int				size_case_x;
+	int				size_case_y;
+	int				pxl_x;
+	int				pixel_y;
+	int				map_x;
+	int				map_y;
+	int				color;
+	t_img			img;
+};
+
 struct s_map
 {
 	char			**map;
@@ -188,6 +201,7 @@ struct s_cub3d
 	int				exit_code;
 	t_map			map;
 	t_img			screen;
+	t_minimap		minimap;
 	int				fd;
 };
 
@@ -231,7 +245,7 @@ void			ft_init_img(t_img *img);
 void			ft_init_map(t_map *map);
 
 // struct init2
-void			ft_init_image(t_cub3d *cub3d, t_img *img);
+void			ft_init_image(t_cub3d *cub3d, t_img *img, int type);
 void			init_struct_pos(t_pos *pos);
 void			init_player(t_player *p1);
 void			init_picture(t_pic *pic);
@@ -285,5 +299,11 @@ void			d_key(t_cub3d *cub3d);
 void			a_key(t_cub3d *cub3d);
 void			w_key(t_cub3d *cub3d);
 void			s_key(t_cub3d *cub3d);
+
+// minimap
+void			ft_init_minimap(t_cub3d *cub3, t_minimap *minimap, t_img img, \
+								char ***map);
+void			ft_put_player(t_cub3d *cub3d, t_minimap *minimap);
+void			ft_minimap(t_cub3d *cub3d, t_minimap *minimap);
 
 #endif

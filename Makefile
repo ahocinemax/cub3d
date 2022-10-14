@@ -14,24 +14,25 @@ CC			= gcc
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILE))
 SRC_DIR		=	srcs/
-SRC_FILE	=	cub3d.c							\
+SRC_FILE	=	cub3d.c						\
 				parsing/struct_init.c			\
-				parsing/struct_init2.c			\
+				parsing/struct_init2.c		\
 				parsing/struct_free.c			\
-				parsing/parsing_utils.c			\
-				parsing/checker_info.c			\
+				parsing/parsing_utils.c		\
+				parsing/checker_info.c		\
 				parsing/checker_map.c			\
 				parsing/errors.c				\
-				parsing/fill_info.c				\
-				parsing/fill_map.c				\
+				parsing/fill_info.c			\
+				parsing/fill_map.c			\
 				raycasting/init_ray.c			\
-				raycasting/raycasting.c			\
+				raycasting/raycasting.c		\
 				raycasting/drawing.c			\
 				raycasting/color_and_image.c	\
 				game/init_game.c				\
-				game/intro_image.c				\
+				game/intro_image.c			\
 				game/key_press_adsw.c			\
-				game/key_press_rotate.c
+				game/key_press_rotate.c		\
+				game/minimap.c
 
 #------------------------------------#
 #               OBJECTS              #
@@ -96,7 +97,7 @@ clean:
 
 fclean: clean
 	@echo $(CURSIVE)$(GRAY) "     - Removing $(NAME)..." $(END)
-	@rm -f $(NAME) $(NAME_BONUS)
+	@rm -f $(NAME) $(NAME)
 	make fclean -C $(LIB_DIR)
 	@echo $(YELLOW)"- Project removed -"$(END)
 

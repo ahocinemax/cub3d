@@ -64,10 +64,22 @@ void	init_picture(t_pic *pic)
 	pic->height = 0;
 }
 
-void	ft_init_image(t_cub3d *cub3d, t_img *img)
+void	ft_init_image(t_cub3d *cub3d, t_img *img, int type)
 {
-	img->mlx_img = mlx_new_image(cub3d->mlx_ptr, cub3d->window.width, \
-	cub3d->window.height);
+	int	height;
+	int	width;
+
+	if (type == 1)
+	{
+		width = cub3d->window.width;
+		height = cub3d->window.height;
+	}
+	else
+	{
+		width = img->width;
+		height = img->height;
+	}
+	img->mlx_img = mlx_new_image(cub3d->mlx_ptr, width, height);
 	if (!img->mlx_img)
 		return (ft_print_error_exit(cub3d, ERROR_IMAGE));
 	img->addr = mlx_get_data_addr(img->mlx_img, &(img->bpp), \
